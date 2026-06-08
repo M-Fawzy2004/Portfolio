@@ -3,19 +3,20 @@ import { AcademicCapIcon } from '@heroicons/react/24/outline'
 
 export default function Education() {
   return (
-    <section id="education" className="section-padding relative">
+    <section id="education" className="section-padding position-relative">
       <div className="max-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-5"
         >
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase text-cyan-300 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
+          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', borderColor: 'rgba(34,211,238,0.2)' }}>
+            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Background
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Education</h2>
+          <h2 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>Education</h2>
         </motion.div>
 
         <motion.div
@@ -23,20 +24,21 @@ export default function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="max-w-2xl mx-auto"
+          className="mx-auto"
+          style={{ maxWidth: '36rem' }}
         >
-          <div className="glass glass-hover rounded-[24px] p-6 sm:p-8 flex items-start gap-5">
-            <div className="p-3 rounded-[16px] bg-gradient-to-br from-cyan-400 to-violet-400 flex-shrink-0">
-              <AcademicCapIcon className="w-6 h-6 text-white" />
+          <div className="card border-0 d-flex flex-row align-items-start gap-3 p-4" style={{ borderRadius: 24 }}>
+            <div className="d-flex align-items-center justify-content-center flex-shrink-0 rounded-3" style={{ width: 48, height: 48, background: 'linear-gradient(135deg, #22D3EE, #8B5CF6)' }}>
+              <AcademicCapIcon style={{ width: 24, height: 24, color: '#fff' }} />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-semibold text-white mb-1">
+              <h3 className="text-white fw-semibold mb-1" style={{ fontSize: '1.125rem' }}>
                 B.Sc. in Information Systems
               </h3>
-              <p className="text-sm text-cyan-300 mb-2">
+              <p className="mb-1" style={{ fontSize: '0.875rem', color: '#22D3EE' }}>
                 Faculty of Computers and Information, Tanta University
               </p>
-              <p className="text-xs text-gray-500">2022 - 2026</p>
+              <p className="mb-0" style={{ fontSize: '0.75rem', color: '#6B7280' }}>2022 - 2026</p>
             </div>
           </div>
         </motion.div>

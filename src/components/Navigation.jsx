@@ -28,22 +28,17 @@ export default function Navigation() {
 
     const updateActive = () => {
       const currentY = window.scrollY;
-
-      // Hide when scrolling down past 80px, show when scrolling up
       if (currentY > 80) {
         setHidden(currentY > lastScrollY.current);
       } else {
         setHidden(false);
       }
       lastScrollY.current = currentY;
-
       setScrolled(currentY > 80);
 
       if (guardExpiry.current || isNavigationLocked()) return;
 
-      // Use a trigger line at 35% from the top of the viewport
       const triggerY = currentY + window.innerHeight * 0.35;
-
       let currentId = sectionIds[0];
       for (const id of sectionIds) {
         const el = document.getElementById(id);
@@ -52,22 +47,17 @@ export default function Navigation() {
           currentId = id;
         }
       }
-
       setActive(currentId);
     };
 
     window.addEventListener("scroll", updateActive, { passive: true });
-    // Run once on mount to set initial state
     updateActive();
-
-    return () => {
-      window.removeEventListener("scroll", updateActive);
-    };
+    return () => window.removeEventListener("scroll", updateActive);
   }, []);
 
   const handleNavClick = (href) => {
     const id = href.slice(1);
-    setActive(id); // Immediately reflect the clicked section
+    setActive(id);
     setMobileOpen(false);
     lockNavigation();
     if (guardExpiry.current) clearTimeout(guardExpiry.current);
@@ -83,38 +73,34 @@ export default function Navigation() {
     exit: { opacity: 0, y: -12, scale: 0.96 },
   };
 
-  // Never hide the bar while the mobile menu is open
   const isHidden = hidden && !mobileOpen;
 
   return (
-    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-[99] mt-4 sm:mt-6 w-full flex justify-center">
+    <header className="fixed-top d-flex justify-content-center" style={{ marginTop: '1.5rem', zIndex: 99 }}>
       <motion.div
         initial={{ y: -100, opacity: 0 }}
-        animate={{
-          y: isHidden ? -120 : 0,
-          opacity: isHidden ? 0 : 1,
-        }}
+        animate={{ y: isHidden ? -120 : 0, opacity: isHidden ? 0 : 1 }}
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-        style={{ pointerEvents: isHidden ? "none" : "auto" }}
-        className="w-[92%] sm:w-[88%] max-w-7xl"
+        style={{ pointerEvents: isHidden ? "none" : "auto", width: '92%', maxWidth: '72rem' }}
       >
         <nav
-          className={`
-            relative flex items-center justify-between px-6 py-3 w-full
-            rounded-[30px] sm:rounded-full
-            backdrop-blur-xl border border-white/[0.05]
-            transition-colors duration-500
-            ${scrolled
-              ? "bg-[#0D0E12]/60 shadow-lg shadow-black/20"
-              : "bg-[#0D0E12]/40"
-            }
-          `}
+          className={`d-flex align-items-center justify-content-between px-4 py-2 w-100 rounded-pill border ${
+            scrolled
+              ? "shadow-lg"
+              : ""
+          }`}
+          style={{
+            backgroundColor: scrolled ? 'rgba(13, 14, 18, 0.6)' : 'rgba(13, 14, 18, 0.4)',
+            backdropFilter: 'blur(24px)',
+            borderColor: 'rgba(255, 255, 255, 0.05)',
+            transition: 'background-color 0.5s',
+          }}
         >
-          <a href="#" className="text-white font-bold text-lg tracking-tight">
-            MF<span className="text-cyan-400">.</span>
+          <a href="#" className="fw-bold text-white text-decoration-none" style={{ fontSize: '1.125rem', letterSpacing: '-0.02em' }}>
+            MF<span style={{ color: '#22D3EE' }}>.</span>
           </a>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="d-none d-md-flex align-items-center gap-1">
             {navItems.map((item) => {
               const isActive = active === item.href.slice(1);
               return (
@@ -122,21 +108,23 @@ export default function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-[12px] transition-colors duration-300 ${isActive
-                      ? "text-white"
-                      : "text-gray-500 hover:text-gray-200"
-                    }`}
+                  className="position-relative px-3 py-2 text-decoration-none rounded-3"
+                  style={{
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+                    transition: 'color 0.3s',
+                  }}
+                  onMouseEnter={(e) => { if (!isActive) e.target.style.color = 'rgba(255,255,255,0.8)'; }}
+                  onMouseLeave={(e) => { if (!isActive) e.target.style.color = 'rgba(255,255,255,0.5)'; }}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeSection"
-                      className="absolute inset-0 bg-white/[0.06] rounded-[12px]"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                      }}
+                      className="position-absolute top-0 start-0 w-100 h-100 rounded-3"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
                 </a>
@@ -146,14 +134,11 @@ export default function Navigation() {
 
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="block md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+            className="d-block d-md-none p-2 border-0 bg-transparent"
+            style={{ color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {mobileOpen ? (
-              <XMarkIcon className="w-6 h-6" />
-            ) : (
-              <Bars3Icon className="w-6 h-6" />
-            )}
+            {mobileOpen ? <XMarkIcon style={{ width: 24, height: 24 }} /> : <Bars3Icon style={{ width: 24, height: 24 }} />}
           </button>
         </nav>
 
@@ -165,9 +150,16 @@ export default function Navigation() {
               animate="visible"
               exit="exit"
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="backdrop-blur-2xl bg-[#0D0E12]/95 border border-white/10 rounded-[24px] mt-2 p-6 w-full shadow-2xl"
+              className="mt-2 p-4"
+              style={{
+                backgroundColor: 'rgba(13, 14, 18, 0.95)',
+                backdropFilter: 'blur(32px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 24,
+                boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
+              }}
             >
-              <div className="flex flex-col gap-2">
+              <div className="d-flex flex-column gap-2">
                 {navItems.map((item) => {
                   const isActive = active === item.href.slice(1);
                   return (
@@ -175,10 +167,14 @@ export default function Navigation() {
                       key={item.label}
                       href={item.href}
                       onClick={() => handleNavClick(item.href)}
-                      className={`px-4 py-3 text-sm font-medium rounded-[14px] transition-all duration-300 ${isActive
-                          ? "text-white bg-white/[0.06]"
-                          : "text-gray-400 hover:text-white hover:bg-white/[0.03]"
-                        }`}
+                      className="px-3 py-2 text-decoration-none rounded-4"
+                      style={{
+                        fontSize: '0.875rem',
+                        fontWeight: 500,
+                        backgroundColor: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
+                        color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+                        transition: 'all 0.3s',
+                      }}
                     >
                       {item.label}
                     </a>

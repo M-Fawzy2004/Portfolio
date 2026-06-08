@@ -32,62 +32,62 @@ const itemVariants = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-padding relative">
+    <section id="experience" className="section-padding position-relative">
       <div className="max-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-5"
         >
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase text-cyan-300 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
+          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', borderColor: 'rgba(34,211,238,0.2)' }}>
+            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Career
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Experience</h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+          <h2 className="fw-bold text-white mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>Experience</h2>
+          <p className="mb-0 mx-auto" style={{ color: '#94A3B8', maxWidth: '36rem', fontSize: '1rem' }}>
             My professional journey in mobile development
           </p>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-4 sm:left-5 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-violet-500/20 to-transparent" />
+        <div className="position-relative mx-auto" style={{ maxWidth: '48rem' }}>
+          <div className="position-absolute top-0 bottom-0" style={{ left: '1.25rem', width: '1px', background: 'linear-gradient(180deg, rgba(34,211,238,0.4), rgba(139,92,246,0.2), transparent)' }} />
 
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="space-y-8"
+            className="d-flex flex-column gap-4"
           >
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="relative pl-12 sm:pl-14"
+                className="position-relative"
+                style={{ paddingLeft: '3.5rem' }}
               >
-                <div className="absolute left-2.5 sm:left-3 top-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-cyan-400 to-violet-400 shadow-lg shadow-cyan-500/25 z-10" />
+                <div className="position-absolute rounded-circle" style={{ left: '0.75rem', top: 4, width: 14, height: 14, background: 'linear-gradient(135deg, #22D3EE, #8B5CF6)', boxShadow: '0 0 16px rgba(34,211,238,0.25)', zIndex: 10 }} />
 
-                <div className="glass glass-hover rounded-[24px] p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="text-xs font-medium text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">
+                <div className="card p-4 border-0" style={{ borderRadius: 24 }}>
+                  <div className="d-flex flex-wrap align-items-center gap-2 mb-1">
+                    <span className="badge" style={{ fontSize: '0.6875rem', fontWeight: 500, color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)', padding: '0.25rem 0.5rem' }}>
                       {exp.period}
                     </span>
-                    <span className="text-xs text-gray-500">{exp.type}</span>
+                    <span style={{ fontSize: '0.75rem', color: '#6B7280' }}>{exp.type}</span>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mt-2">
-                    {exp.role}
-                  </h3>
-                  <p className="text-sm text-cyan-300 mb-3 flex items-center gap-1.5">
-                    <BriefcaseIcon className="w-3.5 h-3.5" />
+                  <h3 className="text-white fw-semibold mt-1 mb-0" style={{ fontSize: '1.125rem' }}>{exp.role}</h3>
+                  <p className="d-flex align-items-center gap-1 mb-2" style={{ fontSize: '0.875rem', color: '#22D3EE' }}>
+                    <BriefcaseIcon style={{ width: 14, height: 14 }} />
                     {exp.company}
                   </p>
 
-                  <ul className="space-y-2">
+                  <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400/50 flex-shrink-0" />
+                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: '0.875rem', color: '#94A3B8' }}>
+                        <span className="flex-shrink-0 rounded-circle d-inline-block mt-1" style={{ width: 6, height: 6, backgroundColor: 'rgba(34,211,238,0.5)' }} />
                         {highlight}
                       </li>
                     ))}

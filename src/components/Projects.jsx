@@ -30,12 +30,7 @@ const projects = [
       "Built with dual-language localization (AR/EN), dynamic multi-theme support, and robust offline data caching with advanced error handling",
     ],
     techStack: [
-      "Flutter",
-      "Dart",
-      "Supabase",
-      "Gemini AI",
-      "Clean Architecture",
-      "BLoC State Management",
+      "Flutter", "Dart", "Supabase", "Gemini AI", "Clean Architecture", "BLoC State Management",
     ],
     icon: AcademicCapIcon,
     color: "from-cyan-500/20 to-violet-500/20",
@@ -45,13 +40,7 @@ const projects = [
   {
     title: "Full-Stack E-Commerce Ecosystem",
     subtitle: "Mobile App + Web Admin Dashboard",
-    tags: [
-      "Flutter",
-      "Supabase",
-      "Paymob",
-      "Google Maps",
-      "Clean Architecture",
-    ],
+    tags: ["Flutter", "Supabase", "Paymob", "Google Maps", "Clean Architecture"],
     description:
       "High-performance Flutter mobile app with cart, tracking, and payment gateways, backed by a real-time web management CRUD dashboard.",
     features: [
@@ -62,26 +51,13 @@ const projects = [
       "Comprehensive Web Admin Dashboard implementing full product CRUD capabilities, real-time order management, category management, and review moderation workflows",
     ],
     techStack: [
-      "Flutter",
-      "Dart",
-      "Supabase (Auth, PostgreSQL, Storage)",
-      "Paymob",
-      "Google Maps",
-      "GoRouter",
-      "Clean Architecture",
-      "BLoC",
+      "Flutter", "Dart", "Supabase (Auth, PostgreSQL, Storage)", "Paymob", "Google Maps", "GoRouter", "Clean Architecture", "BLoC",
     ],
     icon: GlobeAltIcon,
     color: "from-teal-500/20 to-cyan-500/20",
     links: [
-      {
-        label: "Mobile Source",
-        url: "https://github.com/M-Fawzy2004/Ecommerce",
-      },
-      {
-        label: "Web Dashboard Source",
-        url: "https://github.com/M-Fawzy2004/Dashboard_Ecommerce",
-      },
+      { label: "Mobile Source", url: "https://github.com/M-Fawzy2004/Ecommerce" },
+      { label: "Web Dashboard Source", url: "https://github.com/M-Fawzy2004/Dashboard_Ecommerce" },
     ],
   },
   {
@@ -97,22 +73,11 @@ const projects = [
       "Real-time tracking mechanisms for order lifecycle management",
     ],
     techStack: [
-      "Flutter",
-      "Dart",
-      "Supabase",
-      "RESTful API",
-      "Dio",
-      "Clean Architecture",
-      "BLoC State Management",
+      "Flutter", "Dart", "Supabase", "RESTful API", "Dio", "Clean Architecture", "BLoC State Management",
     ],
     icon: ShoppingBagIcon,
     color: "from-fuchsia-500/20 to-pink-500/20",
-    links: [
-      {
-        label: "View Repository",
-        url: "https://github.com/M-Fawzy2004/ShopApp",
-      },
-    ],
+    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/ShopApp" }],
   },
   {
     title: "Book App \u2013 Free Book Browser",
@@ -128,30 +93,16 @@ const projects = [
     ],
     note: "Demo videos demonstrating the full UI flow and application functionality are hosted on TikTok.",
     techStack: [
-      "Flutter & Dart",
-      "RESTful APIs",
-      "BLoC / Provider",
-      "Dio (Pagination & Handling)",
+      "Flutter & Dart", "RESTful APIs", "BLoC / Provider", "Dio (Pagination & Handling)",
     ],
     icon: BookOpenIcon,
     color: "from-amber-500/20 to-orange-500/20",
-    links: [
-      {
-        label: "View Repository",
-        url: "https://github.com/M-Fawzy2004/Book-App",
-      },
-    ],
+    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Book-App" }],
   },
   {
     title: "Chat App \u2013 Firebase & Flutter",
     subtitle: "Solo Project",
-    tags: [
-      "Flutter & Dart",
-      "Firebase Auth",
-      "Firestore",
-      "BLoC/Provider",
-      "Image Picker",
-    ],
+    tags: ["Flutter & Dart", "Firebase Auth", "Firestore", "BLoC/Provider", "Image Picker"],
     description:
       "A real-time 1-on-1 chat app supporting text/media sharing, dynamic theme switching, and secure auth pathways.",
     features: [
@@ -162,40 +113,22 @@ const projects = [
       "Dynamic Dark / Light mode toggle for personalized user experience",
     ],
     techStack: [
-      "Flutter & Dart",
-      "Firebase Authentication",
-      "Firestore",
-      "Firebase Storage",
-      "BLoC / Provider",
-      "Image Picker",
-      "Cached Network Image",
+      "Flutter & Dart", "Firebase Authentication", "Firestore", "Firebase Storage", "BLoC / Provider", "Image Picker", "Cached Network Image",
     ],
     icon: ChatBubbleLeftRightIcon,
     color: "from-emerald-500/20 to-green-500/20",
-    links: [
-      {
-        label: "View Repository",
-        url: "https://github.com/M-Fawzy2004/Chat-App",
-      },
-    ],
+    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Chat-App" }],
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const overlayVariants = {
@@ -205,23 +138,13 @@ const overlayVariants = {
 
 const modalVariants = {
   hidden: { opacity: 0, scale: 0.92, y: 40 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    y: 20,
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+  exit: { opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.3, ease: "easeInOut" } },
 };
 
 function TagBadge({ tag }) {
   return (
-    <span className="px-3 py-1 text-[10px] font-medium rounded-[8px] bg-white/[0.03] text-gray-500 border border-white/[0.04] whitespace-nowrap">
+    <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#6B7280', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
       {tag}
     </span>
   );
@@ -242,78 +165,81 @@ function ProjectModal({ project, onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
+      className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 100, backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}
       onClick={handleOverlayClick}
     >
       <motion.div
         variants={modalVariants}
-        className="relative w-full max-w-2xl rounded-[32px] bg-[#0D0E12] border border-white/[0.06] p-6 sm:p-10 shadow-2xl max-h-[90vh] overflow-y-auto"
+        className="position-relative border overflow-auto"
+        style={{
+          width: '100%',
+          maxWidth: '42rem',
+          maxHeight: '90vh',
+          borderRadius: 32,
+          backgroundColor: '#0D0E12',
+          borderColor: 'rgba(255,255,255,0.06)',
+          padding: '2.5rem 2rem',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
+        }}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white/[0.03] hover:bg-white/[0.06] transition-colors border border-white/[0.04]"
+          className="position-absolute border-0 d-flex align-items-center justify-content-center rounded-circle"
+          style={{
+            top: '1.5rem', right: '1.5rem', width: 36, height: 36,
+            backgroundColor: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.04)',
+            color: '#6B7280',
+            cursor: 'pointer',
+            transition: 'background-color 0.2s',
+          }}
         >
-          <XMarkIcon className="w-5 h-5 text-gray-500" />
+          <XMarkIcon style={{ width: 20, height: 20 }} />
         </button>
 
-        <div className={`inline-flex p-3 rounded-[16px] ${project.color} mb-5`}>
-          <Icon className="w-6 h-6 text-white" />
+        <div className={`d-inline-flex p-3 rounded-3 mb-4`} style={{ background: `linear-gradient(135deg, ${project.color})` }}>
+          <Icon style={{ width: 24, height: 24, color: '#fff' }} />
         </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {visibleTags.map((tag) => (
-            <TagBadge key={tag} tag={tag} />
-          ))}
+        <div className="d-flex flex-wrap gap-1 mb-3">
+          {visibleTags.map((tag) => <TagBadge key={tag} tag={tag} />)}
           {extraCount > 0 && (
-            <span className="px-3 py-1 text-[10px] font-medium rounded-[8px] bg-white/[0.03] text-gray-400 border border-white/[0.04] whitespace-nowrap">
+            <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#9CA3AF', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
               +{extraCount} more
             </span>
           )}
         </div>
 
-        <h3 className="text-2xl sm:text-3xl font-bold text-[#F4F4F6] mb-1">
-          {project.title}
-        </h3>
-        <p className="text-xs text-gray-600 mb-5">{project.subtitle}</p>
+        <h3 className="fw-bold mb-1" style={{ fontSize: '1.75rem', color: '#F4F4F6' }}>{project.title}</h3>
+        <p className="mb-4" style={{ fontSize: '0.75rem', color: '#6B7280' }}>{project.subtitle}</p>
 
-        <div className="rounded-[20px] p-5 mb-5 bg-white/[0.02] border border-white/[0.04]">
-          <div className="flex items-center gap-2 mb-3">
-            <SparklesIcon className="w-4 h-4 text-white/40" />
-            <span className="text-sm font-semibold text-white/70">
-              Key Features
-            </span>
+        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.04)' }}>
+          <div className="d-flex align-items-center gap-2 mb-3">
+            <SparklesIcon style={{ width: 16, height: 16, color: 'rgba(255,255,255,0.4)' }} />
+            <span className="fw-semibold" style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>Key Features</span>
           </div>
-          <ul className="space-y-2.5">
+          <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
             {project.features.map((feature, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-2 text-xs text-[#94A3B8] leading-relaxed"
-              >
-                <span className="mt-1.5 w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
+              <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: '0.75rem', color: '#94A3B8', lineHeight: 1.6 }}>
+                <span className="flex-shrink-0 rounded-circle d-inline-block mt-1" style={{ width: 4, height: 4, backgroundColor: 'rgba(255,255,255,0.2)' }} />
                 {feature}
               </li>
             ))}
           </ul>
           {project.note && (
-            <p className="mt-3 text-xs text-cyan-400/60 italic">
-              {project.note}
-            </p>
+            <p className="mt-3 mb-0" style={{ fontSize: '0.75rem', color: 'rgba(34,211,238,0.6)', fontStyle: 'italic' }}>{project.note}</p>
           )}
         </div>
 
-        <div className="rounded-[20px] p-5 mb-6 bg-white/[0.02] border border-white/[0.04]">
-          <div className="flex items-center gap-2 mb-3">
-            <CpuChipIcon className="w-4 h-4 text-white/40" />
-            <span className="text-sm font-semibold text-white/70">
-              Tech Stack
-            </span>
+        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.04)' }}>
+          <div className="d-flex align-items-center gap-2 mb-3">
+            <CpuChipIcon style={{ width: 16, height: 16, color: 'rgba(255,255,255,0.4)' }} />
+            <span className="fw-semibold" style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>Tech Stack</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="d-flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1.5 text-[11px] font-medium rounded-[8px] bg-white/[0.03] text-[#94A3B8] border border-white/[0.04]"
-              >
+              <span key={tech} className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#94A3B8', border: '1px solid rgba(255,255,255,0.04)', padding: '0.375rem 0.75rem', fontSize: '0.6875rem', fontWeight: 500, borderRadius: 8 }}>
                 {tech}
               </span>
             ))}
@@ -321,14 +247,12 @@ function ProjectModal({ project, onClose }) {
         </div>
 
         {project.confidential ? (
-          <div className="flex items-start gap-3 rounded-[20px] p-5 border border-amber-500/10 bg-amber-500/[0.02]">
-            <ShieldCheckIcon className="w-5 h-5 text-amber-400/60 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-amber-400/60 leading-relaxed">
-              Commercial Confidential Repository
-            </p>
+          <div className="d-flex align-items-start gap-3 p-4 rounded-4 border" style={{ borderColor: 'rgba(251,191,36,0.1)', backgroundColor: 'rgba(251,191,36,0.02)' }}>
+            <ShieldCheckIcon className="flex-shrink-0" style={{ width: 20, height: 20, color: 'rgba(251,191,36,0.6)', marginTop: 2 }} />
+            <p className="mb-0" style={{ fontSize: '0.875rem', color: 'rgba(251,191,36,0.6)' }}>Commercial Confidential Repository</p>
           </div>
         ) : (
-          <div className="flex flex-wrap gap-3">
+          <div className="d-flex flex-wrap gap-3">
             {project.links.map((link) => (
               <motion.a
                 key={link.label}
@@ -337,10 +261,11 @@ function ProjectModal({ project, onClose }) {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-white text-sm font-medium bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                className="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-white text-decoration-none border"
+                style={{ fontSize: '0.875rem', fontWeight: 500, backgroundColor: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.06)', transition: 'all 0.3s' }}
               >
                 {link.label}
-                <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+                <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16 }} />
               </motion.a>
             ))}
           </div>
@@ -358,7 +283,7 @@ export default function Projects() {
     e.stopPropagation();
     e.preventDefault();
     lockNavigation();
-    if (guardExpiry.current) clearTimeout(guardExpiry.current)
+    if (guardExpiry.current) clearTimeout(guardExpiry.current);
     guardExpiry.current = setTimeout(() => {
       unlockNavigation();
       guardExpiry.current = null;
@@ -367,43 +292,25 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-20 left-10 w-72 h-72 rounded-full bg-cyan-500/5 blur-[120px]"
-          style={{ animation: "float-glow 8s ease-in-out infinite" }}
-        />
-        <div
-          className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-violet-500/5 blur-[120px]"
-          style={{
-            animation: "float-glow 12s ease-in-out infinite",
-            animationDelay: "2s",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-cyan-500/3 blur-[100px]"
-          style={{
-            animation: "float-glow 10s ease-in-out infinite",
-            animationDelay: "4s",
-          }}
-        />
+    <section id="projects" className="section-padding position-relative overflow-hidden">
+      <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden pointer-events-none">
+        <div className="position-absolute rounded-circle" style={{ top: 80, left: 40, width: 288, height: 288, backgroundColor: 'rgba(34,211,238,0.05)', filter: 'blur(120px)', animation: 'float-glow 8s ease-in-out infinite' }} />
+        <div className="position-absolute rounded-circle" style={{ bottom: 160, right: 40, width: 384, height: 384, backgroundColor: 'rgba(139,92,246,0.05)', filter: 'blur(120px)', animation: 'float-glow 12s ease-in-out infinite', animationDelay: '2s' }} />
       </div>
 
-      <div className="max-container relative z-10">
+      <div className="max-container position-relative" style={{ zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-5"
         >
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase text-white/40 bg-white/[0.03] rounded-full mb-4 border border-white/[0.04]">
+          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.04)' }}>
             Portfolio
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F4F4F6] mb-3">
-            Featured Projects
-          </h2>
-          <p className="text-[#94A3B8] max-w-xl mx-auto text-sm sm:text-base">
+          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: '#F4F4F6' }}>Featured Projects</h2>
+          <p className="mb-0 mx-auto" style={{ color: '#94A3B8', maxWidth: '36rem', fontSize: '1rem' }}>
             Premium applications built with cutting-edge technologies
           </p>
         </motion.div>
@@ -412,8 +319,8 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          viewport={{ once: true, margin: '-50px' }}
+          className="row g-4"
         >
           {projects.map((project) => {
             const Icon = project.icon;
@@ -424,66 +331,50 @@ export default function Projects() {
               <motion.div
                 key={project.title}
                 variants={cardVariants}
-                onClick={(e) => handleCardClick(e, project)}
-                className="group relative rounded-[32px] bg-[#0D0E15]/60 border border-white/[0.06] overflow-hidden cursor-pointer transition-all duration-500 hover:border-white/[0.15] hover:scale-[1.02] hover:-translate-y-2"
+                className="col-12 col-md-6"
               >
-                <div className="absolute inset-0 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden">
-                  <div className="absolute -inset-20 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-3xl" />
-                </div>
-
-                <div className="overflow-hidden rounded-t-[32px]">
-                  <motion.div
-                    className="relative h-36 sm:h-40"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                  >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${project.color}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent" />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-white/[0.06] pointer-events-none" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="p-3.5 rounded-[16px] bg-black/30 backdrop-blur-md border border-white/[0.08]">
-                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+                <div
+                  onClick={(e) => handleCardClick(e, project)}
+                  className="card border-0 h-100"
+                  style={{ borderRadius: 32, cursor: 'pointer', transition: 'all 0.5s' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.02) translateY(-8px)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.borderColor = '';
+                  }}
+                >
+                  <div className="overflow-hidden" style={{ borderTopLeftRadius: 32, borderTopRightRadius: 32 }}>
+                    <div className="position-relative d-flex align-items-center justify-content-center" style={{ height: '10rem', background: `linear-gradient(135deg, ${project.color})` }}>
+                      <div className="position-absolute bottom-0 start-0 w-100" style={{ height: '100%', background: 'linear-gradient(0deg, #050508, transparent)' }} />
+                      <div className="p-3 rounded-3" style={{ backgroundColor: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                        <Icon style={{ width: 32, height: 32, color: '#fff' }} />
                       </div>
                     </div>
-                  </motion.div>
-                </div>
-
-                <div className="relative p-5 sm:p-7 flex flex-col">
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {visibleTags.map((tag) => (
-                      <TagBadge key={tag} tag={tag} />
-                    ))}
-                    {extraCount > 0 && (
-                      <span className="px-3 py-1 text-[10px] font-medium rounded-[8px] bg-white/[0.03] text-gray-400 border border-white/[0.04] whitespace-nowrap">
-                        +{extraCount} more
-                      </span>
-                    )}
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-[#F4F4F6] mb-1 transition-all duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-gray-600 mb-3">
-                    {project.subtitle}
-                  </p>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed flex-grow">
-                    {project.description}
-                  </p>
+                  <div className="p-4 d-flex flex-column flex-grow-1">
+                    <div className="d-flex flex-wrap gap-1 mb-2">
+                      {visibleTags.map((tag) => <TagBadge key={tag} tag={tag} />)}
+                      {extraCount > 0 && (
+                        <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#9CA3AF', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
+                          +{extraCount} more
+                        </span>
+                      )}
+                    </div>
 
-                  <div className="mt-4 pt-4 border-t border-white/[0.04] flex items-center justify-between">
-                    <span className="text-xs text-gray-600 group-hover:text-white/50 transition-colors duration-300">
-                      Click to explore
-                    </span>
-                    <ArrowTopRightOnSquareIcon className="w-4 h-4 text-gray-600 group-hover:text-white/40 transition-colors duration-300" />
+                    <h3 className="fw-bold mb-1" style={{ fontSize: '1.125rem', color: '#F4F4F6' }}>{project.title}</h3>
+                    <p className="mb-2" style={{ fontSize: '0.75rem', color: '#6B7280' }}>{project.subtitle}</p>
+                    <p className="flex-grow-1 mb-0" style={{ fontSize: '0.875rem', color: '#94A3B8', lineHeight: 1.6 }}>{project.description}</p>
+
+                    <div className="d-flex align-items-center justify-content-between mt-3 pt-3 border-top" style={{ borderTopColor: 'rgba(255,255,255,0.04)' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#6B7280' }}>Click to explore</span>
+                      <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16, color: '#6B7280' }} />
+                    </div>
                   </div>
                 </div>
-
-                <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/[0.03] pointer-events-none" />
               </motion.div>
             );
           })}
@@ -491,9 +382,7 @@ export default function Projects() {
       </div>
 
       <AnimatePresence>
-        {selected && (
-          <ProjectModal project={selected} onClose={() => setSelected(null)} />
-        )}
+        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
       </AnimatePresence>
     </section>
   );

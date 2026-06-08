@@ -1,252 +1,415 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MessageCircle, MapPin, Send, Heart } from 'lucide-react'
+import { Mail, Phone, MessageCircle, Send, ArrowRight } from 'lucide-react'
+import myAvatar from '../assets/my_photo.jpg'
 
-const LinkedInIcon = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+const LinkedInIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
     <rect width="4" height="12" x="2" y="9" />
     <circle cx="4" cy="4" r="2" />
   </svg>
 )
 
-const GitHubIcon = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+const GitHubIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
     <path d="M9 18c-4.51 2-5-2-7-2" />
   </svg>
 )
 
-const TikTokIcon = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+const TwitterIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
   </svg>
 )
 
-const contactMethods = [
-  {
-    label: 'Email',
-    value: 'mofawzy.com7@gmail.com',
-    href: 'mailto:mofawzy.com7@gmail.com',
-    icon: Mail,
-    gradient: 'from-cyan-400 to-violet-400/80',
-    hoverColor: 'hover:border-cyan-500/30 hover:shadow-[0_0_40px_rgba(34,211,238,0.06)]',
-    cols: 'sm:col-span-2',
-    variant: 'row',
-  },
-  {
-    label: 'Phone',
-    value: '+20 106 880 8559',
-    href: 'tel:+201068808559',
-    icon: Phone,
-    gradient: 'from-cyan-400 to-teal-400/80',
-    hoverColor: 'hover:border-teal-500/30 hover:shadow-[0_0_40px_rgba(45,212,191,0.06)]',
-    cols: '',
-    variant: 'row',
-  },
-]
+const GlobeIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+)
 
-const socialLinks = [
-  {
-    label: 'WhatsApp',
-    href: 'https://wa.me/201068808559',
-    icon: MessageCircle,
-    gradient: 'from-green-500 to-emerald-500',
-    hoverBg: 'hover:bg-green-500/10 hover:border-green-500/30',
-    glow: 'hover:shadow-[0_0_40px_rgba(34,197,94,0.08)]',
-    iconBg: 'bg-green-500/15',
-    iconColor: 'text-green-400 group-hover:text-green-300',
-  },
-  {
-    label: 'Telegram',
-    href: 'https://t.me/+201068808559',
-    icon: Send,
-    gradient: 'from-blue-500 to-cyan-500',
-    hoverBg: 'hover:bg-blue-500/10 hover:border-blue-500/30',
-    glow: 'hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]',
-    iconBg: 'bg-blue-500/15',
-    iconColor: 'text-blue-400 group-hover:text-blue-300',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/',
-    icon: LinkedInIcon,
-    gradient: 'from-blue-500 to-blue-600',
-    hoverBg: 'hover:bg-blue-500/10 hover:border-blue-500/30',
-    glow: 'hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]',
-    iconBg: 'bg-blue-500/15',
-    iconColor: 'text-blue-400 group-hover:text-blue-300',
-  },
-  {
-    label: 'GitHub',
-    href: 'https://github.com/M-Fawzy2004',
-    icon: GitHubIcon,
-    gradient: 'from-gray-200 to-white',
-    hoverBg: 'hover:bg-white/5 hover:border-white/20',
-    glow: 'hover:shadow-[0_0_40px_rgba(255,255,255,0.04)]',
-    iconBg: 'bg-white/10',
-    iconColor: 'text-gray-300 group-hover:text-white',
-  },
-  {
-    label: 'TikTok',
-    href: 'https://www.tiktok.com/@mo7amedfawzy6',
-    icon: TikTokIcon,
-    gradient: 'from-white to-gray-300',
-    hoverBg: 'hover:bg-white/5 hover:border-white/20',
-    glow: 'hover:shadow-[0_0_40px_rgba(255,255,255,0.04)]',
-    iconBg: 'bg-white/10',
-    iconColor: 'text-gray-300 group-hover:text-white',
-  },
+const contacts = [
+  { label: 'Email', value: 'mofawzy.com7@gmail.com', href: 'mailto:mofawzy.com7@gmail.com', icon: Mail, color: '#22D3EE' },
+  { label: 'Phone', value: '+20 106 880 8559', href: 'tel:+201068808559', icon: Phone, color: '#14B8A6' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/mfawzy', href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/', icon: LinkedInIcon, color: '#60A5FA' },
+  { label: 'GitHub', value: 'github.com/Mofawzyy', href: 'https://github.com/M-Fawzy2004', icon: GitHubIcon, color: '#D1D5DB' },
+  { label: 'WhatsApp', value: 'Chat with me', href: 'https://wa.me/201068808559', icon: MessageCircle, color: '#34D399' },
+  { label: 'Telegram', value: '@Mofawzyy', href: 'https://t.me/Mofawzyy', icon: Send, color: '#60A5FA' },
 ]
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 }
 
-const cardVariants = {
+const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 }
 
 export default function Contact() {
+  const [hoveredIndex, setHoveredIndex] = useState(null)
+
   return (
-    <footer id="contact" className="relative section-padding pb-8 overflow-hidden">
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.04]"
-          style={{
-            background: 'radial-gradient(circle, #22D3EE 0%, transparent 70%)',
-            animation: 'float-glow 8s ease-in-out infinite',
-          }}
+    <section id="contact" className="section-padding position-relative d-flex align-items-center justify-content-center overflow-hidden" style={{ minHeight: '100vh' }}>
+      {/* Subtle ambient glow */}
+      <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+        <motion.div
+          className="position-absolute rounded-circle"
+          style={{ top: '15%', right: '10%', width: 450, height: 450, background: 'radial-gradient(circle, rgba(34,211,238,0.08), transparent 70%)', filter: 'blur(80px)' }}
+          animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <div
-          className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-[0.03]"
-          style={{
-            background: 'radial-gradient(circle, #8B5CF6 0%, transparent 70%)',
-            animation: 'float-glow 10s ease-in-out infinite 2s',
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.02]"
-          style={{
-            background: 'radial-gradient(circle, #34D399 0%, transparent 70%)',
-            animation: 'float-glow 12s ease-in-out infinite 4s',
-          }}
+        <motion.div
+          className="position-absolute rounded-circle"
+          style={{ bottom: '15%', left: '10%', width: 400, height: 400, background: 'radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%)', filter: 'blur(80px)' }}
+          animate={{ y: [0, 30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
       </div>
 
-      <div className="max-container relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium tracking-wider uppercase text-cyan-300 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            Connect
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-            Let's <span className="text-gradient">Connect</span>
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-            I'm always open to new opportunities, collaborations, and conversations — feel free to reach out!
-          </p>
-        </motion.div>
+      <motion.div
+        className="position-relative mx-auto w-100 max-container"
+        style={{ zIndex: 1, padding: '0 1.5rem' }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+      >
+        <div className="row g-4 g-lg-5 align-items-center">
+          {/* Left Column: Heading, Description & Profile Card */}
+          <div className="col-12 col-lg-5 mb-5 mb-lg-0">
+            <div className="d-flex flex-column align-items-start text-start mb-4">
+              <motion.span
+                variants={itemVariants}
+                className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3"
+                style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.08)', borderColor: 'rgba(34,211,238,0.15)' }}
+              >
+                <span className="rounded-circle d-inline-block" style={{ width: 5, height: 5, backgroundColor: '#22D3EE' }} />
+                Communication
+              </motion.span>
+              <motion.h2
+                variants={itemVariants}
+                className="fw-bold text-white mb-2 lh-1"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}
+              >
+                Let's <br />
+                <span className="text-gradient">Connect</span>
+              </motion.h2>
+              <motion.p
+                variants={itemVariants}
+                className="mb-4"
+                style={{ fontSize: '0.95rem', color: '#94A3B8', maxWidth: '28rem', lineHeight: 1.6 }}
+              >
+                Feel free to reach out to me through any of the channels below. I'll get back to you as soon as possible!
+              </motion.p>
+            </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="max-w-3xl mx-auto space-y-3"
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {contactMethods.map((method) => (
-              <motion.div key={method.label} variants={cardVariants} className={method.cols}>
-                <a
-                  href={method.href}
-                  className={`group flex items-center gap-3 glass-liquid rounded-[20px] p-4 h-full transition-all duration-400 ${method.hoverColor}`}
-                >
-                  <div className={`p-2.5 rounded-[14px] bg-gradient-to-br ${method.gradient} shadow-lg shadow-cyan-500/10 group-hover:scale-110 transition-transform duration-400`}>
-                    <method.icon className="w-4 h-4 text-white" />
+            {/* Profile Card */}
+            <motion.div
+              variants={itemVariants}
+              className="position-relative overflow-hidden"
+              style={{
+                borderRadius: 28,
+                background: 'linear-gradient(135deg, rgba(18,19,26,0.65), rgba(18,19,26,0.35))',
+                backdropFilter: 'blur(40px) saturate(1.6)',
+                border: '1px solid rgba(255,255,255,0.05)',
+                boxShadow: '0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
+                padding: '2rem',
+              }}
+              animate={{ y: [-5, 5, -5] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              {/* Profile layout inside card */}
+              <div className="d-flex align-items-center gap-4 mb-4">
+                {/* Circular Avatar */}
+                <div className="position-relative flex-shrink-0">
+                  <div 
+                    className="rounded-circle overflow-hidden border border-2 border-primary-subtle"
+                    style={{
+                      width: 80,
+                      height: 80,
+                      boxShadow: '0 0 20px rgba(34,211,238,0.15)',
+                    }}
+                  >
+                    <img 
+                      src={myAvatar} 
+                      alt="Mohamed Fawzy" 
+                      className="w-100 h-100" 
+                      style={{ objectFit: 'cover' }}
+                    />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-[9px] font-medium tracking-wider uppercase text-gray-500 mb-0.5">
-                      {method.label}
-                    </p>
-                    <p className="text-xs text-gray-200 group-hover:text-cyan-300 transition-colors truncate font-medium">
-                      {method.value}
-                    </p>
-                  </div>
-                </a>
-              </motion.div>
-            ))}
-
-            {socialLinks.map((link) => (
-              <motion.div key={link.label} variants={cardVariants}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex flex-col items-center justify-center gap-2 glass-liquid rounded-[20px] p-4 h-full transition-all duration-400 ${link.hoverBg} ${link.glow} relative overflow-hidden`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  <div className={`p-2.5 rounded-[14px] ${link.iconBg} group-hover:scale-110 transition-all duration-400 ${link.iconColor}`}>
-                    <link.icon className="w-4 h-4" />
-                  </div>
-                  <p className="text-[9px] font-medium tracking-wider uppercase text-gray-500">
-                    {link.label}
-                  </p>
-                </a>
-              </motion.div>
-            ))}
-
-            <motion.div variants={cardVariants} className="col-span-2 sm:col-span-4">
-              <div className="glass-liquid rounded-[20px] p-4 sm:p-5 flex items-center gap-3 sm:gap-4 group transition-all duration-400 hover:border-emerald-500/20 hover:shadow-[0_0_40px_rgba(52,211,153,0.04)]">
-                <div className="radar-pulse flex-shrink-0">
-                  <div className="p-2.5 rounded-[14px] bg-emerald-500/15 group-hover:scale-110 transition-transform duration-400">
-                    <MapPin className="w-4 h-4 text-emerald-400" />
-                  </div>
+                  {/* Availability Dot */}
+                  <span 
+                    className="position-absolute rounded-circle"
+                    style={{
+                      bottom: 2,
+                      right: 2,
+                      width: 14,
+                      height: 14,
+                      backgroundColor: '#0EA5E9',
+                      border: '2px solid #0D0E12',
+                      boxShadow: '0 0 10px #0EA5E9',
+                    }}
+                  >
+                    <span 
+                      className="position-absolute top-0 start-0 w-100 h-100 rounded-circle"
+                      style={{
+                        backgroundColor: '#0EA5E9',
+                        opacity: 0.6,
+                        animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite',
+                      }}
+                    />
+                  </span>
                 </div>
-                <div>
-                  <p className="text-[9px] font-medium tracking-wider uppercase text-gray-500 mb-0.5">
-                    Location
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-200">
-                    El Mahalla El Kubra, Gharbia Governorate, Egypt —{' '}
-                    <span className="text-emerald-400/80 font-semibold">Open to Remote / Relocation</span>
-                  </p>
+
+                {/* Name & Title */}
+                <div className="text-start">
+                  <h3 className="fw-bold text-white mb-1" style={{ fontSize: '1.25rem' }}>Mohamed Fawzy</h3>
+                  <p className="mb-0 text-gradient fw-semibold" style={{ fontSize: '0.875rem' }}>Flutter Developer</p>
+                </div>
+              </div>
+
+              {/* Tagline / short professional description */}
+              <p className="mb-4 text-start" style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#94A3B8' }}>
+                Building beautiful, functional and high-performance mobile apps with Flutter.
+              </p>
+
+              {/* Divider */}
+              <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', margin: '1.5rem 0' }} />
+
+              {/* Social Links Row */}
+              <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B7280', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  Let's connect
+                </span>
+                <div className="d-flex gap-2">
+                  {/* GitHub Button */}
+                  <a
+                    href="https://github.com/M-Fawzy2004"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center justify-content-center rounded-circle border text-white text-decoration-none"
+                    style={{
+                      width: 38,
+                      height: 38,
+                      backgroundColor: 'rgba(255,255,255,0.02)',
+                      borderColor: 'rgba(255,255,255,0.06)',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.15)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <GitHubIcon size={16} />
+                  </a>
+                  {/* LinkedIn Button */}
+                  <a
+                    href="https://www.linkedin.com/in/mohamed-fawzy-02388729b/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center justify-content-center rounded-circle border text-decoration-none"
+                    style={{
+                      width: 38,
+                      height: 38,
+                      color: '#60A5FA',
+                      backgroundColor: 'rgba(255,255,255,0.02)',
+                      borderColor: 'rgba(255,255,255,0.06)',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(96,165,250,0.1)'
+                      e.currentTarget.style.borderColor = 'rgba(96,165,250,0.3)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(96,165,250,0.25)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <LinkedInIcon size={16} />
+                  </a>
+                  {/* Twitter Button */}
+                  <a
+                    href="https://x.com/Mofawzyy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center justify-content-center rounded-circle border text-decoration-none"
+                    style={{
+                      width: 38,
+                      height: 38,
+                      color: '#38BDF8',
+                      backgroundColor: 'rgba(255,255,255,0.02)',
+                      borderColor: 'rgba(255,255,255,0.06)',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(56,189,248,0.1)'
+                      e.currentTarget.style.borderColor = 'rgba(56,189,248,0.3)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(56,189,248,0.25)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <TwitterIcon size={16} />
+                  </a>
+                  {/* Globe Button */}
+                  <a
+                    href="#"
+                    className="d-flex align-items-center justify-content-center rounded-circle border text-decoration-none"
+                    style={{
+                      width: 38,
+                      height: 38,
+                      color: '#22D3EE',
+                      backgroundColor: 'rgba(255,255,255,0.02)',
+                      borderColor: 'rgba(255,255,255,0.06)',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(34,211,238,0.1)'
+                      e.currentTarget.style.borderColor = 'rgba(34,211,238,0.3)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(34,211,238,0.25)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <GlobeIcon size={16} />
+                  </a>
                 </div>
               </div>
             </motion.div>
           </div>
-        </motion.div>
 
+          {/* Right Column: 2-Column Grid of Contact Cards */}
+          <div className="col-12 col-lg-7">
+            <div className="row row-cols-1 row-cols-sm-2 g-3 g-lg-4">
+              {contacts.map((contact, index) => {
+                const isHovered = hoveredIndex === index
+                return (
+                  <div key={contact.label} className="col">
+                    <motion.a
+                      href={contact.href}
+                      target={contact.href.startsWith('http') ? '_blank' : undefined}
+                      rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="d-flex align-items-center gap-3 p-4 text-decoration-none w-100 animate-transition"
+                      style={{
+                        borderRadius: 24,
+                        background: 'linear-gradient(135deg, rgba(18, 19, 26, 0.55), rgba(18, 19, 26, 0.35))',
+                        backdropFilter: 'blur(30px) saturate(1.4)',
+                        border: '1px solid',
+                        borderColor: isHovered ? `${contact.color}35` : 'rgba(255, 255, 255, 0.05)',
+                        boxShadow: isHovered 
+                          ? `0 12px 32px -8px ${contact.color}25, 0 0 24px -4px ${contact.color}15`
+                          : '0 8px 32px rgba(0, 0, 0, 0.2)',
+                        transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        cursor: 'pointer',
+                      }}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      whileHover={{ y: -5, scale: 1.02 }}
+                      variants={itemVariants}
+                    >
+                      {/* Left circular icon wrapper */}
+                      <div
+                        className="d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle"
+                        style={{
+                          width: 52,
+                          height: 52,
+                          backgroundColor: isHovered ? `${contact.color}20` : `${contact.color}10`,
+                          border: `1px solid ${contact.color}25`,
+                          color: contact.color,
+                          transition: 'all 0.3s ease',
+                          boxShadow: isHovered ? `0 0 16px ${contact.color}15` : 'none',
+                        }}
+                      >
+                        <contact.icon size={22} />
+                      </div>
+
+                      {/* Info labels */}
+                      <div className="min-w-0 flex-grow-1 text-start">
+                        <span 
+                          className="d-block mb-1" 
+                          style={{ 
+                            fontSize: '0.65rem', 
+                            fontWeight: 600, 
+                            letterSpacing: '0.08em', 
+                            textTransform: 'uppercase', 
+                            color: '#6B7280' 
+                          }}
+                        >
+                          {contact.label}
+                        </span>
+                        <span 
+                          className="d-block text-truncate text-white" 
+                          style={{ 
+                            fontSize: '0.9rem', 
+                            fontWeight: 500,
+                            opacity: 0.9
+                          }}
+                        >
+                          {contact.value}
+                        </span>
+                      </div>
+
+                      {/* Right click indicator arrow */}
+                      <div 
+                        style={{ 
+                          color: isHovered ? contact.color : 'rgba(255, 255, 255, 0.2)', 
+                          flexShrink: 0,
+                          transform: isHovered ? 'translateX(3px)' : 'none',
+                          transition: 'all 0.3s ease',
+                        }}
+                      >
+                        <ArrowRight size={18} />
+                      </div>
+                    </motion.a>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Section Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-center mt-14 pt-8"
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="text-center mt-5 pt-4"
         >
-          <div className="relative mb-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/5" />
-            </div>
-            <div className="relative flex justify-center">
-              <span className="px-4 text-xs text-gray-600 bg-[#050507]">
-                &copy; {new Date().getFullYear()} Mohamed Fawzy — Built with <Heart className="w-3 h-3 inline-block text-red-500/60 align-middle" /> and precision
-              </span>
-            </div>
-          </div>
+          <p className="mb-0" style={{ fontSize: '0.7rem', color: '#6B7280', letterSpacing: '0.05em' }}>
+            &copy; {new Date().getFullYear()} Mohamed Fawzy. All rights reserved.
+          </p>
         </motion.div>
-      </div>
-    </footer>
+      </motion.div>
+    </section>
   )
 }
