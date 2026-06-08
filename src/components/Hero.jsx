@@ -22,21 +22,21 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, scale: 0.9, filter: "blur(8px)" },
   visible: {
     opacity: 1,
-    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
     transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 const wordReveal = {
-  initial: { y: 15, filter: "blur(10px)", opacity: 0, letterSpacing: "0.05em" },
+  initial: { filter: "blur(12px)", opacity: 0, scale: 0.8 },
   enter: (i) => ({
-    y: 0,
     filter: "blur(0px)",
     opacity: 1,
-    letterSpacing: "0em",
+    scale: 1,
     transition: {
       duration: 0.5,
       delay: i * 0.04,
@@ -44,10 +44,9 @@ const wordReveal = {
     },
   }),
   exit: (i) => ({
-    y: -12,
-    filter: "blur(6px)",
+    filter: "blur(8px)",
     opacity: 0,
-    letterSpacing: "-0.02em",
+    scale: 0.85,
     transition: {
       duration: 0.4,
       delay: i * 0.02,
@@ -123,40 +122,81 @@ export default function Hero() {
           animate="visible"
           className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
         >
+          {/* Avatar card */}
           <motion.div
             variants={itemVariants}
             className="relative flex-shrink-0"
-            animate={{ y: [-6, 6, -6] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="relative w-full max-w-[320px] md:max-w-[380px] h-[380px] md:h-[460px] rounded-[32px] glass-liquid overflow-hidden">
-              <img
-                src={myAvatar}
-                alt="Mohamed Fawzy"
-                className="w-full h-full object-cover object-top"
-              />
-              <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/10" />
-            </div>
-            <motion.div
-              animate={{ opacity: [0.15, 0.3, 0.15] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -inset-1 rounded-[36px] bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-cyan-500/20 blur-md pointer-events-none"
-            />
+            {/* Orbiting rings */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-3 rounded-[38px] border border-cyan-500/10 pointer-events-none"
+              className="absolute -inset-4 rounded-[40px] border border-cyan-500/10 pointer-events-none"
+              style={{
+                background: 'conic-gradient(from 0deg, transparent, rgba(34,211,238,0.08), transparent 60%)',
+              }}
             />
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-5 rounded-[42px] border border-violet-500/10 pointer-events-none"
+              className="absolute -inset-7 rounded-[48px] border border-violet-500/10 pointer-events-none"
+              style={{
+                background: 'conic-gradient(from 180deg, transparent, rgba(139,92,246,0.08), transparent 60%)',
+              }}
             />
+
+            {/* Glow behind image */}
+            <motion.div
+              animate={{ opacity: [0.15, 0.35, 0.15], scale: [1, 1.05, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -inset-1 rounded-[36px] bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-cyan-500/20 blur-xl pointer-events-none"
+            />
+
+            {/* Image container */}
+            <motion.div
+              animate={{ y: [-6, 6, -6] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative"
+            >
+              <div className="relative w-full max-w-[320px] md:max-w-[380px] h-[380px] md:h-[460px] rounded-[32px] glass-strong overflow-hidden shadow-[0_0_80px_rgba(34,211,238,0.04)]">
+                {/* Image */}
+                <img
+                  src={myAvatar}
+                  alt="Mohamed Fawzy"
+                  className="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-700"
+                />
+
+                {/* Gradient vignette overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-transparent" />
+
+                {/* Inner border ring */}
+                <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/[0.06]" />
+              </div>
+
+              {/* Status badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+                className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 glass rounded-full border border-emerald-500/20 shadow-lg shadow-emerald-500/5"
+              >
+                <span className="relative w-2 h-2">
+                  <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-60" />
+                  <span className="absolute inset-0 rounded-full bg-emerald-400" />
+                </span>
+                <span className="text-[11px] font-medium text-emerald-300/90 whitespace-nowrap">
+                  Available for opportunities
+                </span>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
+          {/* Text content */}
           <div className="flex-1 text-center lg:text-left">
             <motion.div variants={itemVariants}>
-              <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase text-cyan-300 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium tracking-wider uppercase text-cyan-300 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 Flutter Developer
               </span>
             </motion.div>
@@ -225,6 +265,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -234,9 +275,14 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-5 h-8 rounded-full border border-gray-600 flex items-start justify-center p-1"
+          className="flex flex-col items-center gap-2"
         >
-          <motion.div className="w-1 h-2 rounded-full bg-gray-400" />
+          <span className="text-[10px] font-medium tracking-widest uppercase text-gray-600">
+            Scroll
+          </span>
+          <div className="w-5 h-8 rounded-full border border-gray-600 flex items-start justify-center p-1">
+            <motion.div className="w-1 h-2 rounded-full bg-gray-400" />
+          </div>
         </motion.div>
       </motion.div>
     </section>

@@ -8,9 +8,11 @@ const experiences = [
     company: 'TRADE BOX',
     type: 'Freelance, Remote',
     highlights: [
-      'Architected authentication flow with 10+ screens (OTP, Login, Onboarding) using Clean Architecture and Dio',
-      'Built real-time cryptocurrency responsive trading dashboard',
-      'Optimized rendering for ultra-smooth cross-platform performance',
+      'Developed a comprehensive authentication system with over 10 screens, including login, OTP verification, and onboarding flows, leveraging Clean Architecture and Dio.',
+      'Refactored legacy codebase sections to implement Clean Architecture, enhancing code maintainability and streamlining the development workflow.',
+      'Developed a responsive trading dashboard featuring real-time cryptocurrency price updates and optimized for smooth cross-platform performance.',
+      'Optimized UI rendering and widget structure to ensure consistent performance across Android and iOS devices.',
+      'Enhanced onboarding experience with improved animations and user interaction flows.',
     ],
   },
 ]
