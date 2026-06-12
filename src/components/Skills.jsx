@@ -68,8 +68,8 @@ export default function Skills() {
             <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Expertise
           </span>
-          <h2 className="fw-bold text-white mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>Tech Stack</h2>
-          <p className="mb-0 mx-auto" style={{ color: '#94A3B8', maxWidth: '36rem', fontSize: '1rem' }}>
+          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Tech Stack</h2>
+          <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
             Technologies and tools I work with daily to build exceptional digital experiences
           </p>
         </motion.div>
@@ -81,12 +81,11 @@ export default function Skills() {
           viewport={{ once: true, margin: '-50px' }}
           className="row g-4"
         >
-          {skillGroups.map((group, i) => (
+          {skillGroups.map((group) => (
             <motion.div
               key={group.title}
               variants={cardVariants}
-              className={`col-12 ${i === 4 ? 'col-md-6' : 'col-md-6 col-lg-6'}`}
-              style={i >= 3 ? { maxWidth: i === 4 ? '50%' : undefined } : {}}
+              className={`col-12 col-md-6 skill-card-full`}
             >
               <div className="card p-4 border-0 h-100" style={{ borderRadius: 24 }}>
                 <div className="d-flex align-items-start gap-3 mb-3">
@@ -96,7 +95,7 @@ export default function Skills() {
                   >
                     <group.icon style={{ width: 20, height: 20, color: group.color }} />
                   </div>
-                  <h3 className="text-white fw-semibold mb-0" style={{ fontSize: '1rem', marginTop: 2 }}>{group.title}</h3>
+                    <h3 className="fw-semibold mb-0" style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', marginTop: 2, color: 'var(--text-primary)' }}>{group.title}</h3>
                 </div>
                 <div className="d-flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
@@ -104,11 +103,11 @@ export default function Skills() {
                       key={skill}
                       className="badge"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.04)',
-                        color: '#D1D5DB',
-                        border: '1px solid rgba(255,255,255,0.04)',
+                        backgroundColor: 'var(--badge-bg)',
+                        color: 'var(--badge-text)',
+                        border: '1px solid var(--badge-border)',
                         padding: '0.375rem 0.75rem',
-                        fontSize: '0.75rem',
+                        fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)',
                         fontWeight: 500,
                         borderRadius: 12,
                         transition: 'all 0.3s',
@@ -120,9 +119,9 @@ export default function Skills() {
                         e.target.style.color = '#67E8F9';
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.borderColor = 'rgba(255,255,255,0.04)';
-                        e.target.style.backgroundColor = 'rgba(255,255,255,0.04)';
-                        e.target.style.color = '#D1D5DB';
+                        e.target.style.borderColor = 'var(--badge-border)';
+                        e.target.style.backgroundColor = 'var(--badge-bg)';
+                        e.target.style.color = 'var(--badge-text)';
                       }}
                     >
                       {skill}

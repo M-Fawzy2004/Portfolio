@@ -142,9 +142,9 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.3, ease: "easeInOut" } },
 };
 
-function TagBadge({ tag }) {
+function TagBadge({ tag, style: extraStyle = {} }) {
   return (
-    <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#6B7280', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
+    <span className="badge" style={{ backgroundColor: 'var(--badge-bg)', color: 'var(--text-muted)', border: '1px solid var(--badge-border)', padding: '0.25rem 0.625rem', fontSize: 'clamp(0.55rem, 1.4vw, 0.625rem)', fontWeight: 500, borderRadius: 8, ...extraStyle }}>
       {tag}
     </span>
   );
@@ -166,19 +166,19 @@ function ProjectModal({ project, onClose }) {
       animate="visible"
       exit="hidden"
       className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-      style={{ zIndex: 100, backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}
+      style={{ zIndex: 100, backgroundColor: 'var(--overlay-bg)', backdropFilter: 'blur(8px)' }}
       onClick={handleOverlayClick}
     >
       <motion.div
         variants={modalVariants}
-        className="position-relative border overflow-auto"
+        className="position-relative border overflow-auto modal-mobile-compact"
         style={{
           width: '100%',
           maxWidth: '42rem',
           maxHeight: '90vh',
           borderRadius: 32,
-          backgroundColor: '#0D0E12',
-          borderColor: 'rgba(255,255,255,0.06)',
+          backgroundColor: 'var(--bg-elevated)',
+          borderColor: 'var(--border-default)',
           padding: '2.5rem 2rem',
           boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
         }}
@@ -188,9 +188,9 @@ function ProjectModal({ project, onClose }) {
           className="position-absolute border-0 d-flex align-items-center justify-content-center rounded-circle"
           style={{
             top: '1.5rem', right: '1.5rem', width: 36, height: 36,
-            backgroundColor: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.04)',
-            color: '#6B7280',
+            backgroundColor: 'var(--btn-outline-bg)',
+            border: '1px solid var(--border-default)',
+            color: 'var(--text-muted)',
             cursor: 'pointer',
             transition: 'background-color 0.2s',
           }}
@@ -205,41 +205,41 @@ function ProjectModal({ project, onClose }) {
         <div className="d-flex flex-wrap gap-1 mb-3">
           {visibleTags.map((tag) => <TagBadge key={tag} tag={tag} />)}
           {extraCount > 0 && (
-            <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#9CA3AF', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
+            <span className="badge" style={{ backgroundColor: 'var(--badge-bg)', color: 'var(--text-muted)', border: '1px solid var(--badge-border)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
               +{extraCount} more
             </span>
           )}
         </div>
 
-        <h3 className="fw-bold mb-1" style={{ fontSize: '1.75rem', color: '#F4F4F6' }}>{project.title}</h3>
-        <p className="mb-4" style={{ fontSize: '0.75rem', color: '#6B7280' }}>{project.subtitle}</p>
+        <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: 'var(--text-primary)' }}>{project.title}</h3>
+        <p className="mb-4" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>{project.subtitle}</p>
 
-        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.04)' }}>
+        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-default)' }}>
           <div className="d-flex align-items-center gap-2 mb-3">
-            <SparklesIcon style={{ width: 16, height: 16, color: 'rgba(255,255,255,0.4)' }} />
-            <span className="fw-semibold" style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>Key Features</span>
+            <SparklesIcon style={{ width: 16, height: 16, color: 'var(--text-muted)' }} />
+            <span className="fw-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'var(--text-secondary)' }}>Key Features</span>
           </div>
           <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
             {project.features.map((feature, i) => (
-              <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: '0.75rem', color: '#94A3B8', lineHeight: 1.6 }}>
-                <span className="flex-shrink-0 rounded-circle d-inline-block mt-1" style={{ width: 4, height: 4, backgroundColor: 'rgba(255,255,255,0.2)' }} />
+              <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-body)', lineHeight: 1.6 }}>
+                <span className="flex-shrink-0 rounded-circle d-inline-block mt-1" style={{ width: 4, height: 4, backgroundColor: 'var(--text-muted)' }} />
                 {feature}
               </li>
             ))}
           </ul>
           {project.note && (
-            <p className="mt-3 mb-0" style={{ fontSize: '0.75rem', color: 'rgba(34,211,238,0.6)', fontStyle: 'italic' }}>{project.note}</p>
+            <p className="mt-3 mb-0" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'rgba(34,211,238,0.6)', fontStyle: 'italic' }}>{project.note}</p>
           )}
         </div>
 
-        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.04)' }}>
+        <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-default)' }}>
           <div className="d-flex align-items-center gap-2 mb-3">
-            <CpuChipIcon style={{ width: 16, height: 16, color: 'rgba(255,255,255,0.4)' }} />
-            <span className="fw-semibold" style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>Tech Stack</span>
+            <CpuChipIcon style={{ width: 16, height: 16, color: 'var(--text-muted)' }} />
+            <span className="fw-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'var(--text-secondary)' }}>Tech Stack</span>
           </div>
           <div className="d-flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
-              <span key={tech} className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#94A3B8', border: '1px solid rgba(255,255,255,0.04)', padding: '0.375rem 0.75rem', fontSize: '0.6875rem', fontWeight: 500, borderRadius: 8 }}>
+              <span key={tech} className="badge" style={{ backgroundColor: 'var(--badge-bg)', color: 'var(--text-body)', border: '1px solid var(--badge-border)', padding: '0.375rem 0.75rem', fontSize: 'clamp(0.6rem, 1.5vw, 0.6875rem)', fontWeight: 500, borderRadius: 8 }}>
                 {tech}
               </span>
             ))}
@@ -249,7 +249,7 @@ function ProjectModal({ project, onClose }) {
         {project.confidential ? (
           <div className="d-flex align-items-start gap-3 p-4 rounded-4 border" style={{ borderColor: 'rgba(251,191,36,0.1)', backgroundColor: 'rgba(251,191,36,0.02)' }}>
             <ShieldCheckIcon className="flex-shrink-0" style={{ width: 20, height: 20, color: 'rgba(251,191,36,0.6)', marginTop: 2 }} />
-            <p className="mb-0" style={{ fontSize: '0.875rem', color: 'rgba(251,191,36,0.6)' }}>Commercial Confidential Repository</p>
+            <p className="mb-0" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'rgba(251,191,36,0.6)' }}>Commercial Confidential Repository</p>
           </div>
         ) : (
           <div className="d-flex flex-wrap gap-3">
@@ -261,8 +261,8 @@ function ProjectModal({ project, onClose }) {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-white text-decoration-none border"
-                style={{ fontSize: '0.875rem', fontWeight: 500, backgroundColor: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.06)', transition: 'all 0.3s' }}
+                className="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none border"
+                style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', fontWeight: 500, color: 'var(--btn-outline-text)', backgroundColor: 'var(--btn-outline-bg)', borderColor: 'var(--btn-outline-border)', transition: 'all 0.3s' }}
               >
                 {link.label}
                 <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16 }} />
@@ -306,11 +306,11 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-5"
         >
-          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.04)' }}>
+          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)', backgroundColor: 'var(--badge-bg)', borderColor: 'var(--badge-border)' }}>
             Portfolio
           </span>
-          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: '#F4F4F6' }}>Featured Projects</h2>
-          <p className="mb-0 mx-auto" style={{ color: '#94A3B8', maxWidth: '36rem', fontSize: '1rem' }}>
+          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Featured Projects</h2>
+          <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
             Premium applications built with cutting-edge technologies
           </p>
         </motion.div>
@@ -339,7 +339,7 @@ export default function Projects() {
                   style={{ borderRadius: 32, cursor: 'pointer', transition: 'all 0.5s' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'scale(1.02) translateY(-8px)';
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                    e.currentTarget.style.borderColor = 'var(--border-hover)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = '';
@@ -348,7 +348,7 @@ export default function Projects() {
                 >
                   <div className="overflow-hidden" style={{ borderTopLeftRadius: 32, borderTopRightRadius: 32 }}>
                     <div className="position-relative d-flex align-items-center justify-content-center" style={{ height: '10rem', background: `linear-gradient(135deg, ${project.color})` }}>
-                      <div className="position-absolute bottom-0 start-0 w-100" style={{ height: '100%', background: 'linear-gradient(0deg, #050508, transparent)' }} />
+                      <div className="position-absolute bottom-0 start-0 w-100" style={{ height: '100%', background: 'linear-gradient(0deg, var(--bg-primary), transparent)' }} />
                       <div className="p-3 rounded-3" style={{ backgroundColor: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.08)' }}>
                         <Icon style={{ width: 32, height: 32, color: '#fff' }} />
                       </div>
@@ -359,19 +359,19 @@ export default function Projects() {
                     <div className="d-flex flex-wrap gap-1 mb-2">
                       {visibleTags.map((tag) => <TagBadge key={tag} tag={tag} />)}
                       {extraCount > 0 && (
-                        <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.03)', color: '#9CA3AF', border: '1px solid rgba(255,255,255,0.04)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
+                        <span className="badge" style={{ backgroundColor: 'var(--badge-bg)', color: 'var(--text-muted)', border: '1px solid var(--badge-border)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
                           +{extraCount} more
                         </span>
                       )}
                     </div>
 
-                    <h3 className="fw-bold mb-1" style={{ fontSize: '1.125rem', color: '#F4F4F6' }}>{project.title}</h3>
-                    <p className="mb-2" style={{ fontSize: '0.75rem', color: '#6B7280' }}>{project.subtitle}</p>
-                    <p className="flex-grow-1 mb-0" style={{ fontSize: '0.875rem', color: '#94A3B8', lineHeight: 1.6 }}>{project.description}</p>
+                    <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.125rem)', color: 'var(--text-primary)' }}>{project.title}</h3>
+                    <p className="mb-2" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>{project.subtitle}</p>
+                    <p className="flex-grow-1 mb-0" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'var(--text-body)', lineHeight: 1.6 }}>{project.description}</p>
 
-                    <div className="d-flex align-items-center justify-content-between mt-3 pt-3 border-top" style={{ borderTopColor: 'rgba(255,255,255,0.04)' }}>
-                      <span style={{ fontSize: '0.75rem', color: '#6B7280' }}>Click to explore</span>
-                      <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16, color: '#6B7280' }} />
+                    <div className="d-flex align-items-center justify-content-between mt-3 pt-3 border-top" style={{ borderTopColor: 'var(--border-default)' }}>
+                      <span style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>Click to explore</span>
+                      <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16, color: 'var(--text-muted)' }} />
                     </div>
                   </div>
                 </div>

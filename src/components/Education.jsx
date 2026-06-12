@@ -16,7 +16,7 @@ export default function Education() {
             <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Background
           </span>
-          <h2 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>Education</h2>
+          <h2 className="fw-bold mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Education</h2>
         </motion.div>
 
         <motion.div
@@ -32,13 +32,13 @@ export default function Education() {
               <AcademicCapIcon style={{ width: 24, height: 24, color: '#fff' }} />
             </div>
             <div>
-              <h3 className="text-white fw-semibold mb-1" style={{ fontSize: '1.125rem' }}>
+              <h3 className="fw-semibold mb-1" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.125rem)', color: 'var(--text-primary)' }}>
                 B.Sc. in Information Systems
               </h3>
-              <p className="mb-1" style={{ fontSize: '0.875rem', color: '#22D3EE' }}>
+              <p className="mb-1" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#22D3EE' }}>
                 Faculty of Computers and Information, Tanta University
               </p>
-              <p className="mb-0" style={{ fontSize: '0.75rem', color: '#6B7280' }}>2022 - 2026</p>
+              <p className="mb-0" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>2022 - 2026</p>
             </div>
           </div>
         </motion.div>

@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import {
   isNavigationLocked,
   lockNavigation,
   unlockNavigation,
 } from "../lib/clickGuard";
+import { useTheme } from "../App";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -22,6 +23,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const guardExpiry = useRef(null);
   const lastScrollY = useRef(0);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.slice(1));
@@ -85,20 +87,20 @@ export default function Navigation() {
       >
         <nav
           className={`d-flex align-items-center justify-content-between px-4 py-2 w-100 rounded-pill border ${
-            scrolled
-              ? "shadow-lg"
-              : ""
+            scrolled ? "shadow-lg" : ""
           }`}
           style={{
-            backgroundColor: scrolled ? 'rgba(13, 14, 18, 0.6)' : 'rgba(13, 14, 18, 0.4)',
+            backgroundColor: scrolled ? 'var(--bg-nav)' : 'var(--bg-tertiary)',
             backdropFilter: 'blur(24px)',
-            borderColor: 'rgba(255, 255, 255, 0.05)',
-            transition: 'background-color 0.5s',
+            borderColor: 'var(--border-default)',
+            transition: 'background-color 0.3s ease, border-color 0.3s ease',
           }}
         >
-          <a href="#" className="fw-bold text-white text-decoration-none" style={{ fontSize: '1.125rem', letterSpacing: '-0.02em' }}>
-            MF<span style={{ color: '#22D3EE' }}>.</span>
-          </a>
+          <div className="d-flex align-items-center gap-3">
+            <a href="#" className="fw-bold text-decoration-none" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+              MF<span style={{ color: '#22D3EE' }}>.</span>
+            </a>
+          </div>
 
           <div className="d-none d-md-flex align-items-center gap-1">
             {navItems.map((item) => {
@@ -110,36 +112,106 @@ export default function Navigation() {
                   onClick={() => handleNavClick(item.href)}
                   className="position-relative px-3 py-2 text-decoration-none rounded-3"
                   style={{
-                    fontSize: '0.875rem',
+                    fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
                     fontWeight: 500,
-                    color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+                    color: isActive ? 'var(--text-nav-active)' : 'var(--text-nav)',
                     transition: 'color 0.3s',
                   }}
-                  onMouseEnter={(e) => { if (!isActive) e.target.style.color = 'rgba(255,255,255,0.8)'; }}
-                  onMouseLeave={(e) => { if (!isActive) e.target.style.color = 'rgba(255,255,255,0.5)'; }}
+                  onMouseEnter={(e) => { if (!isActive) e.target.style.color = 'var(--text-nav-hover)'; }}
+                  onMouseLeave={(e) => { if (!isActive) e.target.style.color = ''; }}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeSection"
                       className="position-absolute top-0 start-0 w-100 h-100 rounded-3"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      style={{ backgroundColor: 'rgba(34,211,238,0.08)' }}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
                 </a>
               );
             })}
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className="d-flex align-items-center justify-content-center rounded-circle border-0 ms-2"
+              style={{
+                width: 32,
+                height: 32,
+                backgroundColor: 'var(--btn-outline-bg)',
+                border: '1px solid var(--border-default)',
+                color: 'var(--text-nav)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                fontSize: 14,
+              }}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
           </div>
 
-          <button
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className="d-block d-md-none p-2 border-0 bg-transparent"
-            style={{ color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileOpen ? <XMarkIcon style={{ width: 24, height: 24 }} /> : <Bars3Icon style={{ width: 24, height: 24 }} />}
-          </button>
+          <div className="d-flex d-md-none align-items-center gap-2">
+            {/* Theme toggle mobile */}
+            <button
+              onClick={toggleTheme}
+              className="d-flex align-items-center justify-content-center rounded-circle border-0"
+              style={{
+                width: 32,
+                height: 32,
+                backgroundColor: 'transparent',
+                color: 'var(--text-nav)',
+                cursor: 'pointer',
+                transition: 'color 0.3s ease',
+                fontSize: 14,
+              }}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+            <button
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="p-2 border-0 bg-transparent"
+              style={{ color: 'var(--text-nav)', cursor: 'pointer' }}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? <XMarkIcon style={{ width: 22, height: 22 }} /> : <Bars3Icon style={{ width: 22, height: 22 }} />}
+            </button>
+          </div>
         </nav>
 
         <AnimatePresence>
@@ -152,11 +224,12 @@ export default function Navigation() {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="mt-2 p-4"
               style={{
-                backgroundColor: 'rgba(13, 14, 18, 0.95)',
+                backgroundColor: 'var(--bg-elevated)',
                 backdropFilter: 'blur(32px)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: '1px solid var(--border-strong)',
                 borderRadius: 24,
                 boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
+                transition: 'background-color 0.3s ease, border-color 0.3s ease',
               }}
             >
               <div className="d-flex flex-column gap-2">
@@ -169,10 +242,10 @@ export default function Navigation() {
                       onClick={() => handleNavClick(item.href)}
                       className="px-3 py-2 text-decoration-none rounded-4"
                       style={{
-                        fontSize: '0.875rem',
+                        fontSize: 'clamp(0.85rem, 4vw, 1rem)',
                         fontWeight: 500,
-                        backgroundColor: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
-                        color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+                        backgroundColor: isActive ? 'rgba(34,211,238,0.08)' : 'transparent',
+                        color: isActive ? 'var(--text-nav-active)' : 'var(--text-nav)',
                         transition: 'all 0.3s',
                       }}
                     >

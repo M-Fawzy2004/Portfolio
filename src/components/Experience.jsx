@@ -45,8 +45,8 @@ export default function Experience() {
             <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Career
           </span>
-          <h2 className="fw-bold text-white mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>Experience</h2>
-          <p className="mb-0 mx-auto" style={{ color: '#94A3B8', maxWidth: '36rem', fontSize: '1rem' }}>
+          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Experience</h2>
+          <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
             My professional journey in mobile development
           </p>
         </motion.div>
@@ -72,21 +72,21 @@ export default function Experience() {
 
                 <div className="card p-4 border-0" style={{ borderRadius: 24 }}>
                   <div className="d-flex flex-wrap align-items-center gap-2 mb-1">
-                    <span className="badge" style={{ fontSize: '0.6875rem', fontWeight: 500, color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)', padding: '0.25rem 0.5rem' }}>
+                    <span className="badge" style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.6875rem)', fontWeight: 500, color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)', padding: '0.25rem 0.5rem' }}>
                       {exp.period}
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: '#6B7280' }}>{exp.type}</span>
+                    <span style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>{exp.type}</span>
                   </div>
 
-                  <h3 className="text-white fw-semibold mt-1 mb-0" style={{ fontSize: '1.125rem' }}>{exp.role}</h3>
-                  <p className="d-flex align-items-center gap-1 mb-2" style={{ fontSize: '0.875rem', color: '#22D3EE' }}>
+                  <h3 className="fw-semibold mt-1 mb-0" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.125rem)', color: 'var(--text-primary)' }}>{exp.role}</h3>
+                  <p className="d-flex align-items-center gap-1 mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#22D3EE' }}>
                     <BriefcaseIcon style={{ width: 14, height: 14 }} />
                     {exp.company}
                   </p>
 
                   <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: '0.875rem', color: '#94A3B8' }}>
+                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'var(--text-body)' }}>
                         <span className="flex-shrink-0 rounded-circle d-inline-block mt-1" style={{ width: 6, height: 6, backgroundColor: 'rgba(34,211,238,0.5)' }} />
                         {highlight}
                       </li>

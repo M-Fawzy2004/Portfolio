@@ -43,7 +43,7 @@ export default function AboutMe() {
             <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
             Profile
           </span>
-          <h2 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>
+          <h2 className="fw-bold mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>
             About <span className="text-gradient">Me</span>
           </h2>
         </motion.div>
@@ -65,8 +65,8 @@ export default function AboutMe() {
                     style={{ borderRadius: 16, cursor: 'default' }}
                   >
                     <stat.icon className="mx-auto mb-2" style={{ width: 20, height: 20, color: 'rgba(34,211,238,0.6)' }} />
-                    <p className="fw-bold text-white mb-0" style={{ fontSize: '1.125rem' }}>{stat.value}</p>
-                    <p className="mb-0" style={{ fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#6B7280' }}>{stat.label}</p>
+                    <p className="fw-bold mb-0" style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.125rem)', color: 'var(--text-primary)' }}>{stat.value}</p>
+                    <p className="mb-0" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.625rem)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{stat.label}</p>
                   </div>
                 </div>
               ))}
@@ -79,15 +79,15 @@ export default function AboutMe() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <div className="card position-relative overflow-hidden border-0" style={{ borderRadius: 32, padding: '3rem 2.5rem' }}>
-                <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.03), transparent, rgba(139,92,246,0.03))', opacity: 0, transition: 'opacity 0.7s' }} className="group-hover-opacity" />
-                <div className="position-absolute" style={{ top: -24, right: -16, fontSize: '160px', fontWeight: 700, lineHeight: 1, color: 'rgba(255,255,255,0.015)', userSelect: 'none', pointerEvents: 'none' }}>
+              <div className="card position-relative overflow-hidden border-0 card-mobile-compact" style={{ borderRadius: 32, padding: '3rem 2.5rem' }}>
+                <div className="position-absolute top-0 start-0 w-100 h-100 group-hover-opacity" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.03), transparent, rgba(139,92,246,0.03))', opacity: 0, transition: 'opacity 0.7s' }} />
+                <div className="position-absolute" style={{ top: -24, right: -16, fontSize: '160px', fontWeight: 700, lineHeight: 1, color: 'var(--border-default)', userSelect: 'none', pointerEvents: 'none' }}>
                   &rdquo;
                 </div>
-                <p className="mb-0 position-relative" style={{ zIndex: 10, fontSize: '1.125rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.9)', fontWeight: 300, letterSpacing: '0.02em' }}>
-                  Passionate <span className="fw-semibold" style={{ background: 'linear-gradient(135deg, #22D3EE, #3B82F6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Flutter Developer</span> with 1+ year of hands-on experience building high-performance cross-platform mobile applications for <span className="fw-medium text-white">iOS</span> and <span className="fw-medium text-white">Android</span>.
+                <p className="mb-0 position-relative" style={{ zIndex: 10, fontSize: 'clamp(0.9rem, 2.5vw, 1.125rem)', lineHeight: 1.8, color: 'var(--text-body)', fontWeight: 300, letterSpacing: '0.02em' }}>
+                  Passionate <span className="fw-semibold" style={{ background: 'linear-gradient(135deg, #22D3EE, #3B82F6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Flutter Developer</span> with 1+ year of hands-on experience building high-performance cross-platform mobile applications for <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>iOS</span> and <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Android</span>.
                   <br /><br />
-                  Skilled in <span className="fw-medium text-white">Clean Architecture</span>, <span className="fw-medium text-white">BLoC/Cubit</span> state management, <span className="fw-medium text-white">RESTful APIs</span>, <span className="fw-medium text-white">Firebase</span>, and <span className="fw-medium text-white">Supabase</span>. Proven track record of developing and deploying real-world solutions, including <span className="fw-medium" style={{ color: '#67E8F9' }}>AI-powered platforms</span> and <span className="fw-medium" style={{ color: '#67E8F9' }}>e-commerce applications</span> with secure payment gateway integration.
+                  Skilled in <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Clean Architecture</span>, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>BLoC/Cubit</span> state management, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>RESTful APIs</span>, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Firebase</span>, and <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Supabase</span>. Proven track record of developing and deploying real-world solutions, including <span className="fw-medium" style={{ color: '#67E8F9' }}>AI-powered platforms</span> and <span className="fw-medium" style={{ color: '#67E8F9' }}>e-commerce applications</span> with secure payment gateway integration.
                   <br /><br />
                   Dedicated to writing clean, scalable code while delivering responsive, user-friendly mobile experiences.
                 </p>

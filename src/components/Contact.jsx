@@ -25,11 +25,9 @@ const TwitterIcon = ({ size = 18 }) => (
   </svg>
 )
 
-const GlobeIcon = ({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+const TikTokIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
   </svg>
 )
 
@@ -39,6 +37,7 @@ const contacts = [
   { label: 'LinkedIn', value: 'linkedin.com/in/mfawzy', href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/', icon: LinkedInIcon, color: '#60A5FA' },
   { label: 'GitHub', value: 'github.com/Mofawzyy', href: 'https://github.com/M-Fawzy2004', icon: GitHubIcon, color: '#D1D5DB' },
   { label: 'WhatsApp', value: 'Chat with me', href: 'https://wa.me/201068808559', icon: MessageCircle, color: '#34D399' },
+  { label: 'TikTok', value: '@mo7amedfawzy6', href: 'https://www.tiktok.com/@mo7amedfawzy6', icon: TikTokIcon, color: '#ffffff' },
   { label: 'Telegram', value: '@Mofawzyy', href: 'https://t.me/Mofawzyy', icon: Send, color: '#60A5FA' },
 ]
 
@@ -88,15 +87,15 @@ export default function Contact() {
               <motion.span
                 variants={itemVariants}
                 className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3"
-                style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.08)', borderColor: 'rgba(34,211,238,0.15)' }}
+                style={{ fontSize: 'clamp(0.6rem, 1.8vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.08)', borderColor: 'rgba(34,211,238,0.15)' }}
               >
                 <span className="rounded-circle d-inline-block" style={{ width: 5, height: 5, backgroundColor: '#22D3EE' }} />
                 Communication
               </motion.span>
               <motion.h2
                 variants={itemVariants}
-                className="fw-bold text-white mb-2 lh-1"
-                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}
+                className="fw-bold mb-2 lh-1"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}
               >
                 Let's <br />
                 <span className="text-gradient">Connect</span>
@@ -104,7 +103,7 @@ export default function Contact() {
               <motion.p
                 variants={itemVariants}
                 className="mb-4"
-                style={{ fontSize: '0.95rem', color: '#94A3B8', maxWidth: '28rem', lineHeight: 1.6 }}
+                style={{ fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)', color: 'var(--text-body)', maxWidth: '28rem', lineHeight: 1.6 }}
               >
                 Feel free to reach out to me through any of the channels below. I'll get back to you as soon as possible!
               </motion.p>
@@ -113,13 +112,13 @@ export default function Contact() {
             {/* Profile Card */}
             <motion.div
               variants={itemVariants}
-              className="position-relative overflow-hidden"
+              className="position-relative overflow-hidden contact-card-mobile"
               style={{
                 borderRadius: 28,
-                background: 'linear-gradient(135deg, rgba(18,19,26,0.65), rgba(18,19,26,0.35))',
+                background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary))',
                 backdropFilter: 'blur(40px) saturate(1.6)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                boxShadow: '0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
+                border: '1px solid var(--border-default)',
+                boxShadow: 'var(--shadow-card)',
                 padding: '2rem',
               }}
               animate={{ y: [-5, 5, -5] }}
@@ -153,7 +152,7 @@ export default function Contact() {
                       width: 14,
                       height: 14,
                       backgroundColor: '#0EA5E9',
-                      border: '2px solid #0D0E12',
+                      border: '2px solid var(--bg-primary)',
                       boxShadow: '0 0 10px #0EA5E9',
                     }}
                   >
@@ -170,22 +169,22 @@ export default function Contact() {
 
                 {/* Name & Title */}
                 <div className="text-start">
-                  <h3 className="fw-bold text-white mb-1" style={{ fontSize: '1.25rem' }}>Mohamed Fawzy</h3>
-                  <p className="mb-0 text-gradient fw-semibold" style={{ fontSize: '0.875rem' }}>Flutter Developer</p>
+                  <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(1.05rem, 3vw, 1.25rem)', color: 'var(--text-primary)' }}>Mohamed Fawzy</h3>
+                  <p className="mb-0 text-gradient fw-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>Flutter Developer</p>
                 </div>
               </div>
 
               {/* Tagline / short professional description */}
-              <p className="mb-4 text-start" style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#94A3B8' }}>
+              <p className="mb-4 text-start" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', lineHeight: 1.6, color: 'var(--text-body)' }}>
                 Building beautiful, functional and high-performance mobile apps with Flutter.
               </p>
 
               {/* Divider */}
-              <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', margin: '1.5rem 0' }} />
+              <div style={{ height: 1, backgroundColor: 'var(--border-default)', margin: '1.5rem 0' }} />
 
               {/* Social Links Row */}
               <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B7280', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                   Let's connect
                 </span>
                 <div className="d-flex gap-2">
@@ -194,23 +193,24 @@ export default function Contact() {
                     href="https://github.com/M-Fawzy2004"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="d-flex align-items-center justify-content-center rounded-circle border text-white text-decoration-none"
+                    className="d-flex align-items-center justify-content-center rounded-circle border text-decoration-none"
                     style={{
                       width: 38,
                       height: 38,
-                      backgroundColor: 'rgba(255,255,255,0.02)',
-                      borderColor: 'rgba(255,255,255,0.06)',
+                      color: 'var(--text-secondary)',
+                      backgroundColor: 'var(--btn-outline-bg)',
+                      borderColor: 'var(--border-default)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-hover-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-hover)'
                       e.currentTarget.style.transform = 'translateY(-2px)'
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.15)'
+                      e.currentTarget.style.boxShadow = 'var(--shadow-card)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-default)'
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow = 'none'
                     }}
@@ -227,8 +227,8 @@ export default function Contact() {
                       width: 38,
                       height: 38,
                       color: '#60A5FA',
-                      backgroundColor: 'rgba(255,255,255,0.02)',
-                      borderColor: 'rgba(255,255,255,0.06)',
+                      backgroundColor: 'var(--btn-outline-bg)',
+                      borderColor: 'var(--border-default)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
@@ -238,8 +238,8 @@ export default function Contact() {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(96,165,250,0.25)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-default)'
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow = 'none'
                     }}
@@ -256,8 +256,8 @@ export default function Contact() {
                       width: 38,
                       height: 38,
                       color: '#38BDF8',
-                      backgroundColor: 'rgba(255,255,255,0.02)',
-                      borderColor: 'rgba(255,255,255,0.06)',
+                      backgroundColor: 'var(--btn-outline-bg)',
+                      borderColor: 'var(--border-default)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
@@ -267,40 +267,42 @@ export default function Contact() {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(56,189,248,0.25)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-default)'
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow = 'none'
                     }}
                   >
                     <TwitterIcon size={16} />
                   </a>
-                  {/* Globe Button */}
+                  {/* TikTok Button */}
                   <a
-                    href="#"
+                    href="https://www.tiktok.com/@mo7amedfawzy6"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="d-flex align-items-center justify-content-center rounded-circle border text-decoration-none"
                     style={{
                       width: 38,
                       height: 38,
-                      color: '#22D3EE',
-                      backgroundColor: 'rgba(255,255,255,0.02)',
-                      borderColor: 'rgba(255,255,255,0.06)',
+                      color: 'var(--text-secondary)',
+                      backgroundColor: 'var(--btn-outline-bg)',
+                      borderColor: 'var(--border-default)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(34,211,238,0.1)'
-                      e.currentTarget.style.borderColor = 'rgba(34,211,238,0.3)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-hover-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-hover)'
                       e.currentTarget.style.transform = 'translateY(-2px)'
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(34,211,238,0.25)'
+                      e.currentTarget.style.boxShadow = 'var(--shadow-card)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)'
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                      e.currentTarget.style.backgroundColor = 'var(--btn-outline-bg)'
+                      e.currentTarget.style.borderColor = 'var(--border-default)'
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow = 'none'
                     }}
                   >
-                    <GlobeIcon size={16} />
+                    <TikTokIcon size={16} />
                   </a>
                 </div>
               </div>
@@ -318,16 +320,16 @@ export default function Contact() {
                       href={contact.href}
                       target={contact.href.startsWith('http') ? '_blank' : undefined}
                       rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="d-flex align-items-center gap-3 p-4 text-decoration-none w-100 animate-transition"
+                      className="d-flex align-items-center gap-3 p-4 contact-card-mobile text-decoration-none w-100 animate-transition"
                       style={{
                         borderRadius: 24,
-                        background: 'linear-gradient(135deg, rgba(18, 19, 26, 0.55), rgba(18, 19, 26, 0.35))',
+                        background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary))',
                         backdropFilter: 'blur(30px) saturate(1.4)',
                         border: '1px solid',
-                        borderColor: isHovered ? `${contact.color}35` : 'rgba(255, 255, 255, 0.05)',
+                        borderColor: isHovered ? `${contact.color}35` : 'var(--border-default)',
                         boxShadow: isHovered 
                           ? `0 12px 32px -8px ${contact.color}25, 0 0 24px -4px ${contact.color}15`
-                          : '0 8px 32px rgba(0, 0, 0, 0.2)',
+                          : 'var(--shadow-card)',
                         transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         cursor: 'pointer',
                       }}
@@ -357,20 +359,21 @@ export default function Contact() {
                         <span 
                           className="d-block mb-1" 
                           style={{ 
-                            fontSize: '0.65rem', 
+                            fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)', 
                             fontWeight: 600, 
                             letterSpacing: '0.08em', 
                             textTransform: 'uppercase', 
-                            color: '#6B7280' 
+                            color: 'var(--text-muted)' 
                           }}
                         >
                           {contact.label}
                         </span>
                         <span 
-                          className="d-block text-truncate text-white" 
+                          className="d-block text-truncate" 
                           style={{ 
-                            fontSize: '0.9rem', 
+                            fontSize: 'clamp(0.75rem, 2.2vw, 0.9rem)', 
                             fontWeight: 500,
+                            color: 'var(--text-primary)',
                             opacity: 0.9
                           }}
                         >
@@ -381,7 +384,7 @@ export default function Contact() {
                       {/* Right click indicator arrow */}
                       <div 
                         style={{ 
-                          color: isHovered ? contact.color : 'rgba(255, 255, 255, 0.2)', 
+                          color: isHovered ? contact.color : 'var(--text-muted)', 
                           flexShrink: 0,
                           transform: isHovered ? 'translateX(3px)' : 'none',
                           transition: 'all 0.3s ease',
@@ -405,7 +408,7 @@ export default function Contact() {
           transition={{ delay: 0.8, duration: 0.5 }}
           className="text-center mt-5 pt-4"
         >
-          <p className="mb-0" style={{ fontSize: '0.7rem', color: '#6B7280', letterSpacing: '0.05em' }}>
+          <p className="mb-0" style={{ fontSize: 'clamp(0.6rem, 1.8vw, 0.7rem)', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
             &copy; {new Date().getFullYear()} Mohamed Fawzy. All rights reserved.
           </p>
         </motion.div>
