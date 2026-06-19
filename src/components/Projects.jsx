@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowTopRightOnSquareIcon,
@@ -7,6 +7,7 @@ import {
   BookOpenIcon,
   ChatBubbleLeftRightIcon,
   ShoppingBagIcon,
+  TruckIcon,
   XMarkIcon,
   ShieldCheckIcon,
   SparklesIcon,
@@ -32,10 +33,41 @@ const projects = [
     techStack: [
       "Flutter", "Dart", "Supabase", "Gemini AI", "Clean Architecture", "BLoC State Management",
     ],
+    images: ["/academia/1.png", "/academia/2.png", "/academia/3.png", "/academia/4.png"],
     icon: AcademicCapIcon,
     color: "from-cyan-500/20 to-violet-500/20",
     links: [],
     confidential: true,
+  },
+  {
+    title: "KidDrive \u2013 Child Transportation App",
+    subtitle: "Graduation Project (B.Sc. Information Systems)",
+    tags: ["Flutter", "REST APIs", "BLoC/Cubit", "Clean Architecture", "Retrofit", "Role-Based Auth"],
+    description:
+      "A comprehensive dual-interface graduation project connecting parents and school drivers through a real-time child transportation management system with role-based dashboards, live tracking, and full bilingual support.",
+    features: [
+      "Designed and built as the capstone graduation project for B.Sc. in Information Systems at Tanta University",
+      "Dual-interface architecture delivering two fully separate experiences \u2014 Parent App and Driver Dashboard \u2014 within a single Flutter codebase using role-based route guards and authentication",
+      "Implemented complete authentication lifecycle: user registration, login, OTP phone verification, email verification, and forgot password recovery flow",
+      "Developed polished onboarding experience with animated splash screen, app initialization sequences, and guided introduction screens",
+      "Built comprehensive Parent dashboard featuring real-time driver details view, active trip status, and a floating bottom navigation bar for quick access between sections",
+      "Created full child management module allowing parents to add, edit, view, and manage multiple child profiles with personal info and associated metadata",
+      "Integrated subscription management system with dedicated data models, API service layer, and UI for browsing and managing child subscriptions",
+      "Developed complete Trips module with dedicated list/detail pages, custom widgets, and deep-linked routing across the parent and driver flows",
+      "Built real-time Chat module with full UI组件, conversation list, and message routing for parent-driver communication",
+      "Implemented Driver profile screens with sub-pages for personal info, vehicle details, earnings overview, and localization-aware formatting",
+      "Added Families Management feature to the Driver dashboard enabling drivers to view and manage their assigned families and children",
+      "Integrated RESTful APIs via Retrofit with repository pattern for clean data layer abstraction, secure token storage, and error handling",
+      "Applied BLoC/Cubit state management pattern consistently across all driver dashboard pages ensuring predictable state and testability",
+      "Implemented full Arabic/English localization throughout both interfaces including RTL layout adjustments and localized date/number formatting",
+      "Added skeleton loading shimmer effects across all data-fetching screens for smooth perceived performance and polished UX",
+    ],
+    techStack: [
+      "Flutter & Dart", "RESTful APIs (Retrofit)", "BLoC / Cubit", "Clean Architecture", "Repository Pattern", "Secure Storage", "GoRouter", "RTL Localization (AR/EN)", "Skeletonizer",
+    ],
+    icon: TruckIcon,
+    color: "from-blue-500/20 to-indigo-500/20",
+    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/KidDrive" }],
   },
   {
     title: "Full-Stack E-Commerce Ecosystem",
@@ -52,6 +84,10 @@ const projects = [
     ],
     techStack: [
       "Flutter", "Dart", "Supabase (Auth, PostgreSQL, Storage)", "Paymob", "Google Maps", "GoRouter", "Clean Architecture", "BLoC",
+    ],
+    imageGroups: [
+      { label: "Web Dashboard", fit: "contain", images: ["/dash_web/w1-front.png", "/dash_web/w2-front.png", "/dash_web/w3-front.png", "/dash_web/w4-front.png", "/dash_web/w5-front.png", "/dash_web/w6-front.png", "/dash_web/w7-front.png", "/dash_web/w8-front.png"] },
+      { label: "Mobile App", images: ["/shop_mobile/1.png", "/shop_mobile/2.png", "/shop_mobile/3.png", "/shop_mobile/4.png", "/shop_mobile/5.png"] },
     ],
     icon: GlobeAltIcon,
     color: "from-teal-500/20 to-cyan-500/20",
@@ -75,6 +111,7 @@ const projects = [
     techStack: [
       "Flutter", "Dart", "Supabase", "RESTful API", "Dio", "Clean Architecture", "BLoC State Management",
     ],
+    images: ["/shop/shop_1.png", "/shop/shop_2.png", "/shop/shop_3.png"],
     icon: ShoppingBagIcon,
     color: "from-fuchsia-500/20 to-pink-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/ShopApp" }],
@@ -95,6 +132,7 @@ const projects = [
     techStack: [
       "Flutter & Dart", "RESTful APIs", "BLoC / Provider", "Dio (Pagination & Handling)",
     ],
+    images: ["/book/1.png", "/book/2.png"],
     icon: BookOpenIcon,
     color: "from-amber-500/20 to-orange-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Book-App" }],
@@ -115,6 +153,7 @@ const projects = [
     techStack: [
       "Flutter & Dart", "Firebase Authentication", "Firestore", "Firebase Storage", "BLoC / Provider", "Image Picker", "Cached Network Image",
     ],
+    images: ["/chat/chat_1.png", "/chat/chat_2.png"],
     icon: ChatBubbleLeftRightIcon,
     color: "from-emerald-500/20 to-green-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Chat-App" }],
@@ -150,10 +189,94 @@ function TagBadge({ tag, style: extraStyle = {} }) {
   );
 }
 
+function ImageGallery({ images, fit = 'cover', compact }) {
+  const [active, setActive] = useState(0);
+  const scrollRef = useRef(null);
+
+  const handleThumbnailClick = (i) => {
+    setActive(i);
+    scrollRef.current?.children[i]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  };
+
+  const isContain = fit === 'contain';
+
+  return (
+    <div>
+      <div className="position-relative overflow-hidden rounded-3 d-flex align-items-center justify-content-center" style={{ aspectRatio: compact ? '16 / 9' : isContain ? '4 / 3' : '16 / 10', maxHeight: compact ? '16rem' : isContain ? '28rem' : undefined, backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-default)' }}>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={active}
+            src={images[active]}
+            alt={`Screenshot ${active + 1}`}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className={isContain ? 'w-100 h-100' : 'position-absolute w-100 h-100'}
+            style={{ objectFit: fit, objectPosition: 'top' }}
+          />
+        </AnimatePresence>
+        <div className="position-absolute bottom-0 end-0 mb-2 me-2 px-2 py-1 rounded-pill" style={{ backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', fontSize: 'clamp(0.5rem, 1.2vw, 0.6rem)', color: '#fff' }}>
+          {active + 1} / {images.length}
+        </div>
+      </div>
+      <div
+        ref={scrollRef}
+        className="d-flex gap-1 overflow-auto mt-2"
+        style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'thin' }}
+      >
+        {images.map((src, i) => (
+          <button
+            key={i}
+            onClick={() => handleThumbnailClick(i)}
+            className="border-0 p-0 flex-shrink-0 overflow-hidden rounded-2"
+            style={{
+              width: compact ? 56 : 72,
+              height: compact ? 36 : 48,
+              cursor: 'pointer',
+              scrollSnapAlign: 'start',
+              opacity: i === active ? 1 : 0.45,
+              border: i === active ? '2px solid var(--accent, #22D3EE)' : '2px solid transparent',
+              transition: 'all 0.25s ease',
+              outline: 'none',
+            }}
+          >
+            <img
+              src={src}
+              alt={`Thumbnail ${i + 1}`}
+              className="w-100 h-100"
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
+              loading="lazy"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ImageGroupGallery({ groups }) {
+  return (
+    <div className="d-flex flex-column gap-4 mb-4">
+      {groups.map((group) => (
+        <div key={group.label}>
+          <div className="d-flex align-items-center gap-2 mb-2">
+            <span className="d-inline-block rounded-circle" style={{ width: 6, height: 6, backgroundColor: '#22D3EE' }} />
+            <span className="fw-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', color: 'var(--text-secondary)' }}>{group.label}</span>
+          </div>
+          <ImageGallery images={group.images} fit={group.fit} compact />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ProjectModal({ project, onClose }) {
   const Icon = project.icon;
   const visibleTags = project.tags.slice(0, 3);
   const extraCount = project.tags.length - 3;
+  const hasGallery = useMemo(() => project.images?.length > 0, [project.images]);
+  const hasGroupGallery = useMemo(() => project.imageGroups?.length > 0, [project.imageGroups]);
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) onClose();
@@ -213,6 +336,9 @@ function ProjectModal({ project, onClose }) {
 
         <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: 'var(--text-primary)' }}>{project.title}</h3>
         <p className="mb-4" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>{project.subtitle}</p>
+
+        {hasGroupGallery && <ImageGroupGallery groups={project.imageGroups} />}
+        {!hasGroupGallery && hasGallery && <ImageGallery images={project.images} fit={project.imageFit} />}
 
         <div className="p-4 mb-4 rounded-4 border" style={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-default)' }}>
           <div className="d-flex align-items-center gap-2 mb-3">

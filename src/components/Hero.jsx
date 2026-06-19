@@ -294,6 +294,16 @@ export default function Hero() {
               </a>
 
               <a
+                href="/cv/Mohamed_Fawzy_Flutter.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
+              >
+                <ArrowDownTrayIcon style={{ width: '1em', height: '1em' }} />
+                Download CV
+              </a>
+
+              <a
                 href="#contact"
                 className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
               >
