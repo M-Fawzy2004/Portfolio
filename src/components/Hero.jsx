@@ -114,121 +114,8 @@ export default function Hero() {
           animate="visible"
           className="row align-items-center gx-5 gy-5"
         >
-          {/* Left: Text content */}
-          <div className="col-12 col-lg-7">
-            <motion.div variants={itemVariants}>
-              <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.725rem)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
-                <span className="rounded-circle d-inline-block flex-shrink-0" style={{ width: 5, height: 5, backgroundColor: '#38BDF8' }} />
-                Flutter Developer
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={itemVariants}
-              className="fw-bold lh-1 mb-3"
-              style={{ fontSize: 'clamp(2.4rem, 7.5vw, 4.5rem)', letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
-            >
-              Mohamed
-              <br />
-              <span className="text-gradient">Fawzy</span>
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="mb-3"
-              style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.125rem)', color: 'var(--text-body)' }}
-            >
-              Premium Cross-Platform Mobile Developer
-            </motion.p>
-
-            <motion.div
-              variants={itemVariants}
-              className="position-relative mb-4 d-flex align-items-center"
-              style={{ minHeight: '2.8rem' }}
-            >
-              <p className="mb-0 fw-light" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'var(--text-muted)' }}>
-                <AnimatedPhrase key={phrases[index]} phrase={phrases[index]} />
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              className="d-flex flex-wrap gap-3"
-            >
-              <a
-                href="#projects"
-                className="btn btn-primary d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-primary"
-              >
-                <ArrowDownTrayIcon style={{ width: '1em', height: '1em' }} />
-                View My Work
-              </a>
-
-              <a
-                href="/cv/Mohamed_Fawzy_Flutter.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
-              >
-                <ArrowDownTrayIcon style={{ width: '1em', height: '1em' }} />
-                Download CV
-              </a>
-
-              <a
-                href="#contact"
-                className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
-              >
-                <ChatBubbleLeftRightIcon style={{ width: '1em', height: '1em' }} />
-                Let's Connect
-              </a>
-            </motion.div>
-
-            {/* Social links */}
-            <motion.div variants={itemVariants} className="mt-4">
-              <div
-                className="d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill border hero-social-row"
-                style={{
-                  backgroundColor: 'var(--bg-tertiary)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
-                  borderColor: 'var(--border-default)',
-                }}
-              >
-                <span style={{ fontSize: 'clamp(0.5rem, 1.4vw, 0.6rem)', fontWeight: 500, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginRight: 2, marginLeft: 2 }}>
-                  Find me
-                </span>
-                <span className="mx-1" style={{ width: 1, height: 14, backgroundColor: 'var(--border-default)' }} />
-                {heroSocialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="d-flex align-items-center justify-content-center rounded-circle text-decoration-none hero-social-link"
-                    style={{
-                      width: 32,
-                      height: 32,
-                      color: link.color,
-                      transition: 'all 0.25s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = link.hoverBg;
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.transform = '';
-                    }}
-                    title={link.label}
-                  >
-                    <link.icon />
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right: Circular avatar */}
-          <div className="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end">
+          {/* Image first in DOM for mobile */}
+          <div className="col-12 col-lg-5 order-lg-2 pt-4 pt-lg-0 d-flex justify-content-center justify-content-lg-end">
             <motion.div
               variants={itemVariants}
               className="position-relative d-flex align-items-center justify-content-center"
@@ -334,6 +221,118 @@ export default function Hero() {
                   Available for opportunities
                 </span>
               </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Text content — second on mobile, first on desktop */}
+          <div className="col-12 col-lg-7 order-lg-1">
+            <motion.div variants={itemVariants}>
+              <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.725rem)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
+                <span className="rounded-circle d-inline-block flex-shrink-0" style={{ width: 5, height: 5, backgroundColor: '#38BDF8' }} />
+                Flutter Developer
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={itemVariants}
+              className="fw-bold lh-1 mb-3"
+              style={{ fontSize: 'clamp(2.4rem, 7.5vw, 4.5rem)', letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
+            >
+              Mohamed
+              <br />
+              <span className="text-gradient">Fawzy</span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="mb-3"
+              style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.125rem)', color: 'var(--text-body)' }}
+            >
+              Premium Cross-Platform Mobile Developer
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="position-relative mb-4 d-flex align-items-center"
+              style={{ minHeight: '2.8rem' }}
+            >
+              <p className="mb-0 fw-light" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'var(--text-muted)' }}>
+                <AnimatedPhrase key={phrases[index]} phrase={phrases[index]} />
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="d-flex flex-wrap gap-3"
+            >
+              <a
+                href="#projects"
+                className="btn btn-primary d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-primary"
+              >
+                <ArrowDownTrayIcon style={{ width: '1em', height: '1em' }} />
+                View My Work
+              </a>
+
+              <a
+                href="/cv/Mohamed_Fawzy_Flutter.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
+              >
+                <ArrowDownTrayIcon style={{ width: '1em', height: '1em' }} />
+                Download CV
+              </a>
+
+              <a
+                href="#contact"
+                className="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 hero-cta-secondary"
+              >
+                <ChatBubbleLeftRightIcon style={{ width: '1em', height: '1em' }} />
+                Let's Connect
+              </a>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-4">
+              <div
+                className="d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill border hero-social-row"
+                style={{
+                  backgroundColor: 'var(--bg-tertiary)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  borderColor: 'var(--border-default)',
+                }}
+              >
+                <span style={{ fontSize: 'clamp(0.5rem, 1.4vw, 0.6rem)', fontWeight: 500, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginRight: 2, marginLeft: 2 }}>
+                  Find me
+                </span>
+                <span className="mx-1" style={{ width: 1, height: 14, backgroundColor: 'var(--border-default)' }} />
+                {heroSocialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center justify-content-center rounded-circle text-decoration-none hero-social-link"
+                    style={{
+                      width: 32,
+                      height: 32,
+                      color: link.color,
+                      transition: 'all 0.25s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = link.hoverBg;
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.transform = '';
+                    }}
+                    title={link.label}
+                  >
+                    <link.icon />
+                  </a>
+                ))}
+              </div>
             </motion.div>
           </div>
         </motion.div>
