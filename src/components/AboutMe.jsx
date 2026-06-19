@@ -9,29 +9,8 @@ const stats = [
 
 export default function AboutMe() {
   return (
-    <section id="about" className="section-padding position-relative overflow-hidden">
-      <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden pointer-events-none">
-        <div
-          className="position-absolute rounded-circle"
-          style={{
-            top: -128, left: -128, width: 400, height: 400,
-            background: 'radial-gradient(circle, #22D3EE 0%, transparent 70%)',
-            opacity: 0.03,
-            animation: 'float-glow 8s ease-in-out infinite',
-          }}
-        />
-        <div
-          className="position-absolute rounded-circle"
-          style={{
-            bottom: -128, right: -128, width: 400, height: 400,
-            background: 'radial-gradient(circle, #8B5CF6 0%, transparent 70%)',
-            opacity: 0.02,
-            animation: 'float-glow 10s ease-in-out infinite 2s',
-          }}
-        />
-      </div>
-
-      <div className="max-container position-relative" style={{ zIndex: 10 }}>
+    <section id="about" className="section-padding position-relative">
+      <div className="max-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,8 +18,8 @@ export default function AboutMe() {
           transition={{ duration: 0.6 }}
           className="text-center mb-5"
         >
-          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.1)', borderColor: 'rgba(34,211,238,0.2)' }}>
-            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#22D3EE', animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
+          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
+            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#38BDF8' }} />
             Profile
           </span>
           <h2 className="fw-bold mb-0" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>
@@ -48,9 +27,8 @@ export default function AboutMe() {
           </h2>
         </motion.div>
 
-        <div className="mx-auto" style={{ maxWidth: '56rem' }}>
+        <div className="mx-auto" style={{ maxWidth: '48rem' }}>
           <div className="d-flex flex-column gap-4">
-            {/* Stats row */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -61,35 +39,45 @@ export default function AboutMe() {
               {stats.map((stat) => (
                 <div key={stat.label} className="col-4">
                   <div
-                    className="card text-center p-3 h-100 border-0"
-                    style={{ borderRadius: 16, cursor: 'default' }}
+                    className="d-flex flex-column align-items-center text-center rounded-2 p-3"
+                    style={{
+                      background: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-default)',
+                    }}
                   >
-                    <stat.icon className="mx-auto mb-2" style={{ width: 20, height: 20, color: 'rgba(34,211,238,0.6)' }} />
-                    <p className="fw-bold mb-0" style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.125rem)', color: 'var(--text-primary)' }}>{stat.value}</p>
-                    <p className="mb-0" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.625rem)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{stat.label}</p>
+                    <div className="d-flex align-items-center justify-content-center rounded-2 mb-2" style={{ width: 36, height: 36, backgroundColor: 'rgba(56,189,248,0.1)' }}>
+                      <stat.icon style={{ width: 18, height: 18, color: '#38BDF8' }} />
+                    </div>
+                    <p className="fw-semibold mb-0" style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.125rem)', color: 'var(--text-primary)' }}>{stat.value}</p>
+                    <p className="mb-0" style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.625rem)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{stat.label}</p>
                   </div>
                 </div>
               ))}
             </motion.div>
 
-            {/* Main card */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="card position-relative overflow-hidden border-0 card-mobile-compact" style={{ borderRadius: 32, padding: '3rem 2.5rem' }}>
-                <div className="position-absolute top-0 start-0 w-100 h-100 group-hover-opacity" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.03), transparent, rgba(139,92,246,0.03))', opacity: 0, transition: 'opacity 0.7s' }} />
-                <div className="position-absolute" style={{ top: -24, right: -16, fontSize: '160px', fontWeight: 700, lineHeight: 1, color: 'var(--border-default)', userSelect: 'none', pointerEvents: 'none' }}>
-                  &rdquo;
+              <div
+                className="rounded-2 p-4 position-relative"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-default)',
+                  borderLeft: '3px solid #38BDF8',
+                }}
+              >
+                <div className="position-absolute" style={{ top: -8, right: 12, fontSize: '100px', fontWeight: 700, lineHeight: 1, color: 'var(--border-default)', userSelect: 'none', pointerEvents: 'none' }}>
+                  &ldquo;
                 </div>
-                <p className="mb-0 position-relative" style={{ zIndex: 10, fontSize: 'clamp(0.9rem, 2.5vw, 1.125rem)', lineHeight: 1.8, color: 'var(--text-body)', fontWeight: 300, letterSpacing: '0.02em' }}>
-                  Passionate <span className="fw-semibold" style={{ background: 'linear-gradient(135deg, #22D3EE, #3B82F6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Flutter Developer</span> with 1+ year of hands-on experience building high-performance cross-platform mobile applications for <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>iOS</span> and <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Android</span>.
+                <p className="mb-0 position-relative" style={{ zIndex: 1, fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', lineHeight: 1.8, color: 'var(--text-body)' }}>
+                  <span className="fw-semibold" style={{ background: 'linear-gradient(135deg, #38BDF8, #818CF8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Junior Flutter Developer</span> with hands-on experience building and shipping production-ready iOS and Android applications.
                   <br /><br />
-                  Skilled in <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Clean Architecture</span>, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>BLoC/Cubit</span> state management, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>RESTful APIs</span>, <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Firebase</span>, and <span className="fw-medium" style={{ color: 'var(--text-primary)' }}>Supabase</span>. Proven track record of developing and deploying real-world solutions, including <span className="fw-medium" style={{ color: '#67E8F9' }}>AI-powered platforms</span> and <span className="fw-medium" style={{ color: '#67E8F9' }}>e-commerce applications</span> with secure payment gateway integration.
+                  Proficient in Clean Architecture, BLoC/Cubit state management, and integrating AI-powered features using Gemini. Focused on writing clean, testable code and delivering smooth 60fps performance on real devices.
                   <br /><br />
-                  Dedicated to writing clean, scalable code while delivering responsive, user-friendly mobile experiences.
+                  Currently expanding into React Native, eager to join a product team where strong engineering standards and continuous growth are valued.
                 </p>
               </div>
             </motion.div>

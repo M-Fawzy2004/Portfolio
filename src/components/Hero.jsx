@@ -78,25 +78,6 @@ function AnimatedPhrase({ phrase }) {
   );
 }
 
-function LiquidAura() {
-  return (
-    <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
-      <motion.div
-        className="position-absolute rounded-circle"
-        style={{ width: 'clamp(160px, 40vw, 400px)', height: 'clamp(160px, 40vw, 400px)', backgroundColor: 'rgba(14,165,233,0.06)', filter: 'blur(60px)' }}
-        animate={{ x: [0, 30, -20, 40, 0], y: [0, -20, 15, -30, 0], scale: [1, 1.1, 0.95, 1.05, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="position-absolute rounded-circle"
-        style={{ width: 'clamp(140px, 35vw, 360px)', height: 'clamp(140px, 35vw, 360px)', backgroundColor: 'rgba(139,92,246,0.06)', filter: 'blur(60px)' }}
-        animate={{ x: [0, -35, 25, -20, 0], y: [0, 30, -20, 25, 0], scale: [1, 0.9, 1.15, 0.95, 1] }}
-        transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
-      />
-    </div>
-  );
-}
-
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const [showScroll, setShowScroll] = useState(true);
@@ -131,123 +112,13 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-4 gap-lg-5"
+          className="row align-items-center gx-5 gy-5"
         >
-          {/* Avatar card */}
-          <motion.div
-            variants={itemVariants}
-            className="flex-shrink-0 position-relative d-flex align-items-center justify-content-center"
-          >
-            {/* Outer decorative ring */}
-            <div className="position-absolute pointer-events-none avatar-ring-outer"
-              style={{
-                top: -28, right: -28, bottom: -28, left: -28,
-                borderRadius: 28,
-                background: 'conic-gradient(from 0deg, rgba(34,211,238,0.1), rgba(139,92,246,0.05), rgba(34,211,238,0.03), rgba(139,92,246,0.06), rgba(34,211,238,0.1))',
-                WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                mask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                animation: 'spin-slow 35s linear infinite',
-              }}
-            />
-            {/* Inner decorative ring */}
-            <div className="position-absolute pointer-events-none avatar-ring-inner"
-              style={{
-                top: -14, right: -14, bottom: -14, left: -14,
-                borderRadius: 24,
-                background: 'conic-gradient(from 180deg, rgba(139,92,246,0.08), rgba(34,211,238,0.04), rgba(139,92,246,0.02), rgba(34,211,238,0.05), rgba(139,92,246,0.08))',
-                WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                mask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                animation: 'spin-slow 25s linear infinite reverse',
-              }}
-            />
-
-            {/* Soft glow behind image */}
-            <motion.div
-              animate={{ opacity: [0.08, 0.2, 0.08], scale: [1, 1.04, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="position-absolute rounded-4 pointer-events-none"
-              style={{
-                top: -4, right: -4, bottom: -4, left: -4,
-                background: 'linear-gradient(135deg, rgba(34,211,238,0.15), rgba(139,92,246,0.1), rgba(34,211,238,0.15))',
-                filter: 'blur(32px) saturate(1.3)',
-              }}
-            />
-
-            {/* Image container */}
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="position-relative d-flex justify-content-center"
-            >
-              <div
-                className="position-relative overflow-hidden rounded-4 avatar-card-img"
-                style={{
-                  width: '100%',
-                  maxWidth: '380px',
-                  height: '460px',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-default)',
-                  boxShadow: 'var(--shadow-card)',
-                }}
-              >
-                <div className="position-absolute inset-0 rounded-4 pointer-events-none" style={{
-                  background: 'linear-gradient(135deg, rgba(34,211,238,0.06), transparent 40%, rgba(139,92,246,0.04) 70%, transparent)',
-                  zIndex: 2,
-                }} />
-                <img
-                  src={myAvatar}
-                  alt="Mohamed Fawzy"
-                  className="w-100 h-100"
-                  style={{ objectFit: 'cover', objectPosition: 'top', transform: 'scale(1.04)' }}
-                  loading="eager"
-                  decoding="async"
-                />
-                <div
-                  className="position-absolute bottom-0 start-0 w-100"
-                  style={{ height: '45%', background: 'linear-gradient(0deg, var(--bg-primary), transparent)', opacity: 0.5 }}
-                />
-                <div
-                  className="position-absolute top-0 start-0 w-100"
-                  style={{ height: '25%', background: 'linear-gradient(180deg, rgba(34,211,238,0.04), transparent)' }}
-                />
-                <div
-                  className="position-absolute top-0 start-0 w-100 h-100 rounded-4"
-                  style={{ boxShadow: 'inset 0 0 0 1px var(--border-default)' }}
-                />
-              </div>
-
-              {/* Status badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className="position-absolute start-50 translate-middle-x d-flex align-items-center gap-2 px-3 py-1 rounded-pill"
-                style={{
-                  bottom: -10,
-                  backgroundColor: 'var(--bg-elevated)',
-                  backdropFilter: 'blur(24px)',
-                  WebkitBackdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(52,211,153,0.12)',
-                  boxShadow: '0 4px 16px rgba(52,211,153,0.04)',
-                  zIndex: 3,
-                }}
-              >
-                <span className="position-relative d-inline-flex align-items-center justify-content-center" style={{ width: 7, height: 7 }}>
-                  <span className="position-absolute w-100 h-100 rounded-circle" style={{ backgroundColor: '#34D399', opacity: 0.4, animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
-                  <span className="position-absolute w-100 h-100 rounded-circle" style={{ backgroundColor: '#34D399' }} />
-                </span>
-                <span className="text-nowrap" style={{ fontSize: 'clamp(0.55rem, 1.6vw, 0.675rem)', fontWeight: 500, color: 'rgba(52,211,153,0.8)', letterSpacing: '0.01em' }}>
-                  Available for opportunities
-                </span>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Text content */}
-          <div className="flex-grow-1 text-center text-lg-start hero-text-content">
+          {/* Left: Text content */}
+          <div className="col-12 col-lg-7">
             <motion.div variants={itemVariants}>
-              <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.725rem)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#22D3EE', backgroundColor: 'rgba(34,211,238,0.08)', borderColor: 'rgba(34,211,238,0.15)' }}>
-                <span className="rounded-circle d-inline-block flex-shrink-0" style={{ width: 5, height: 5, backgroundColor: '#22D3EE' }} />
+              <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: 'clamp(0.6rem, 1.6vw, 0.725rem)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
+                <span className="rounded-circle d-inline-block flex-shrink-0" style={{ width: 5, height: 5, backgroundColor: '#38BDF8' }} />
                 Flutter Developer
               </span>
             </motion.div>
@@ -265,25 +136,24 @@ export default function Hero() {
             <motion.p
               variants={itemVariants}
               className="mb-3"
-              style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.125rem)', color: 'var(--text-body)', maxWidth: '36rem' }}
+              style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.125rem)', color: 'var(--text-body)' }}
             >
               Premium Cross-Platform Mobile Developer
             </motion.p>
 
             <motion.div
               variants={itemVariants}
-              className="position-relative mb-4 d-flex align-items-center justify-content-center justify-content-lg-start"
-              style={{ maxWidth: '36rem', minHeight: '2.8rem' }}
+              className="position-relative mb-4 d-flex align-items-center"
+              style={{ minHeight: '2.8rem' }}
             >
-              <LiquidAura />
-              <p className="position-relative mb-0 z-1 fw-light" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'var(--text-body)' }}>
+              <p className="mb-0 fw-light" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'var(--text-muted)' }}>
                 <AnimatedPhrase key={phrases[index]} phrase={phrases[index]} />
               </p>
             </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start"
+              className="d-flex flex-wrap gap-3"
             >
               <a
                 href="#projects"
@@ -312,11 +182,8 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Social links row */}
-            <motion.div
-              variants={itemVariants}
-              className="mt-4"
-            >
+            {/* Social links */}
+            <motion.div variants={itemVariants} className="mt-4">
               <div
                 className="d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill border hero-social-row"
                 style={{
@@ -357,6 +224,116 @@ export default function Hero() {
                   </a>
                 ))}
               </div>
+            </motion.div>
+          </div>
+
+          {/* Right: Circular avatar */}
+          <div className="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end">
+            <motion.div
+              variants={itemVariants}
+              className="position-relative d-flex align-items-center justify-content-center"
+              style={{ width: 'clamp(200px, 30vw, 340px)', height: 'clamp(200px, 30vw, 340px)' }}
+            >
+              {/* Outer spinning ring */}
+              <motion.div
+                className="position-absolute pointer-events-none"
+                style={{
+                  top: -20, right: -20, bottom: -20, left: -20,
+                  borderRadius: '50%',
+                  background: 'conic-gradient(from 0deg, rgba(56,189,248,0.08), rgba(129,140,248,0.03), transparent 40%, rgba(56,189,248,0.05), rgba(129,140,248,0.08), rgba(56,189,248,0.08))',
+                  WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))',
+                  mask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))',
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Inner counter-spinning ring */}
+              <motion.div
+                className="position-absolute pointer-events-none"
+                style={{
+                  top: -8, right: -8, bottom: -8, left: -8,
+                  borderRadius: '50%',
+                  background: 'conic-gradient(from 180deg, rgba(129,140,248,0.06), rgba(56,189,248,0.02), transparent 50%, rgba(129,140,248,0.04), rgba(56,189,248,0.06))',
+                  WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
+                  mask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
+                }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Soft ambient glow */}
+              <motion.div
+                className="position-absolute rounded-circle pointer-events-none"
+                style={{
+                  top: 0, right: 0, bottom: 0, left: 0,
+                  background: 'radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%)',
+                  filter: 'blur(40px)',
+                }}
+                animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Image wrapper with zoom-in animation */}
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                className="position-relative d-flex justify-content-center align-items-center"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
+                  border: '2px solid rgba(56,189,248,0.15)',
+                  background: 'var(--bg-secondary)',
+                }}
+              >
+                <motion.img
+                  src={myAvatar}
+                  alt="Mohamed Fawzy"
+                  className="w-100 h-100"
+                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  loading="eager"
+                  decoding="async"
+                  animate={{ scale: [1.05, 1.1, 1.05] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Subtle vignette overlay */}
+                <div
+                  className="position-absolute top-0 start-0 w-100 h-100 rounded-circle pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle, transparent 50%, rgba(0,0,0,0.3) 100%)',
+                    mixBlendMode: 'multiply',
+                  }}
+                />
+              </motion.div>
+
+              {/* Status badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="position-absolute start-50 translate-middle-x d-flex align-items-center gap-2 px-3 py-1 rounded-pill"
+                style={{
+                  bottom: -8,
+                  backgroundColor: 'var(--bg-elevated)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(52,211,153,0.12)',
+                  boxShadow: '0 4px 16px rgba(52,211,153,0.04)',
+                  zIndex: 3,
+                }}
+              >
+                <span className="position-relative d-inline-flex align-items-center justify-content-center" style={{ width: 7, height: 7 }}>
+                  <span className="position-absolute w-100 h-100 rounded-circle" style={{ backgroundColor: '#34D399', opacity: 0.4, animation: 'radar-ping 2s cubic-bezier(0,0,0.2,1) infinite' }} />
+                  <span className="position-absolute w-100 h-100 rounded-circle" style={{ backgroundColor: '#34D399' }} />
+                </span>
+                <span className="text-nowrap" style={{ fontSize: 'clamp(0.55rem, 1.6vw, 0.675rem)', fontWeight: 500, color: 'rgba(52,211,153,0.8)', letterSpacing: '0.01em' }}>
+                  Available for opportunities
+                </span>
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>
