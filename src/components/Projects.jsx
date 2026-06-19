@@ -40,7 +40,7 @@ const projects = [
     confidential: true,
   },
   {
-    title: "KidDrive \u2013 Child Transportation App",
+    title: "Private Graduation Project",
     subtitle: "Graduation Project (B.Sc. Information Systems)",
     tags: ["Flutter", "REST APIs", "BLoC/Cubit", "Clean Architecture", "Retrofit", "Role-Based Auth"],
     description:
@@ -54,7 +54,7 @@ const projects = [
       "Created full child management module allowing parents to add, edit, view, and manage multiple child profiles with personal info and associated metadata",
       "Integrated subscription management system with dedicated data models, API service layer, and UI for browsing and managing child subscriptions",
       "Developed complete Trips module with dedicated list/detail pages, custom widgets, and deep-linked routing across the parent and driver flows",
-      "Built real-time Chat module with full UI组件, conversation list, and message routing for parent-driver communication",
+      "Built real-time Chat module with full UI, conversation list, and message routing for parent-driver communication",
       "Implemented Driver profile screens with sub-pages for personal info, vehicle details, earnings overview, and localization-aware formatting",
       "Added Families Management feature to the Driver dashboard enabling drivers to view and manage their assigned families and children",
       "Integrated RESTful APIs via Retrofit with repository pattern for clean data layer abstraction, secure token storage, and error handling",
@@ -67,7 +67,8 @@ const projects = [
     ],
     icon: TruckIcon,
     color: "from-blue-500/20 to-indigo-500/20",
-    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/KidDrive" }],
+    links: [],
+    confidential: true,
   },
   {
     title: "Full-Stack E-Commerce Ecosystem",
@@ -189,8 +190,27 @@ function TagBadge({ tag, style: extraStyle = {} }) {
   );
 }
 
+function ShimmerThumb({ src, alt, ...props }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="position-relative w-100 h-100 overflow-hidden">
+      {!loaded && <div className="position-absolute inset-0 w-100 h-100 shimmer" />}
+      <img
+        src={src}
+        alt={alt}
+        className="w-100 h-100"
+        style={{ objectFit: 'cover', objectPosition: 'top', opacity: loaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+        onLoad={() => setLoaded(true)}
+        {...props}
+      />
+    </div>
+  );
+}
+
 function ImageGallery({ images, fit = 'cover', compact }) {
   const [active, setActive] = useState(0);
+  const [mainLoaded, setMainLoaded] = useState({});
   const scrollRef = useRef(null);
 
   const handleThumbnailClick = (i) => {
@@ -203,6 +223,7 @@ function ImageGallery({ images, fit = 'cover', compact }) {
   return (
     <div>
       <div className="position-relative overflow-hidden rounded-3 d-flex align-items-center justify-content-center" style={{ aspectRatio: compact ? '16 / 9' : isContain ? '4 / 3' : '16 / 10', maxHeight: compact ? '16rem' : isContain ? '28rem' : undefined, backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-default)' }}>
+        {!mainLoaded[active] && <div className="position-absolute inset-0 w-100 h-100 shimmer" />}
         <AnimatePresence mode="wait">
           <motion.img
             key={active}
@@ -214,6 +235,7 @@ function ImageGallery({ images, fit = 'cover', compact }) {
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className={isContain ? 'w-100 h-100' : 'position-absolute w-100 h-100'}
             style={{ objectFit: fit, objectPosition: 'top' }}
+            onLoad={() => setMainLoaded((prev) => ({ ...prev, [active]: true }))}
           />
         </AnimatePresence>
         <div className="position-absolute bottom-0 end-0 mb-2 me-2 px-2 py-1 rounded-pill" style={{ backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', fontSize: 'clamp(0.5rem, 1.2vw, 0.6rem)', color: '#fff' }}>
@@ -241,13 +263,7 @@ function ImageGallery({ images, fit = 'cover', compact }) {
               outline: 'none',
             }}
           >
-            <img
-              src={src}
-              alt={`Thumbnail ${i + 1}`}
-              className="w-100 h-100"
-              style={{ objectFit: 'cover', objectPosition: 'top' }}
-              loading="lazy"
-            />
+            <ShimmerThumb src={src} alt={`Thumbnail ${i + 1}`} loading="lazy" />
           </button>
         ))}
       </div>

@@ -4,8 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+const rootEl = document.getElementById('root')
+const loader = document.getElementById('loader')
+
+const root = createRoot(rootEl)
+root.render(
   <StrictMode>
     <App />
   </StrictMode>,
 )
+
+if (loader) {
+  requestAnimationFrame(() => {
+    loader.classList.add('hidden')
+    setTimeout(() => loader.remove(), 700)
+  })
+}
