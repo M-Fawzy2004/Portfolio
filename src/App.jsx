@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import BackgroundEasterEggs from './components/BackgroundEasterEggs'
+import ScrollToTop from './components/ScrollToTop'
 
 const ThemeContext = createContext()
 
@@ -41,6 +42,7 @@ function App() {
         </div>
         <BackgroundEasterEggs />
         <Navigation />
+        <ScrollToTop />
         <main className="position-relative" style={{ zIndex: 10 }}>
           <Hero />
           <AboutMe />
