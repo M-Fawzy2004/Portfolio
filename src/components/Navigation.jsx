@@ -21,16 +21,9 @@ export default function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState("about");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [phase, setPhase] = useState("dot");
   const guardExpiry = useRef(null);
   const lastScrollY = useRef(0);
   const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setPhase("expand"), 1200);
-    const t2 = setTimeout(() => setPhase("ready"), 3000);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.slice(1));
@@ -88,71 +81,38 @@ export default function Navigation() {
   };
 
   const isHidden = hidden && !mobileOpen;
-  const showFullNav = phase !== "dot";
-  const isExpanding = phase === "expand";
 
   return (
     <header className="fixed-top d-flex justify-content-center" style={{ marginTop: '1.5rem', zIndex: 99 }}>
       <motion.div
-        layout
-        initial={{ width: 48, height: 48 }}
-        animate={
-          phase === "dot"
-            ? { width: 48, height: 48, borderRadius: "50%", opacity: 1 }
-            : {
-                width: "92%",
-                height: "auto",
-                borderRadius: "9999px",
-                opacity: isHidden ? 0 : 1,
-                y: isHidden ? -120 : 0,
-              }
-        }
-        transition={{
-          duration: isExpanding ? 1.4 : 0.35,
-          ease: [0.7, 0, 0.3, 1],
-          delay: isExpanding ? 0 : 0,
-        }}
-        style={{
-          pointerEvents: isHidden ? "none" : "auto",
-          maxWidth: "72rem",
-          overflow: "hidden",
-        }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: isHidden ? -120 : 0, opacity: isHidden ? 0 : 1 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        style={{ pointerEvents: isHidden ? "none" : "auto", width: '92%', maxWidth: '72rem' }}
       >
         <div
           style={{
-            borderRadius: "inherit",
-            backgroundColor: phase === "dot" ? "transparent" : scrolled ? "var(--bg-nav)" : "var(--bg-tertiary)",
-            backdropFilter: "blur(24px)",
-            border: phase === "dot" ? "none" : "1px solid var(--border-default)",
-            transition: "background-color 0.3s ease, border-color 0.3s ease",
+            borderRadius: '9999px',
+            backgroundColor: scrolled ? 'var(--bg-nav)' : 'var(--bg-tertiary)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid var(--border-default)',
+            transition: 'background-color 0.3s ease, border-color 0.3s ease',
           }}
         >
-          {phase === "dot" && (
-            <motion.div
-              className="d-flex align-items-center justify-content-center"
-              style={{ width: 48, height: 48 }}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.nav
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.06 } },
+              }}
+              initial="hidden"
+              animate="visible"
+              className="d-flex align-items-center justify-content-between px-4 py-2 w-100"
             >
-              <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#38BDF8", opacity: 0.8 }} />
-            </motion.div>
-          )}
-
-          {showFullNav && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: isExpanding ? 0.6 : 0 }}
-            >
-              <motion.nav
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.06, delayChildren: isExpanding ? 0.7 : 0 } },
-                }}
-                initial="hidden"
-                animate="visible"
-                className="d-flex align-items-center justify-content-between px-4 py-2 w-100"
-              >
                 <motion.div
                   variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
                   className="d-flex align-items-center gap-3"
@@ -261,7 +221,7 @@ export default function Navigation() {
                         backgroundColor: 'var(--bg-elevated)',
                         backdropFilter: 'blur(32px)',
                         border: '1px solid var(--border-strong)',
-                        borderRadius: 24,
+                        borderRadius: 0,
                         overflow: 'hidden',
                       }}
                     >
@@ -348,9 +308,8 @@ export default function Navigation() {
                 )}
               </AnimatePresence>
             </motion.div>
-          )}
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
     </header>
   );
 }
