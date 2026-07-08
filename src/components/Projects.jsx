@@ -7,6 +7,7 @@ import {
   BookOpenIcon,
   ChatBubbleLeftRightIcon,
   ShoppingBagIcon,
+  MapPinIcon,
   TruckIcon,
   XMarkIcon,
   ShieldCheckIcon,
@@ -38,6 +39,30 @@ const projects = [
     color: "from-cyan-500/20 to-violet-500/20",
     links: [],
     confidential: true,
+  },
+  {
+    title: "ParkMate",
+    subtitle: "Solo Project",
+    tags: ["Flutter", "Supabase", "Mapbox", "Clean Architecture"],
+    description:
+      "A Flutter application that helps users save their parking location and find their car easily. Built with Supabase, Mapbox, and Clean Architecture.",
+    features: [
+      "User authentication — email/password registration with OTP verification, login, forgot password/reset password flow via Supabase Auth",
+      "Save parking location — capture your exact parking spot with GPS coordinates, reverse-geocode to an address, and save it to your account",
+      "Find your car — navigate back to your parked car with turn-by-turn directions powered by Mapbox",
+      "Nearby parking discovery — browse parking lots, garages, and other parking spots near your current location",
+      "Parking history — review all your past parking sessions with dates, times, and locations",
+      "Real-time navigation — full turn-by-turn guidance with route tracking, progress monitoring, ETA, and deviation detection",
+      "Multi-language support — switch between English and Arabic with full RTL support",
+      "Offline detection — automatic connectivity monitoring with a persistent banner when offline",
+    ],
+    techStack: [
+      "Flutter & Dart", "Supabase (Auth, PostgreSQL, RPC)", "Mapbox (Maps, Geocoding, Directions)", "BLoC/Cubit", "Clean Architecture", "GoRouter", "GetIt", "easy_localization", "connectivity_plus", "geolocator",
+    ],
+    images: ["/park_mate/1.png", "/park_mate/2.png", "/park_mate/3.png"],
+    icon: MapPinIcon,
+    color: "from-sky-500/20 to-blue-500/20",
+    links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/park_mate" }],
   },
   {
     title: "Private Graduation Project",
