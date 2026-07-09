@@ -47,7 +47,6 @@ const skillGroups = [
     color: '#F59E0B',
     skills: [
       'Gemini AI Integration', 'PDF Processing', 'Image Analysis',
-      'Memory Leak Detection',
     ],
   },
   {
