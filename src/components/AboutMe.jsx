@@ -75,9 +75,9 @@ export default function AboutMe() {
                 <p className="mb-0 position-relative" style={{ zIndex: 1, fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', lineHeight: 1.8, color: 'var(--text-body)' }}>
                   <span className="fw-semibold" style={{ background: 'linear-gradient(135deg, #38BDF8, #818CF8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Junior Flutter Developer</span> with hands-on experience building and shipping production-ready iOS and Android applications.
                   <br /><br />
-                  Proficient in Clean Architecture, BLoC/Cubit state management, and integrating AI-powered features using Gemini. Focused on writing clean, testable code and delivering smooth 60fps performance on real devices.
+                  Proficient in Clean Architecture, BLoC/Cubit state management, and integrating AI-powered features using Gemini. Focused on writing clean, maintainable code and delivering smooth 60fps performance on real devices.
                   <br /><br />
-                  Currently expanding into React Native, eager to join a product team where strong engineering standards and continuous growth are valued.
+                  Currently expanding into React Native and building foundational skills in Java, eager to join a product team where strong engineering standards and continuous growth are valued.
                 </p>
               </div>
             </motion.div>

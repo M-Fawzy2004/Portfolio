@@ -14,7 +14,7 @@ const skillGroups = [
     icon: CodeBracketIcon,
     color: '#38BDF8',
     skills: [
-      'Flutter', 'React Native', 'Dart', 'JavaScript', 'HTML', 'CSS',
+      'Flutter', 'React Native (Learning)', 'Dart', 'JavaScript', 'Java (Basics)', 'HTML', 'CSS',
       'Material Design', 'Cupertino', 'Mobile App Development',
       'Responsive UI Design', 'Performance Optimization',
       'Push Notifications', 'Offline Mode',
@@ -51,13 +51,12 @@ const skillGroups = [
     ],
   },
   {
-    title: 'Tools & Testing',
+    title: 'Tools',
     icon: WrenchScrewdriverIcon,
     color: '#F472B6',
     skills: [
       'Git', 'GitHub', 'Postman', 'Figma',
       'Android Studio', 'Visual Studio Code', 'Flutter DevTools',
-      'Unit Testing', 'Widget Testing', 'Integration Testing', 'Manual Testing',
     ],
   },
   {
