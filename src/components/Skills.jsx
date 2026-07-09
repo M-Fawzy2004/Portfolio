@@ -14,7 +14,7 @@ const skillGroups = [
     icon: CodeBracketIcon,
     color: '#38BDF8',
     skills: [
-      'Flutter', 'React Native (Learning)', 'Dart', 'JavaScript', 'Java (Basics)', 'HTML', 'CSS',
+      'Flutter', 'React Native (Learning)', 'Dart', 'JavaScript (Basics)', 'HTML', 'CSS',
       'Material Design', 'Cupertino', 'Mobile App Development',
       'Responsive UI Design', 'Performance Optimization',
       'Push Notifications', 'Offline Mode',
@@ -35,7 +35,7 @@ const skillGroups = [
     icon: ServerStackIcon,
     color: '#34D399',
     skills: [
-      'REST APIs', 'Dio', 'HTTP', 'SQL',
+      'REST APIs', 'Dio', 'HTTP',
       'Firebase', 'Supabase',
       'Authentication Systems', 'Payment Integration', 'Google Maps API',
       'API Caching', 'Image Caching',
@@ -55,7 +55,7 @@ const skillGroups = [
     color: '#F472B6',
     skills: [
       'Git', 'GitHub', 'Postman', 'Figma',
-      'Android Studio', 'Visual Studio Code', 'Flutter DevTools',
+      'Android Studio', 'Visual Studio Code',
     ],
   },
   {
