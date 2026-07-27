@@ -10,13 +10,7 @@ const FlutterShape1 = ({ className, delay = 0 }) => (
     animate={{ opacity: [0.1, 0.25, 0.1], scale: [0.8, 1, 0.8], rotate: [0, 10, 0] }}
     transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay }}
   >
-    <path d="M10 50 L50 10 L70 30 L30 70 Z" fill="url(#flutterBlue)" />
-    <defs>
-      <linearGradient id="flutterBlue" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#54C5F8" />
-        <stop offset="100%" stopColor="#29B6F6" />
-      </linearGradient>
-    </defs>
+    <path d="M10 50 L50 10 L70 30 L30 70 Z" fill="#54C5F8" />
   </motion.svg>
 )
 
@@ -30,14 +24,8 @@ const FlutterShape2 = ({ className, delay = 0 }) => (
     animate={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.1, 1], rotate: [0, -10, 0] }}
     transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay }}
   >
-    <path d="M30 70 L50 50 L90 90 L70 110 Z" fill="url(#flutterDarkBlue)" />
+    <path d="M30 70 L50 50 L90 90 L70 110 Z" fill="#01579B" />
     <path d="M50 50 L70 30 L90 50 L70 70 Z" fill="#29B6F6" opacity="0.8" />
-    <defs>
-      <linearGradient id="flutterDarkBlue" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#01579B" />
-        <stop offset="100%" stopColor="#02569B" />
-      </linearGradient>
-    </defs>
   </motion.svg>
 )
 

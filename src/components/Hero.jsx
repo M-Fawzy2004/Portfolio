@@ -121,44 +121,24 @@ export default function Hero() {
               className="position-relative d-flex align-items-center justify-content-center"
               style={{ width: 'clamp(200px, 30vw, 340px)', height: 'clamp(200px, 30vw, 340px)' }}
             >
-              {/* Outer spinning ring */}
-              <motion.div
-                className="position-absolute pointer-events-none"
-                style={{
-                  top: -20, right: -20, bottom: -20, left: -20,
-                  borderRadius: '50%',
-                  background: 'conic-gradient(from 0deg, rgba(56,189,248,0.08), rgba(129,140,248,0.03), transparent 40%, rgba(56,189,248,0.05), rgba(129,140,248,0.08), rgba(56,189,248,0.08))',
-                  WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))',
-                  mask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))',
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              />
-
-              {/* Inner counter-spinning ring */}
-              <motion.div
-                className="position-absolute pointer-events-none"
-                style={{
-                  top: -8, right: -8, bottom: -8, left: -8,
-                  borderRadius: '50%',
-                  background: 'conic-gradient(from 180deg, rgba(129,140,248,0.06), rgba(56,189,248,0.02), transparent 50%, rgba(129,140,248,0.04), rgba(56,189,248,0.06))',
-                  WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                  mask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 0.5px))',
-                }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              />
-
-              {/* Soft ambient glow */}
+              {/* Animated border ring */}
               <motion.div
                 className="position-absolute rounded-circle pointer-events-none"
                 style={{
-                  top: 0, right: 0, bottom: 0, left: 0,
-                  background: 'radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%)',
-                  filter: 'blur(40px)',
+                  top: -16, right: -16, bottom: -16, left: -16,
+                  border: '1px solid rgba(56,189,248,0.08)',
                 }}
-                animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="position-absolute rounded-circle pointer-events-none"
+                style={{
+                  top: -8, right: -8, bottom: -8, left: -8,
+                  border: '1px dashed rgba(56,189,248,0.06)',
+                }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
 
               {/* Image wrapper with zoom-in animation */}
@@ -187,14 +167,7 @@ export default function Hero() {
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 />
 
-                {/* Subtle vignette overlay */}
-                <div
-                  className="position-absolute top-0 start-0 w-100 h-100 rounded-circle pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(circle, transparent 50%, rgba(0,0,0,0.3) 100%)',
-                    mixBlendMode: 'multiply',
-                  }}
-                />
+
               </motion.div>
 
               {/* Status badge */}
@@ -206,10 +179,7 @@ export default function Hero() {
                 style={{
                   bottom: -8,
                   backgroundColor: 'var(--bg-elevated)',
-                  backdropFilter: 'blur(24px)',
-                  WebkitBackdropFilter: 'blur(24px)',
                   border: '1px solid rgba(52,211,153,0.12)',
-                  boxShadow: '0 4px 16px rgba(52,211,153,0.04)',
                   zIndex: 3,
                 }}
               >
@@ -240,7 +210,7 @@ export default function Hero() {
             >
               Mohamed
               <br />
-              <span className="text-gradient">Fawzy</span>
+              <span style={{ color: '#38BDF8' }}>Fawzy</span>
             </motion.h1>
 
             <motion.p
@@ -297,8 +267,6 @@ export default function Hero() {
                 className="d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill border hero-social-row"
                 style={{
                   backgroundColor: 'var(--bg-tertiary)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
                   borderColor: 'var(--border-default)',
                 }}
               >
@@ -355,8 +323,6 @@ export default function Hero() {
               className="d-flex flex-column align-items-center gap-1 px-3 py-2 rounded-pill"
               style={{
                 backgroundColor: 'var(--bg-elevated)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
               }}
             >
               <span className="text-uppercase" style={{ fontSize: 'clamp(0.5rem, 1.2vw, 0.6rem)', fontWeight: 500, letterSpacing: '0.12em', color: 'var(--text-muted)' }}>Scroll</span>

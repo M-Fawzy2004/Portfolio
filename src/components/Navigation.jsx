@@ -94,7 +94,6 @@ export default function Navigation() {
           style={{
             borderRadius: '9999px',
             backgroundColor: scrolled ? 'var(--bg-nav)' : 'var(--bg-tertiary)',
-            backdropFilter: 'blur(24px)',
             border: '1px solid var(--border-default)',
             transition: 'background-color 0.3s ease, border-color 0.3s ease',
           }}
@@ -219,7 +218,6 @@ export default function Navigation() {
                     <div
                       style={{
                         backgroundColor: 'var(--bg-elevated)',
-                        backdropFilter: 'blur(32px)',
                         border: '1px solid var(--border-strong)',
                         borderRadius: 0,
                         overflow: 'hidden',

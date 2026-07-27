@@ -34,7 +34,6 @@ export default function ScrollToTop() {
             height: 44,
             zIndex: 90,
             backgroundColor: 'var(--bg-elevated)',
-            backdropFilter: 'blur(16px)',
             border: '1px solid var(--border-default)',
             color: 'var(--text-muted)',
             cursor: 'pointer',

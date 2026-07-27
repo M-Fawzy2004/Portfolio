@@ -23,10 +23,10 @@ const TikTokIcon = ({ size = 20 }) => (
 )
 
 const channels = [
-  { label: 'Email', value: 'mofawzy.com7@gmail.com', href: 'mailto:mofawzy.com7@gmail.com', icon: Mail },
+  { label: 'Email', value: 'mohamedfawzydev27@gmail.com', href: 'mailto:mohamedfawzydev27@gmail.com', icon: Mail },
   { label: 'Phone', value: '+20 106 880 8559', href: 'tel:+201068808559', icon: Phone },
   { label: 'WhatsApp', value: '+20 106 880 8559', href: 'https://wa.me/201068808559', icon: MessageCircle },
-  { label: 'Telegram', value: '@Mofawzyy', href: 'https://t.me/Mofawzyy', icon: Send },
+  { label: 'Telegram', value: '@M07amedFawzy', href: 'https://t.me/M07amedFawzy', icon: Send },
 ]
 
 const socials = [
@@ -76,21 +76,19 @@ export default function Contact() {
                   I'm currently open to freelance opportunities and collaboration. Whether you need a mobile app built, a prototype developed, or technical consultation — let's talk.
                 </p>
                 <a
-                  href="mailto:mofawzy.com7@gmail.com"
+                  href="mailto:mohamedfawzydev27@gmail.com"
                   className="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none fw-medium"
                   style={{
                     fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                     color: '#fff',
-                    background: 'linear-gradient(135deg, #38BDF8, #818CF8)',
-                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                    backgroundColor: '#38BDF8',
+                    transition: 'transform 0.25s ease',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-1px)'
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(56,189,248,0.25)'
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = ''
-                    e.currentTarget.style.boxShadow = ''
                   }}
                 >
                   <Mail size={16} />

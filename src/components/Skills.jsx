@@ -56,6 +56,7 @@ const skillGroups = [
     skills: [
       'Git', 'GitHub', 'Postman', 'Figma',
       'Android Studio', 'Visual Studio Code',
+      'Google Play Console', 'Revenhoe Publishing',
     ],
   },
   {
@@ -105,7 +106,7 @@ export default function Skills() {
                   <group.icon style={{ width: 18, height: 18, color: group.color }} />
                 </div>
                 <h3 className="fw-semibold mb-0" style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: 'var(--text-primary)' }}>{group.title}</h3>
-                <div className="flex-grow-1" style={{ height: 1, background: `linear-gradient(90deg, ${group.color}30, transparent)` }} />
+                <div className="flex-grow-1" style={{ height: 1, backgroundColor: `${group.color}18` }} />
               </div>
               <div className="d-flex flex-wrap gap-2 ps-1">
                 {group.skills.map((skill, si) => (

@@ -16,6 +16,26 @@ export function useTheme() {
   return useContext(ThemeContext)
 }
 
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="position-fixed top-0 start-0 w-100" style={{ height: 3, zIndex: 9999 }}>
+      <div style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: '#38BDF8', transition: 'width 0.1s linear' }} />
+    </div>
+  );
+}
+
 function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('portfolio-theme')
@@ -31,15 +51,9 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="min-vh-100 app-container" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="fixed-top vh-100 w-100 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
-          <div
-            className="position-absolute top-0 start-0 w-100 h-100"
-            style={{
-              background: 'linear-gradient(180deg, rgba(14,165,233,0.02), transparent, rgba(139,92,246,0.02))',
-            }}
-          />
-        </div>
+      <ScrollProgress />
+      <div className="min-vh-100 app-container position-relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="position-fixed top-0 start-0 w-100 h-100 pointer-events-none bg-dot-grid" style={{ zIndex: 0 }} />
         <BackgroundEasterEggs />
         <Navigation />
         <ScrollToTop />

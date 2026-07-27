@@ -35,10 +35,10 @@ const projects = [
       "Flutter", "Dart", "Supabase", "Gemini AI", "Clean Architecture", "BLoC State Management",
     ],
     images: ["/academia/1.png", "/academia/2.png", "/academia/3.png", "/academia/4.png"],
+    coverImage: "/covers/academia.png",
     icon: AcademicCapIcon,
     color: "from-cyan-500/20 to-violet-500/20",
-    links: [],
-    confidential: true,
+    links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai" }],
   },
   {
     title: "ParkMate",
@@ -60,6 +60,7 @@ const projects = [
       "Flutter & Dart", "Supabase (Auth, PostgreSQL, RPC)", "Mapbox (Maps, Geocoding, Directions)", "BLoC/Cubit", "Clean Architecture", "GoRouter", "GetIt", "easy_localization", "connectivity_plus", "geolocator",
     ],
     images: ["/park_mate/1.png", "/park_mate/2.png", "/park_mate/3.png"],
+    coverImage: "/covers/parkmate.png",
     icon: MapPinIcon,
     color: "from-sky-500/20 to-blue-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/park_mate" }],
@@ -92,8 +93,8 @@ const projects = [
     ],
     icon: TruckIcon,
     color: "from-blue-500/20 to-indigo-500/20",
+    coverImage: "/covers/graduation.png",
     links: [],
-    confidential: true,
   },
   {
     title: "Full-Stack E-Commerce Ecosystem",
@@ -115,6 +116,7 @@ const projects = [
       { label: "Web Dashboard", fit: "contain", images: ["/dash_web/w1-front.png", "/dash_web/w2-front.png", "/dash_web/w3-front.png", "/dash_web/w4-front.png", "/dash_web/w5-front.png", "/dash_web/w6-front.png", "/dash_web/w7-front.png", "/dash_web/w8-front.png"] },
       { label: "Mobile App", images: ["/shop_mobile/1.png", "/shop_mobile/2.png", "/shop_mobile/3.png", "/shop_mobile/4.png", "/shop_mobile/5.png"] },
     ],
+    coverImage: "/covers/ecommerce.png",
     icon: GlobeAltIcon,
     color: "from-teal-500/20 to-cyan-500/20",
     links: [
@@ -138,6 +140,7 @@ const projects = [
       "Flutter", "Dart", "Supabase", "RESTful API", "Dio", "Clean Architecture", "BLoC State Management",
     ],
     images: ["/shop/shop_1.png", "/shop/shop_2.png", "/shop/shop_3.png"],
+    coverImage: "/covers/shop.png",
     icon: ShoppingBagIcon,
     color: "from-fuchsia-500/20 to-pink-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/ShopApp" }],
@@ -162,6 +165,7 @@ const projects = [
     icon: BookOpenIcon,
     color: "from-amber-500/20 to-orange-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Book-App" }],
+    hidden: true,
   },
   {
     title: "Chat App \u2013 Firebase & Flutter",
@@ -183,17 +187,23 @@ const projects = [
     icon: ChatBubbleLeftRightIcon,
     color: "from-emerald-500/20 to-green-500/20",
     links: [{ label: "View Repository", url: "https://github.com/M-Fawzy2004/Chat-App" }],
+    hidden: true,
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const overlayVariants = {
@@ -362,8 +372,8 @@ function ProjectModal({ project, onClose }) {
           <XMarkIcon style={{ width: 20, height: 20 }} />
         </button>
 
-        <div className={`d-inline-flex p-3 rounded-3 mb-4`} style={{ background: `linear-gradient(135deg, ${project.color})` }}>
-          <Icon style={{ width: 24, height: 24, color: '#fff' }} />
+        <div className="d-inline-flex p-3 rounded-3 mb-4" style={{ backgroundColor: 'rgba(56,189,248,0.1)' }}>
+          <Icon style={{ width: 24, height: 24, color: '#38BDF8' }} />
         </div>
 
         <div className="d-flex flex-wrap gap-1 mb-3">
@@ -467,10 +477,10 @@ export default function Projects() {
 
       <div className="max-container position-relative" style={{ zIndex: 10 }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-5"
         >
           <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)', backgroundColor: 'var(--badge-bg)', borderColor: 'var(--badge-border)' }}>
@@ -480,6 +490,7 @@ export default function Projects() {
           <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
             Premium applications built with cutting-edge technologies
           </p>
+          <div className="section-accent" />
         </motion.div>
 
         <motion.div
@@ -489,10 +500,11 @@ export default function Projects() {
           viewport={{ once: true, margin: '-50px' }}
           className="row g-4"
         >
-          {projects.map((project) => {
+          {projects.filter((p) => !p.hidden).map((project, i) => {
             const Icon = project.icon;
             const visibleTags = project.tags.slice(0, 3);
             const extraCount = project.tags.length - 3;
+            const cardCover = project.coverImage || project.images?.[0];
 
             return (
               <motion.div
@@ -502,43 +514,52 @@ export default function Projects() {
               >
                 <div
                   onClick={(e) => handleCardClick(e, project)}
-                  className="card border-0 h-100"
-                  style={{ borderRadius: 32, cursor: 'pointer', transition: 'all 0.5s' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.02) translateY(-8px)';
-                    e.currentTarget.style.borderColor = 'var(--border-hover)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = '';
-                    e.currentTarget.style.borderColor = '';
-                  }}
+                  className="project-card h-100 d-flex flex-column"
                 >
-                  <div className="overflow-hidden" style={{ borderTopLeftRadius: 32, borderTopRightRadius: 32 }}>
-                    <div className="position-relative d-flex align-items-center justify-content-center" style={{ height: '10rem', background: `linear-gradient(135deg, ${project.color})` }}>
-                      <div className="position-absolute bottom-0 start-0 w-100" style={{ height: '100%', background: 'linear-gradient(0deg, var(--bg-primary), transparent)' }} />
-                      <div className="p-3 rounded-3" style={{ backgroundColor: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                        <Icon style={{ width: 32, height: 32, color: '#fff' }} />
+                  <div className="corner-bracket tl" />
+                  <div className="corner-bracket br" />
+
+                  <div className="overflow-hidden" style={{ flex: '0 0 auto' }}>
+                    {cardCover ? (
+                      <div className="position-relative project-image-wrap" style={{ height: '16rem' }}>
+                        <ShimmerThumb src={cardCover} alt={project.title} />
+                        <div className="position-absolute bottom-0 start-0 w-100" style={{ height: '45%', background: 'linear-gradient(0deg, var(--bg-secondary), transparent)' }} />
+                        <div className="position-absolute top-0 end-0 mt-3 me-3 d-flex align-items-center gap-1 px-2 py-1 rounded-2" style={{ backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(8px)' }}>
+                          <Icon style={{ width: 12, height: 12, color: '#38BDF8' }} />
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="position-relative d-flex align-items-center justify-content-center" style={{ height: '16rem', backgroundColor: 'var(--bg-secondary)' }}>
+                        <div className="p-3 rounded-3" style={{ backgroundColor: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.15)' }}>
+                          <Icon style={{ width: 32, height: 32, color: '#38BDF8' }} />
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="p-4 d-flex flex-column flex-grow-1">
                     <div className="d-flex flex-wrap gap-1 mb-2">
-                      {visibleTags.map((tag) => <TagBadge key={tag} tag={tag} />)}
+                      {visibleTags.map((tag) => (
+                        <span key={tag} style={{ fontSize: 'clamp(0.5rem, 1.3vw, 0.6rem)', fontWeight: 500, color: 'rgba(56,189,248,0.6)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                          {tag}
+                        </span>
+                      ))}
                       {extraCount > 0 && (
-                        <span className="badge" style={{ backgroundColor: 'var(--badge-bg)', color: 'var(--text-muted)', border: '1px solid var(--badge-border)', padding: '0.25rem 0.625rem', fontSize: '0.625rem', fontWeight: 500, borderRadius: 8 }}>
-                          +{extraCount} more
+                        <span style={{ fontSize: 'clamp(0.5rem, 1.3vw, 0.6rem)', fontWeight: 500, color: 'var(--text-muted)' }}>
+                          +{extraCount}
                         </span>
                       )}
                     </div>
 
-                    <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.125rem)', color: 'var(--text-primary)' }}>{project.title}</h3>
-                    <p className="mb-2" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>{project.subtitle}</p>
-                    <p className="flex-grow-1 mb-0" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: 'var(--text-body)', lineHeight: 1.6 }}>{project.description}</p>
+                    <h3 className="fw-bold mb-1" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', color: 'var(--text-primary)' }}>{project.title}</h3>
+                    <p className="mb-2" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.7rem)', color: '#38BDF8', letterSpacing: '0.02em' }}>{project.subtitle}</p>
+                    <p className="flex-grow-1 mb-0" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', color: 'var(--text-body)', lineHeight: 1.7 }}>{project.description}</p>
 
-                    <div className="d-flex align-items-center justify-content-between mt-3 pt-3 border-top" style={{ borderTopColor: 'var(--border-default)' }}>
-                      <span style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.75rem)', color: 'var(--text-muted)' }}>Click to explore</span>
-                      <ArrowTopRightOnSquareIcon style={{ width: 16, height: 16, color: 'var(--text-muted)' }} />
+                    <div className="d-flex align-items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid var(--border-default)' }}>
+                      <span className="d-inline-flex align-items-center gap-1" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.7rem)', color: 'var(--text-muted)', transition: 'color 0.3s' }}>
+                        Explore project
+                      </span>
+                      <ArrowTopRightOnSquareIcon style={{ width: 13, height: 13, color: 'var(--text-muted)', transition: 'all 0.3s' }} />
                     </div>
                   </div>
                 </div>
