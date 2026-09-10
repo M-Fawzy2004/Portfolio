@@ -1,6 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { 
+  Sun, 
+  Moon, 
+  Menu, 
+  X, 
+  ArrowUpRight, 
+  MessageCircle
+} from "lucide-react";
 import {
   isNavigationLocked,
   lockNavigation,
@@ -11,8 +18,9 @@ import { useTheme } from "../App";
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -31,12 +39,12 @@ export default function Navigation() {
     const updateActive = () => {
       const currentY = window.scrollY;
       if (currentY > 80) {
-        setHidden(currentY > lastScrollY.current);
+        setHidden(currentY > lastScrollY.current && !mobileOpen);
       } else {
         setHidden(false);
       }
       lastScrollY.current = currentY;
-      setScrolled(currentY > 80);
+      setScrolled(currentY > 40);
 
       if (guardExpiry.current || isNavigationLocked()) return;
 
@@ -55,7 +63,7 @@ export default function Navigation() {
     window.addEventListener("scroll", updateActive, { passive: true });
     updateActive();
     return () => window.removeEventListener("scroll", updateActive);
-  }, []);
+  }, [mobileOpen]);
 
   const handleNavClick = (href) => {
     const id = href.slice(1);
@@ -69,245 +77,136 @@ export default function Navigation() {
     }, 1000);
   };
 
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: { opacity: 1, height: 'auto' },
-    exit: { opacity: 0, height: 0 },
-  };
-
-  const mobileItemVariants = {
-    hidden: { opacity: 0, x: -16 },
-    visible: (i) => ({ opacity: 1, x: 0, transition: { delay: i * 0.06, duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } }),
-  };
-
-  const isHidden = hidden && !mobileOpen;
-
   return (
-    <header className="fixed-top d-flex justify-content-center" style={{ marginTop: '1.5rem', zIndex: 99 }}>
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: isHidden ? -120 : 0, opacity: isHidden ? 0 : 1 }}
-        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-        style={{ pointerEvents: isHidden ? "none" : "auto", width: '92%', maxWidth: '72rem' }}
-      >
-        <div
-          style={{
-            borderRadius: '9999px',
-            backgroundColor: scrolled ? 'var(--bg-nav)' : 'var(--bg-tertiary)',
-            border: '1px solid var(--border-default)',
-            transition: 'background-color 0.3s ease, border-color 0.3s ease',
-          }}
+    <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-2.5 sm:pt-3.5 px-3 pointer-events-none">
+      <div className="w-full max-w-5xl pointer-events-auto">
+        <div 
+          className={`flex items-center justify-between px-3 sm:px-4 py-2 rounded-xl border border-[#1c222c] transition-colors duration-200 backdrop-blur-md ${
+            scrolled 
+              ? 'bg-[var(--bg-nav)]' 
+              : 'bg-[var(--bg-glass)]'
+          }`}
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
+          {/* Brand Logo & Status */}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center gap-2.5 group text-decoration-none"
           >
-            <motion.nav
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.06 } },
-              }}
-              initial="hidden"
-              animate="visible"
-              className="d-flex align-items-center justify-content-between px-4 py-2 w-100"
+            <div className="w-7 h-7 rounded-md bg-[#0284C7] flex items-center justify-center text-white font-bold text-xs">
+              MF
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="font-bold text-xs sm:text-sm tracking-tight text-[var(--text-primary)]">
+                Mohamed Fawzy
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="radar-dot">
+                  <span className="radar-dot-ping" />
+                  <span className="radar-dot-core" />
+                </span>
+                <span className="text-[10px] text-emerald-400 font-medium tracking-wide">
+                  Junior Flutter Dev (2 Yrs)
+                </span>
+              </div>
+            </div>
+          </a>
+
+          {/* Desktop Nav Items - Clean solid active pill, NO gradient */}
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+            {navItems.map((item) => {
+              const isActive = active === item.href.slice(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`relative px-3 py-1 rounded-md text-xs font-semibold transition-colors text-decoration-none ${
+                    isActive 
+                      ? 'text-white' 
+                      : 'text-[var(--text-body)] hover:text-[var(--text-primary)]'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 rounded-md bg-[#0284C7]"
+                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <a
+              href="https://wa.me/201068808559"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 transition-colors text-decoration-none"
             >
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-                  className="d-flex align-items-center gap-3"
-                >
-                  <a href="#" className="fw-bold text-decoration-none" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-                    MF<span style={{ color: '#22D3EE' }}>.</span>
-                  </a>
-                </motion.div>
+              <MessageCircle size={13} />
+              <span>WhatsApp</span>
+            </a>
 
-                <div className="d-none d-md-flex align-items-center gap-1">
-                  {navItems.map((item) => {
-                    const isActive = active === item.href.slice(1);
-                    return (
-                      <motion.a
-                        key={item.label}
-                        variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-                        href={item.href}
-                        onClick={() => handleNavClick(item.href)}
-                        className="position-relative px-3 py-2 text-decoration-none rounded-3"
-                        style={{
-                          fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
-                          fontWeight: 500,
-                          color: isActive ? 'var(--text-nav-active)' : 'var(--text-nav)',
-                          transition: 'color 0.3s',
-                        }}
-                        onMouseEnter={(e) => { if (!isActive) e.target.style.color = 'var(--text-nav-hover)'; }}
-                        onMouseLeave={(e) => { if (!isActive) e.target.style.color = ''; }}
-                      >
-                        {item.label}
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeSection"
-                            className="position-absolute top-0 start-0 w-100 h-100 rounded-3"
-                            style={{ backgroundColor: 'rgba(34,211,238,0.08)' }}
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          />
-                        )}
-                      </motion.a>
-                    );
-                  })}
-                  <motion.button
-                    variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-                    onClick={toggleTheme}
-                    className="d-flex align-items-center justify-content-center rounded-circle border-0 ms-2"
-                    style={{
-                      width: 32,
-                      height: 32,
-                      backgroundColor: 'var(--btn-outline-bg)',
-                      border: '1px solid var(--border-default)',
-                      color: 'var(--text-nav)',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      fontSize: 14,
-                    }}
-                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                    title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                  >
-                    {theme === 'dark' ? (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="5" />
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                      </svg>
-                    ) : (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                      </svg>
-                    )}
-                  </motion.button>
-                </div>
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle visual theme"
+              className="w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[#1c222c] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-sky-500 transition-colors"
+            >
+              {theme === "dark" ? <Sun size={14} className="text-amber-400" /> : <Moon size={14} className="text-sky-500" />}
+            </button>
 
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-                  className="d-flex d-md-none align-items-center"
-                >
-                  <button
-                    onClick={() => setMobileOpen((prev) => !prev)}
-                    className="p-2 border-0 bg-transparent"
-                    style={{ color: 'var(--text-nav)', cursor: 'pointer' }}
-                    aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                  >
-                    {mobileOpen ? <XMarkIcon style={{ width: 22, height: 22 }} /> : <Bars3Icon style={{ width: 22, height: 22 }} />}
-                  </button>
-                </motion.div>
-              </motion.nav>
-
-              <AnimatePresence>
-                {mobileOpen && (
-                  <motion.div
-                    variants={mobileMenuVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="overflow-hidden"
-                    style={{ margin: '0 0.75rem 0.75rem' }}
-                  >
-                    <div
-                      style={{
-                        backgroundColor: 'var(--bg-elevated)',
-                        border: '1px solid var(--border-strong)',
-                        borderRadius: 0,
-                        overflow: 'hidden',
-                      }}
-                    >
-                      <div className="d-flex flex-column py-2">
-                        {navItems.map((item, i) => {
-                          const isActive = active === item.href.slice(1);
-                          return (
-                            <motion.a
-                              key={item.label}
-                              custom={i}
-                              variants={mobileItemVariants}
-                              initial="hidden"
-                              animate="visible"
-                              href={item.href}
-                              onClick={() => handleNavClick(item.href)}
-                              className="d-flex align-items-center gap-3 px-4 py-3 text-decoration-none"
-                              style={{
-                                fontSize: 'clamp(0.9rem, 4vw, 1rem)',
-                                fontWeight: isActive ? 600 : 450,
-                                color: isActive ? 'var(--text-nav-active)' : 'var(--text-nav)',
-                                backgroundColor: isActive ? 'rgba(56,189,248,0.06)' : 'transparent',
-                                borderLeft: isActive ? '3px solid #38BDF8' : '3px solid transparent',
-                                transition: 'all 0.2s',
-                              }}
-                            >
-                              <span
-                                className="d-flex align-items-center justify-content-center rounded-2"
-                                style={{
-                                  width: 6,
-                                  height: 6,
-                                  borderRadius: '50%',
-                                  backgroundColor: isActive ? '#38BDF8' : 'var(--border-strong)',
-                                  flexShrink: 0,
-                                }}
-                              />
-                              {item.label}
-                            </motion.a>
-                          );
-                        })}
-                      </div>
-                      <div
-                        className="d-flex align-items-center justify-content-between px-4 py-3"
-                        style={{ borderTop: '1px solid var(--border-default)' }}
-                      >
-                        <span style={{ fontSize: 'clamp(0.65rem, 3vw, 0.75rem)', fontWeight: 500, color: 'var(--text-muted)' }}>
-                          {theme === 'dark' ? 'Dark mode' : 'Light mode'}
-                        </span>
-                        <button
-                          onClick={toggleTheme}
-                          className="d-flex align-items-center justify-content-center rounded-circle border-0"
-                          style={{
-                            width: 34,
-                            height: 34,
-                            backgroundColor: 'var(--btn-outline-bg)',
-                            border: '1px solid var(--border-default)',
-                            color: 'var(--text-nav)',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s',
-                            fontSize: 15,
-                          }}
-                          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                        >
-                          {theme === 'dark' ? (
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <circle cx="12" cy="12" r="5" />
-                              <line x1="12" y1="1" x2="12" y2="3" />
-                              <line x1="12" y1="21" x2="12" y2="23" />
-                              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                              <line x1="1" y1="12" x2="3" y2="12" />
-                              <line x1="21" y1="12" x2="23" y2="12" />
-                              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                            </svg>
-                          ) : (
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                            </svg>
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+            {/* Mobile Menu */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle navigation menu"
+              className="md:hidden w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[#1c222c] text-[var(--text-primary)]"
+            >
+              {mobileOpen ? <X size={15} /> : <Menu size={15} />}
+            </button>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden mt-2 p-2.5 rounded-xl bg-[var(--bg-nav-mobile)] border border-[var(--border-strong)] flex flex-col gap-1 shadow-lg"
+            >
+              {navItems.map((item) => {
+                const isActive = active === item.href.slice(1);
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => handleNavClick(item.href)}
+                    className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors text-decoration-none ${
+                      isActive 
+                        ? 'bg-sky-500/20 text-sky-400 font-semibold' 
+                        : 'text-[var(--text-body)] hover:text-white'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <ArrowUpRight size={13} className="opacity-40" />
+                  </a>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </header>
   );
 }

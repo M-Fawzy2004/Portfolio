@@ -1,106 +1,143 @@
-import { motion } from 'framer-motion'
-import { BriefcaseIcon, CalendarDaysIcon } from '@heroicons/react/24/outline'
+import { 
+  Calendar, 
+} from 'lucide-react';
+import { FlutterIcon } from './TechIcons';
 
 const experiences = [
   {
-    period: 'Jan 2026 - Apr 2026',
     role: 'Flutter Developer',
     company: 'TRADE BOX',
-    type: 'Freelance · Remote',
-    highlights: [
-      'Developed a comprehensive authentication system with over 10 screens, including login, OTP verification, and onboarding flows, leveraging Clean Architecture and Dio.',
-      'Refactored legacy codebase sections to implement Clean Architecture, enhancing code maintainability and streamlining the development workflow.',
-      'Developed a responsive trading dashboard featuring real-time cryptocurrency price updates and optimized for smooth cross-platform performance.',
-      'Optimized UI rendering and widget structure to ensure consistent performance across Android and iOS devices.',
-      'Enhanced onboarding experience with improved animations and user interaction flows.',
+    type: 'Freelance • Remote',
+    period: 'Jan 2026 - Apr 2026',
+    status: 'Completed Milestone',
+    summary: 'Spearheaded architectural refactoring and developed commercial features for a cryptocurrency mobile platform.',
+    impacts: [
+      {
+        title: 'Authentication & Onboarding (10+ Screens)',
+        desc: 'Engineered full authentication lifecycle including OTP verification, email recovery, and onboarding with Clean Architecture and Dio.',
+        tag: 'Clean Architecture',
+      },
+      {
+        title: 'BLoC Codebase Modernization',
+        desc: 'Refactored tightly coupled legacy modules into loosely coupled Domain Use Cases and BLoC state streams for high testability.',
+        tag: 'BLoC Refactoring',
+      },
+      {
+        title: 'Real-Time Price Tickers',
+        desc: 'Integrated live websocket price feeds with throttled widget rebuilds to maintain fluid 60 FPS performance without frame drops.',
+        tag: '60 FPS Optimization',
+      },
+      {
+        title: 'Cross-Platform UI Alignment',
+        desc: 'Ensured pixel-identical rendering and native gesture responses across both Android and iOS devices.',
+        tag: 'Cross-Platform',
+      },
     ],
+    tech: ['Flutter', 'Dart', 'Clean Architecture', 'Dio', 'BLoC / Cubit', 'WebSockets', 'Secure Storage'],
   },
-]
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
+];
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-padding position-relative">
+    <section id="experience" className="section-padding relative">
       <div className="max-container">
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-5"
-        >
-          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
-            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#38BDF8' }} />
-            Career
-          </span>
-          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Experience</h2>
-          <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
-            My professional journey in mobile development
-          </p>
-          <div className="section-accent" />
-        </motion.div>
 
-        <motion.div
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="mx-auto"
-          style={{ maxWidth: '44rem' }}
-        >
-          {experiences.map((exp, index) => (
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <div className="pill-badge mb-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+            <span>Track Record</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
+            Commercial Experience
+          </h2>
+          <p className="text-xs sm:text-sm text-[var(--text-body)]">
+            Professional development shipping production mobile features.
+          </p>
+        </div>
+
+        {/* Experience Timeline */}
+        <div className="max-w-4xl mx-auto space-y-6">
+          {experiences.map((exp) => (
             <div
-              key={index}
-              className="rounded-3 position-relative"
-              style={{
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-default)',
-                overflow: 'hidden',
-              }}
+              key={exp.company}
+              className="bento-card p-5 sm:p-7 border border-[var(--border-default)]"
             >
-              <div className="d-flex flex-column flex-md-row">
-                <div className="p-4 d-flex flex-column" style={{ flex: '1 1 60%' }}>
-                  <div className="d-flex align-items-center gap-2 mb-3">
-                    <div className="d-flex align-items-center justify-content-center flex-shrink-0 rounded-2" style={{ width: 36, height: 36, backgroundColor: 'rgba(56,189,248,0.1)' }}>
-                      <BriefcaseIcon style={{ width: 16, height: 16, color: '#38BDF8' }} />
-                    </div>
-                    <div>
-                      <h3 className="fw-semibold mb-0" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', color: 'var(--text-primary)' }}>{exp.role}</h3>
-                      <p className="mb-0" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', color: '#38BDF8' }}>{exp.company}</p>
+              {/* Header Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[var(--border-subtle)]">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 flex-shrink-0">
+                    <FlutterIcon size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-[var(--text-primary)]">
+                      {exp.role}
+                    </h3>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span className="text-xs font-bold text-sky-400">{exp.company}</span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-xs text-[var(--text-muted)]">{exp.type}</span>
                     </div>
                   </div>
-
-                  <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
-                    {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', color: 'var(--text-body)', lineHeight: 1.7 }}>
-                        <span className="flex-shrink-0 d-inline-block mt-2" style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: 'rgba(56,189,248,0.4)' }} />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
-                <div className="d-flex flex-row flex-md-column align-items-center align-items-md-end justify-content-between px-4 pb-4 pb-md-4 pt-0 pt-md-4" style={{ flex: '0 0 auto' }}>
-                  <span className="d-inline-flex align-items-center gap-1 px-2 py-1 rounded-2" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.7rem)', fontWeight: 500, color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.15)', whiteSpace: 'nowrap' }}>
-                    <CalendarDaysIcon style={{ width: 12, height: 12 }} />
+                <div className="flex sm:flex-col items-start sm:items-end gap-1">
+                  <span className="px-2.5 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1">
+                    <Calendar size={12} className="text-sky-400" />
                     {exp.period}
                   </span>
-                  <span style={{ fontSize: 'clamp(0.55rem, 1.4vw, 0.65rem)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{exp.type}</span>
+                  <span className="text-[10px] font-medium text-emerald-400">
+                    {exp.status}
+                  </span>
                 </div>
               </div>
+
+              {/* Summary */}
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] mb-5 leading-relaxed">
+                {exp.summary}
+              </p>
+
+              {/* Impact Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                {exp.impacts.map((item, i) => (
+                  <div 
+                    key={i} 
+                    className="p-3.5 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)]"
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <span className="text-xs font-bold text-[var(--text-primary)]">
+                        {item.title}
+                      </span>
+                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 flex-shrink-0">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-[var(--text-body)] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tech Stack */}
+              <div className="pt-3.5 border-t border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2">
+                <span className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">
+                  Tech Stack
+                </span>
+                <div className="flex flex-wrap gap-1">
+                  {exp.tech.map((t) => (
+                    <span key={t} className="px-2 py-0.5 rounded text-[11px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-secondary)]">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
             </div>
           ))}
-        </motion.div>
+        </div>
+
       </div>
     </section>
-  )
+  );
 }

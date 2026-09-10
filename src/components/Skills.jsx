@@ -1,148 +1,233 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Code2, 
+  Layers, 
+  CheckCircle2, 
+  ChevronRight,
+  Database,
+  Cpu
+} from 'lucide-react';
 import {
-  CodeBracketIcon,
-  CpuChipIcon,
-  ServerStackIcon,
-  CommandLineIcon,
-  WrenchScrewdriverIcon,
-  UserGroupIcon,
-} from '@heroicons/react/24/outline'
+  FlutterIcon,
+  DartIcon,
+  FirebaseIcon,
+  SupabaseIcon,
+  GeminiIcon,
+  AndroidIcon,
+  AppleIcon,
+  BlocIcon,
+  MapboxIcon,
+  PaymobIcon,
+  DioIcon,
+  CleanArchIcon,
+  FigmaIcon,
+  GitIcon,
+  PostmanIcon,
+  GooglePlayIcon,
+} from './TechIcons';
 
-const skillGroups = [
+const categories = [
+  { id: 'all', label: 'All Technologies' },
+  { id: 'mobile', label: 'Mobile & Core' },
+  { id: 'architecture', label: 'Architecture & State' },
+  { id: 'backend', label: 'Backend & APIs' },
+  { id: 'ai-tools', label: 'AI, Hardware & Tools' },
+];
+
+const skillsList = [
+  // Mobile Core
+  { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS UI' },
+  { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety' },
+  { name: 'Android', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, Android Studio' },
+  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Cross-Target', note: 'Cupertino widgets, iOS HIG styling' },
+  { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding', note: 'Component lifecycle, cross-framework synergy' },
+
+  // Architecture & State
+  { name: 'Clean Architecture', category: 'architecture', icon: CleanArchIcon, level: 'Core Standard', note: 'Presentation, Domain, Data separation' },
+  { name: 'BLoC / Cubit', category: 'architecture', icon: BlocIcon, level: 'Expert', note: 'Predictable stream-based state machine' },
+  { name: 'Provider / GetX', category: 'architecture', icon: Layers, level: 'Proficient', note: 'Scoped dependency injection & reactive binds' },
+  { name: 'GoRouter & Deep Links', category: 'architecture', icon: Cpu, level: 'Advanced', note: 'Declarative routing, redirect guards' },
+  { name: 'SOLID Principles', category: 'architecture', icon: CheckCircle2, level: 'Practiced', note: 'Dependency inversion, interface segregation' },
+
+  // Backend & APIs
+  { name: 'Supabase', category: 'backend', icon: SupabaseIcon, level: 'Production', note: 'PostgreSQL, Row-Level Security, Auth, Storage' },
+  { name: 'Firebase', category: 'backend', icon: FirebaseIcon, level: 'Production', note: 'Firestore real-time DB, Auth, Cloud Storage' },
+  { name: 'Dio & RESTful APIs', category: 'backend', icon: DioIcon, level: 'Advanced', note: 'Interceptors, caching headers, error mapping' },
+  { name: 'SQLite / Cache', category: 'backend', icon: Database, level: 'Production', note: 'Local offline persistence & encrypted storage' },
+
+  // AI, Hardware & Tools
+  { name: 'Google Gemini AI', category: 'ai-tools', icon: GeminiIcon, level: 'Production', note: 'PDF summarization, automated quiz generation' },
+  { name: 'Mapbox Navigation', category: 'ai-tools', icon: MapboxIcon, level: 'Production', note: 'Turn-by-turn routing, reverse geocoding' },
+  { name: 'Paymob Integration', category: 'ai-tools', icon: PaymobIcon, level: 'Commercial', note: 'Payment cards, mobile wallets, callbacks' },
+  { name: 'Git & GitHub', category: 'ai-tools', icon: GitIcon, level: 'Daily Workflow', note: 'Branching, PRs, version control' },
+  { name: 'Postman', category: 'ai-tools', icon: PostmanIcon, level: 'Advanced', note: 'API contract testing & authentication' },
+  { name: 'Figma', category: 'ai-tools', icon: FigmaIcon, level: 'Design-to-Code', note: 'Pixel-perfect mobile UI translation' },
+  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks' },
+];
+
+const archLayers = [
   {
-    title: 'Mobile Development',
-    icon: CodeBracketIcon,
-    color: '#38BDF8',
-    skills: [
-      'Flutter', 'React Native (Learning)', 'Dart', 'JavaScript (Basics)', 'HTML', 'CSS',
-      'Material Design', 'Cupertino', 'Mobile App Development',
-      'Responsive UI Design', 'Performance Optimization',
-      'Push Notifications', 'Offline Mode',
-    ],
+    layer: '1. Presentation Layer (UI & State)',
+    tech: 'Flutter Widgets • BLoC / Cubit • Responsive Layouts',
+    desc: 'Pure UI components that listen to immutable state streams emitted by BLoC. No business logic or direct API calls ever reside here.',
   },
   {
-    title: 'Architecture & State',
-    icon: CpuChipIcon,
-    color: '#818CF8',
-    skills: [
-      'Clean Architecture', 'MVVM', 'SOLID Principles', 'Dependency Injection',
-      'BLoC', 'Cubit', 'Provider', 'GetX',
-      'GoRouter', 'Deep Linking',
-    ],
+    layer: '2. Domain Layer (Pure Business Rules)',
+    tech: 'UseCases • Entities • Repository Interfaces (Contracts)',
+    desc: 'The heart of the application. 100% independent of any external packages or Flutter framework. Completely unit-testable.',
   },
   {
-    title: 'Backend & APIs',
-    icon: ServerStackIcon,
-    color: '#34D399',
-    skills: [
-      'REST APIs', 'Dio', 'HTTP',
-      'Firebase', 'Supabase',
-      'Authentication Systems', 'Payment Integration', 'Google Maps API',
-      'API Caching', 'Image Caching',
-    ],
+    layer: '3. Data Layer (Data Sources & Models)',
+    tech: 'Dio HTTP • Supabase • SQLite Cache • DTO Mappers',
+    desc: 'Implements repository interfaces. Orchestrates network requests, parses JSON into models, and handles offline database synchronization.',
   },
-  {
-    title: 'AI & Processing',
-    icon: CommandLineIcon,
-    color: '#F59E0B',
-    skills: [
-      'Gemini AI Integration', 'PDF Processing', 'Image Analysis',
-    ],
-  },
-  {
-    title: 'Tools',
-    icon: WrenchScrewdriverIcon,
-    color: '#F472B6',
-    skills: [
-      'Git', 'GitHub', 'Postman', 'Figma',
-      'Android Studio', 'Visual Studio Code',
-      'Google Play Console', 'Revenhoe Publishing',
-    ],
-  },
-  {
-    title: 'Professional Skills',
-    icon: UserGroupIcon,
-    color: '#A78BFA',
-    skills: [
-      'Problem Solving', 'Communication', 'Teamwork', 'Time Management',
-      'Adaptability', 'Fast Learning', 'Attention to Detail',
-      'Debugging', 'Analytical Thinking',
-    ],
-  },
-]
+];
 
 export default function Skills() {
-  return (
-    <section id="skills" className="section-padding position-relative">
-      <div className="max-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-5"
-        >
-          <span className="d-inline-flex align-items-center gap-1 px-3 py-1 rounded-pill border mb-3" style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#38BDF8', backgroundColor: 'rgba(56,189,248,0.08)', borderColor: 'rgba(56,189,248,0.15)' }}>
-            <span className="rounded-circle d-inline-block" style={{ width: 6, height: 6, backgroundColor: '#38BDF8' }} />
-            Expertise
-          </span>
-          <h2 className="fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'var(--text-primary)' }}>Skills & Expertise</h2>
-          <p className="mb-0 mx-auto" style={{ color: 'var(--text-body)', maxWidth: '36rem', fontSize: '1rem' }}>
-            Technologies, tools, and practices I use to build production-grade applications
-          </p>
-        </motion.div>
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedArchLayer, setSelectedArchLayer] = useState(0);
 
-        <div className="d-flex flex-column gap-5">
-          {skillGroups.map((group, gi) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: gi * 0.06 }}
-            >
-              <div className="d-flex align-items-center gap-3 mb-3">
-                <div className="d-flex align-items-center justify-content-center flex-shrink-0 rounded-2" style={{ width: 36, height: 36, backgroundColor: `${group.color}15` }}>
-                  <group.icon style={{ width: 18, height: 18, color: group.color }} />
-                </div>
-                <h3 className="fw-semibold mb-0" style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: 'var(--text-primary)' }}>{group.title}</h3>
-                <div className="flex-grow-1" style={{ height: 1, backgroundColor: `${group.color}18` }} />
+  const filteredSkills = activeCategory === 'all'
+    ? skillsList
+    : skillsList.filter((s) => s.category === activeCategory);
+
+  return (
+    <section id="skills" className="section-padding relative">
+      <div className="max-container">
+
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <div className="pill-badge mb-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+            <span>Technical Capabilities</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
+            Skills, Architecture, & Tools
+          </h2>
+          <p className="text-xs sm:text-sm text-[var(--text-body)]">
+            A focused cross-platform mobile engineering stack refined over 2 years of practical development.
+          </p>
+        </div>
+
+        {/* Clean Architecture Visualizer - Clean, flat borders, NO shadow */}
+        <div className="mb-12 bento-card p-5 sm:p-7">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5 pb-4 border-b border-[var(--border-subtle)]">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-sky-400 uppercase tracking-wider mb-1">
+                <CleanArchIcon size={15} />
+                <span>Architecture Blueprint</span>
               </div>
-              <div className="d-flex flex-wrap gap-2 ps-1">
-                {group.skills.map((skill, si) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: si * 0.03 }}
-                    className="d-inline-flex align-items-center gap-2 rounded-2"
-                    style={{
-                      padding: '0.35rem 0.85rem',
-                      fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)',
-                      fontWeight: 450,
-                      color: 'var(--text-body)',
-                      backgroundColor: `${group.color}08`,
-                      border: `1px solid ${group.color}18`,
-                      transition: 'all 0.25s ease',
-                      cursor: 'default',
-                      letterSpacing: '0.005em',
-                    }}
-                    whileHover={{
-                      scale: 1.04,
-                      backgroundColor: `${group.color}15`,
-                      borderColor: `${group.color}40`,
-                      color: group.color,
-                    }}
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)]">
+                Clean Architecture Implementation
+              </h3>
+            </div>
+            <span className="text-xs text-[var(--text-muted)] font-mono">
+              Click layers to inspect responsibilities
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            {/* Layer Buttons */}
+            <div className="lg:col-span-6 flex flex-col gap-2.5">
+              {archLayers.map((layer, idx) => {
+                const isSelected = selectedArchLayer === idx;
+                return (
+                  <button
+                    key={layer.layer}
+                    onClick={() => setSelectedArchLayer(idx)}
+                    className={`text-left p-3.5 rounded-lg border transition-colors flex items-center justify-between ${
+                      isSelected
+                        ? 'bg-[var(--bg-elevated)] border-sky-500'
+                        : 'bg-[var(--bg-secondary)] border-[var(--border-default)] hover:border-[var(--border-hover)]'
+                    }`}
                   >
-                    {skill}
-                  </motion.span>
-                ))}
+                    <div>
+                      <div className={`text-xs font-bold font-mono mb-0.5 ${isSelected ? 'text-sky-400' : 'text-[var(--text-primary)]'}`}>
+                        {layer.layer}
+                      </div>
+                      <div className="text-[11px] text-[var(--text-muted)]">
+                        {layer.tech}
+                      </div>
+                    </div>
+                    <ChevronRight 
+                      size={16} 
+                      className={isSelected ? 'text-sky-400' : 'text-slate-600'} 
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Layer Detail */}
+            <div className="lg:col-span-6 p-5 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-default)] min-h-[160px] flex flex-col justify-center">
+              <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-sky-400 mb-1.5">
+                LAYER RESPONSIBILITY
               </div>
-            </motion.div>
+              <div className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+                {archLayers[selectedArchLayer].layer}
+              </div>
+              <p className="text-xs text-[var(--text-body)] leading-relaxed">
+                {archLayers[selectedArchLayer].desc}
+              </p>
+              <div className="mt-3.5 pt-2.5 border-t border-[var(--border-subtle)] flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-mono">
+                <CheckCircle2 size={13} className="text-emerald-400" />
+                <span>Applied in Academia AI, ParkMate & Graduation Project</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Category Filter Pills - Clean flat pills, NO glowing shadow */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-7">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                activeCategory === cat.id
+                  ? 'bg-[#0284C7] text-white border border-[#0369A1]'
+                  : 'bg-[var(--bg-secondary)] text-[var(--text-body)] hover:text-white border border-[var(--border-default)]'
+              }`}
+            >
+              {cat.label}
+            </button>
           ))}
         </div>
+
+        {/* Skills Cards Grid - Flat, crisp borders */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {filteredSkills.map((skill) => {
+            const Icon = skill.icon;
+            return (
+              <div
+                key={skill.name}
+                className="bento-card p-3.5 sm:p-4 flex items-start gap-3"
+              >
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-sky-500/10 text-sky-400">
+                  <Icon size={20} />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-[var(--text-primary)] truncate">
+                      {skill.name}
+                    </h4>
+                    <span className="text-[10px] font-mono px-2 py-0.2 rounded bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)] flex-shrink-0">
+                      {skill.level}
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] text-[var(--text-body)] line-clamp-2 leading-relaxed">
+                    {skill.note}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
-  )
+  );
 }
