@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FileText, 
-  Terminal, 
+import {
+  FileText,
+  Terminal,
   ArrowRight,
   Sparkles
 } from "lucide-react";
 import myAvatar from "../assets/my_photo.jpg";
-import { 
+import {
   FlutterIcon,
-  GitHubIcon, 
-  LinkedInIcon, 
-  TikTokIcon, 
-  WhatsAppIcon 
+  GitHubIcon,
+  LinkedInIcon,
+  TikTokIcon,
+  WhatsAppIcon
 } from "./TechIcons";
 
 const dynamicHighlights = [
@@ -43,12 +43,12 @@ export default function Hero() {
     <section className="relative min-h-[88vh] flex items-center justify-center pt-24 sm:pt-28 pb-10 overflow-hidden">
       <div className="max-container w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
-          
+
           {/* Left Column: Creator Bio & Pitch */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            
+
             {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[var(--bg-secondary)] border border-[#1c222c] text-emerald-400 text-xs font-semibold mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[var(--bg-secondary)] border border-[var(--border-default)] text-emerald-400 text-xs font-semibold mb-5">
               <span className="radar-dot">
                 <span className="radar-dot-ping" />
                 <span className="radar-dot-core" />
@@ -69,7 +69,7 @@ export default function Hero() {
             </p>
 
             {/* Rotating Highlights Box */}
-            <div className="w-full max-w-xl h-11 flex items-center mb-6 px-3.5 rounded-lg bg-[var(--bg-secondary)] border border-[#1c222c]">
+            <div className="w-full max-w-xl h-11 flex items-center mb-6 px-3.5 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-default)]">
               <Terminal size={15} className="text-cyan-accent mr-2.5 flex-shrink-0" />
               <div className="relative flex-1 overflow-hidden h-6 flex items-center">
                 <AnimatePresence mode="wait">
@@ -120,7 +120,7 @@ export default function Hero() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={s.label}
-                      className="w-8 h-8 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[#1c222c] text-[var(--text-body)] hover:text-white hover:border-[var(--border-hover)] transition-colors text-decoration-none"
+                      className="w-8 h-8 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-white hover:border-[var(--border-hover)] transition-colors text-decoration-none"
                     >
                       <Icon size={15} />
                     </a>
@@ -137,27 +137,27 @@ export default function Hero() {
           {/* Right Column: Mohamed's Photo Card */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
             <div className="relative w-full max-w-[310px] sm:max-w-[330px]">
-              
+
               {/* Floating Chip Top Left */}
-              <div className="absolute -top-3.5 -left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-elevated)] border border-[#1c222c]">
+              <div className="absolute -top-3.5 -left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-default)]">
                 <FlutterIcon size={14} />
                 <span className="text-[11px] font-bold text-[var(--text-primary)] font-mono">Flutter Native</span>
               </div>
 
               {/* Floating Chip Bottom Right */}
-              <div className="absolute -bottom-3.5 -right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-elevated)] border border-[#1c222c]">
+              <div className="absolute -bottom-3.5 -right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-default)]">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span className="text-[11px] font-medium text-emerald-400">Available for Work</span>
               </div>
 
               {/* Portrait Frame */}
-              <div className="relative rounded-2xl overflow-hidden border border-[#1c222c] bg-[var(--bg-secondary)] aspect-[4/4.7]">
+              <div className="relative rounded-2xl overflow-hidden border border-[var(--border-default)] bg-[var(--bg-secondary)] aspect-[4/4.7]">
                 <img
                   src={myAvatar}
                   alt="Mohamed Fawzy"
                   className="w-full h-full object-cover object-top"
                 />
-                
+
                 {/* Bottom Card Caption */}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 pt-12 flex flex-col justify-end text-left">
                   <div className="text-sm font-bold text-white">

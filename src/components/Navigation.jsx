@@ -81,7 +81,7 @@ export default function Navigation() {
     <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-2.5 sm:pt-3.5 px-3 pointer-events-none">
       <div className="w-full max-w-5xl pointer-events-auto">
         <div 
-          className={`flex items-center justify-between px-3 sm:px-4 py-2 rounded-xl border border-[#1c222c] transition-colors duration-200 backdrop-blur-md ${
+          className={`flex items-center justify-between px-3 sm:px-4 py-2 rounded-xl border border-[var(--border-default)] transition-colors duration-200 backdrop-blur-md ${
             scrolled 
               ? 'bg-[var(--bg-nav)]' 
               : 'bg-[var(--bg-glass)]'
@@ -159,7 +159,7 @@ export default function Navigation() {
             <button
               onClick={toggleTheme}
               aria-label="Toggle visual theme"
-              className="w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[#1c222c] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-sky-500 transition-colors"
+              className="w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-sky-500 transition-colors"
             >
               {theme === "dark" ? <Sun size={14} className="text-amber-400" /> : <Moon size={14} className="text-sky-500" />}
             </button>
@@ -168,7 +168,7 @@ export default function Navigation() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle navigation menu"
-              className="md:hidden w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[#1c222c] text-[var(--text-primary)]"
+              className="md:hidden w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-primary)]"
             >
               {mobileOpen ? <X size={15} /> : <Menu size={15} />}
             </button>
