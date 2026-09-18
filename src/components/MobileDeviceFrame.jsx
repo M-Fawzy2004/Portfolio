@@ -64,7 +64,7 @@ export default function MobileDeviceFrame() {
         </div>
         <div className="text-left">
           <div className="text-[10px] font-bold text-[var(--text-primary)] uppercase tracking-wider">Flutter Dev</div>
-          <div className="text-[9px] text-sky-400 font-medium">2 Years Experience</div>
+          <div className="text-[9px] text-sky-400 font-medium">+1 Year Experience</div>
         </div>
       </div>
 

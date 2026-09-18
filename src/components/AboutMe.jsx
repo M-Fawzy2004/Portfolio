@@ -9,7 +9,7 @@ import {
 import { FlutterIcon } from './TechIcons';
 
 const metrics = [
-  { label: 'Experience', value: '2 Years', sub: 'Production Flutter' },
+  { label: 'Experience', value: '+1 Year', sub: 'Production Flutter' },
   { label: 'Shipped Screens', value: '25+', sub: 'Academia AI' },
   { label: 'Architecture', value: 'Clean Arch', sub: 'BLoC / Cubit' },
   { label: 'Performance', value: '60 FPS', sub: 'Low & High Tier Devices' },
@@ -54,7 +54,7 @@ export default function AboutMe() {
             <span>Profile & Mindset</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
-            Junior Flutter Developer (2 Years Experience)
+            Junior Flutter Developer (+1 Year Experience)
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-body)]">
             Focused on building clean, testable, and fluid native mobile applications for iOS & Android.
@@ -82,7 +82,7 @@ export default function AboutMe() {
               </div>
 
               <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
-                I am a <strong>Junior Flutter Developer with 2 years of practical experience</strong> engineering and shipping cross-platform mobile applications for iOS and Android. My development foundation is built on <strong className="text-cyan-accent">Clean Architecture</strong> and <strong className="text-cyan-accent">BLoC / Cubit</strong> state management, ensuring applications are modular, scalable, and easy to test.
+                I am a <strong>Junior Flutter Developer with +1 year of practical experience</strong> engineering and shipping cross-platform mobile applications for iOS and Android. My development foundation is built on <strong className="text-cyan-accent">Clean Architecture</strong> and <strong className="text-cyan-accent">BLoC / Cubit</strong> state management, ensuring applications are modular, scalable, and easy to test.
               </p>
 
               <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">

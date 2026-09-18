@@ -16,7 +16,7 @@ import {
 } from "./TechIcons";
 
 const dynamicHighlights = [
-  "Junior Flutter Developer with 2 Years of Production Experience",
+  "Junior Flutter Developer with +1 Year of Production Experience",
   "Clean Architecture, BLoC & Cubit state machine architect",
   "Built 25+ screens Academia AI integrated with Google Gemini",
   "Supabase, Firebase, Mapbox GPS, & RESTful APIs specialist",
@@ -53,7 +53,7 @@ export default function Hero() {
                 <span className="radar-dot-ping" />
                 <span className="radar-dot-core" />
               </span>
-              <span>Junior Flutter Developer • 2 Years Experience</span>
+              <span>Junior Flutter Developer • +1 Year Experience</span>
             </div>
 
             {/* Main Headline */}
@@ -65,7 +65,7 @@ export default function Hero() {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg font-medium text-[var(--text-secondary)] mb-4 leading-relaxed">
-              Hi, I'm <strong className="text-cyan-accent font-bold">Mohamed Fawzy</strong> — a Junior Flutter Developer with 2 years of hands-on experience building production iOS & Android apps with Clean Architecture and AI.
+              Hi, I'm <strong className="text-cyan-accent font-bold">Mohamed Fawzy</strong> — a Junior Flutter Developer with +1 year of hands-on experience building production iOS & Android apps with Clean Architecture and AI.
             </p>
 
             {/* Rotating Highlights Box */}
@@ -164,7 +164,7 @@ export default function Hero() {
                     Mohamed Fawzy
                   </div>
                   <div className="text-xs text-sky-400 font-medium">
-                    Junior Flutter Developer • 2 Yrs Exp
+                    Junior Flutter Developer • +1 Yr Exp
                   </div>
                 </div>
               </div>

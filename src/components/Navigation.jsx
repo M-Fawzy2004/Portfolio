@@ -109,7 +109,7 @@ export default function Navigation() {
                   <span className="radar-dot-core" />
                 </span>
                 <span className="text-[10px] text-emerald-400 font-medium tracking-wide">
-                  Junior Flutter Dev (2 Yrs)
+                  Junior Flutter Dev (+1 Yr)
                 </span>
               </div>
             </div>

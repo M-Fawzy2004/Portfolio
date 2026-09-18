@@ -106,7 +106,7 @@ export default function Skills() {
             Skills, Architecture, & Tools
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-body)]">
-            A focused cross-platform mobile engineering stack refined over 2 years of practical development.
+            A focused cross-platform mobile engineering stack refined over +1 year of practical development.
           </p>
         </div>
 
