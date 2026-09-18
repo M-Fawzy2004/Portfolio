@@ -18,8 +18,8 @@ const showcaseApps = [
     title: 'Academia AI',
     badge: 'Flagship • Google Play',
     tagline: 'Google Gemini 1.5 Workflows • 25+ Screens',
-    image: '/academia/1.png',
-    backup: '/covers/academia.png',
+    image: '/academia/1.webp',
+    backup: '/covers/academia.webp',
     link: 'https://play.google.com/store/apps/details?id=com.mohamed.academiaai',
     isExternal: true,
     color: '#38BDF8',
@@ -30,8 +30,8 @@ const showcaseApps = [
     title: 'ParkMate',
     badge: 'Mapbox Navigation',
     tagline: 'GPS Parking Navigator & Reverse Geocoding',
-    image: '/park_mate/1.png',
-    backup: '/covers/parkmate.png',
+    image: '/park_mate/1.webp',
+    backup: '/covers/parkmate.webp',
     link: 'https://github.com/M-Fawzy2004/park_mate',
     isExternal: true,
     color: '#10B981',
@@ -42,8 +42,8 @@ const showcaseApps = [
     title: 'Transport Hub',
     badge: 'Graduation Project',
     tagline: 'Parent App & Driver Dual Dashboard',
-    image: '/covers/graduation.png',
-    backup: '/covers/graduation.png',
+    image: '/covers/graduation.webp',
+    backup: '/covers/graduation.webp',
     link: '#projects',
     isExternal: false,
     color: '#818CF8',
@@ -54,8 +54,8 @@ const showcaseApps = [
     title: 'Shop Ecosystem',
     badge: 'Commercial Full-Stack',
     tagline: 'Live Paymob Gateway & Maps Tracking',
-    image: '/shop_mobile/1.png',
-    backup: '/covers/ecommerce.png',
+    image: '/shop_mobile/1.webp',
+    backup: '/covers/ecommerce.webp',
     link: 'https://github.com/M-Fawzy2004/Ecommerce',
     isExternal: true,
     color: '#F59E0B',
@@ -170,6 +170,8 @@ export default function InteractiveAppShowcase() {
                       <img
                         src={app.image}
                         alt={app.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-top"
                         onError={(e) => {
                           if (app.backup && e.target.src !== app.backup) {
@@ -245,6 +247,8 @@ export default function InteractiveAppShowcase() {
                   <img
                     src={app.image}
                     alt={app.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                     onError={(e) => {
                       if (app.backup && e.target.src !== app.backup) {

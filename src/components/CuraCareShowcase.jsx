@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -16,14 +16,14 @@ import {
   Layers,
   Activity
 } from "lucide-react";
-import { FlutterIcon } from "./TechIcons";
+import { FlutterIcon, GooglePlayIcon } from "./TechIcons";
 
-export const curaCareScreens = [
+export const docMateScreens = [
   {
     id: 1,
     title: "Brand & Identity",
     subtitle: "DocMate Medical Launch Experience",
-    image: "/doc_mate/1.png",
+    image: "/doc_mate/1.webp",
     tag: "Splash Screen",
     accent: "#38BDF8",
     icon: Sparkles,
@@ -35,7 +35,7 @@ export const curaCareScreens = [
     id: 2,
     title: "Patient Home & Discovery",
     subtitle: "Personalized Clinic Dashboard",
-    image: "/doc_mate/2.png",
+    image: "/doc_mate/2.webp",
     tag: "Patient UI",
     accent: "#0284C7",
     icon: Smartphone,
@@ -47,7 +47,7 @@ export const curaCareScreens = [
     id: 3,
     title: "Medical Specialties Directory",
     subtitle: "Complete Specialty Classification",
-    image: "/doc_mate/3.png",
+    image: "/doc_mate/3.webp",
     tag: "Specialties Explorer",
     accent: "#818CF8",
     icon: Layers,
@@ -59,7 +59,7 @@ export const curaCareScreens = [
     id: 4,
     title: "Doctor Profile & Clinic Rates",
     subtitle: "Verified Doctor Information",
-    image: "/doc_mate/4.png",
+    image: "/doc_mate/4.webp",
     tag: "Doctor Directory",
     accent: "#10B981",
     icon: ShieldCheck,
@@ -71,7 +71,7 @@ export const curaCareScreens = [
     id: 5,
     title: "Real-Time Booking & Queue Requests",
     subtitle: "Supabase Live Queue Management",
-    image: "/doc_mate/5.png",
+    image: "/doc_mate/5.webp",
     tag: "Live Queue Engine",
     accent: "#F59E0B",
     icon: Activity,
@@ -83,7 +83,7 @@ export const curaCareScreens = [
     id: 6,
     title: "Doctor Schedule & Consultation Slips",
     subtitle: "Appointment Calendar & Time Slots",
-    image: "/doc_mate/6.png",
+    image: "/doc_mate/6.webp",
     tag: "Scheduling Engine",
     accent: "#38BDF8",
     icon: Calendar,
@@ -95,7 +95,7 @@ export const curaCareScreens = [
     id: 7,
     title: "Live Alerts & Verification Pipeline",
     subtitle: "Instant Notifications & Account Approvals",
-    image: "/doc_mate/7.png",
+    image: "/doc_mate/7.webp",
     tag: "Real-Time Alerts",
     accent: "#EC4899",
     icon: Sparkles,
@@ -105,21 +105,38 @@ export const curaCareScreens = [
   },
 ];
 
-export default function CuraCareShowcase() {
+export const curaCareScreens = docMateScreens;
+
+export default function DocMateShowcase() {
   const [activeIdx, setActiveIdx] = useState(1); // Default to Patient Home (Screen 2)
   const [direction, setDirection] = useState(1);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const containerRef = useRef(null);
 
-  const activeScreen = curaCareScreens[activeIdx];
+  const activeScreen = docMateScreens[activeIdx];
+
+  // Pause slideshow when scrolled out of view to save CPU/GPU cycles
+  useEffect(() => {
+    if (!containerRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const paginate = useCallback((newDirection) => {
     setDirection(newDirection);
     setActiveIdx((prev) => {
       let next = prev + newDirection;
-      if (next < 0) next = curaCareScreens.length - 1;
-      if (next >= curaCareScreens.length) next = 0;
+      if (next < 0) next = docMateScreens.length - 1;
+      if (next >= docMateScreens.length) next = 0;
       return next;
     });
   }, []);
@@ -129,14 +146,14 @@ export default function CuraCareShowcase() {
     setActiveIdx(idx);
   };
 
-  // Auto-play interval with pause on hover
+  // Auto-play interval with pause on hover or off-screen
   useEffect(() => {
-    if (!isAutoPlay || isHovered || lightboxOpen) return;
+    if (!isAutoPlay || isHovered || lightboxOpen || !isInView) return;
     const timer = setInterval(() => {
       paginate(1);
     }, 4500);
     return () => clearInterval(timer);
-  }, [isAutoPlay, isHovered, lightboxOpen, paginate]);
+  }, [isAutoPlay, isHovered, lightboxOpen, isInView, paginate]);
 
   // Keyboard navigation & body scroll lock for lightbox
   useEffect(() => {
@@ -184,6 +201,7 @@ export default function CuraCareShowcase() {
 
   return (
     <div 
+      ref={containerRef}
       className="mt-6 pt-6 border-t border-[var(--border-subtle)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -193,21 +211,32 @@ export default function CuraCareShowcase() {
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-sky-400 uppercase tracking-wider mb-1">
             <Smartphone size={14} />
-            <span>Interactive Mobile Showcase (7 Production Screens)</span>
+            <span>DocMate Mobile Showcase (7 Production Screens)</span>
           </div>
           <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
             Live Application Flow & Screen Walkthrough
           </h4>
         </div>
 
-        {/* Play / Pause & Auto Indicator */}
-        <div className="flex items-center gap-2">
+        {/* Play / Pause & Auto Indicator & Google Play Link */}
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.curacare.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1 rounded-md bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors text-decoration-none shadow-sm"
+            title="View DocMate on Google Play"
+          >
+            <GooglePlayIcon size={12} />
+            <span>Google Play</span>
+          </a>
+
           <button
             onClick={() => setIsAutoPlay(!isAutoPlay)}
             className="px-2.5 py-1 rounded-md bg-[var(--bg-secondary)] border border-[var(--border-default)] hover:border-sky-500/40 text-xs font-mono text-[var(--text-secondary)] flex items-center gap-1.5 transition-colors"
             title={isAutoPlay ? "Pause slideshow" : "Start slideshow"}
           >
-            {isAutoPlay && !isHovered ? (
+            {isAutoPlay && !isHovered && isInView ? (
               <>
                 <Pause size={12} className="text-sky-400" />
                 <span>Auto-playing</span>
@@ -215,7 +244,7 @@ export default function CuraCareShowcase() {
             ) : (
               <>
                 <Play size={12} className="text-emerald-400" />
-                <span>{isHovered ? "Paused (Hovered)" : "Slideshow"}</span>
+                <span>{isHovered ? "Paused (Hovered)" : !isInView ? "Paused (Off-screen)" : "Slideshow"}</span>
               </>
             )}
           </button>
@@ -233,7 +262,7 @@ export default function CuraCareShowcase() {
 
       {/* Screen Selector Pills */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 scrollbar-none snap-x">
-        {curaCareScreens.map((s, idx) => {
+        {docMateScreens.map((s, idx) => {
           const isActive = idx === activeIdx;
           return (
             <button
@@ -289,6 +318,8 @@ export default function CuraCareShowcase() {
                       exit="exit"
                       className="w-full h-full object-contain select-none"
                       draggable={false}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </AnimatePresence>
 
@@ -329,7 +360,7 @@ export default function CuraCareShowcase() {
 
             {/* Pagination Dots */}
             <div className="flex items-center justify-center gap-1.5 mt-3.5">
-              {curaCareScreens.map((s, idx) => (
+              {docMateScreens.map((s, idx) => (
                 <button
                   key={s.id}
                   onClick={() => selectScreen(idx)}
@@ -362,7 +393,7 @@ export default function CuraCareShowcase() {
                       {activeScreen.tag}
                     </span>
                     <span className="text-xs font-mono text-[var(--text-muted)]">
-                      Screen {activeScreen.id} of {curaCareScreens.length}
+                      Screen {activeScreen.id} of {docMateScreens.length}
                     </span>
                   </div>
 
@@ -444,7 +475,7 @@ export default function CuraCareShowcase() {
 
           {/* Thumbnail Ribbon */}
           <div className="grid grid-cols-7 gap-2 mt-4">
-            {curaCareScreens.map((s, idx) => {
+            {docMateScreens.map((s, idx) => {
               const isActive = idx === activeIdx;
               return (
                 <button
@@ -460,6 +491,8 @@ export default function CuraCareShowcase() {
                   <img
                     src={s.image}
                     alt={s.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-black/80 py-0.5 text-[9px] font-mono font-bold text-center text-white">
@@ -496,21 +529,34 @@ export default function CuraCareShowcase() {
                     </div>
                     <div>
                       <h3 className="text-base font-bold text-white">
-                        CuraCare Mobile App — {activeScreen.title}
+                        DocMate Mobile App — {activeScreen.title}
                       </h3>
                       <span className="text-xs text-slate-400 font-mono">
-                        Screen {activeScreen.id} of {curaCareScreens.length} • {activeScreen.tag}
+                        Screen {activeScreen.id} of {docMateScreens.length} • {activeScreen.tag}
                       </span>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => setLightboxOpen(false)}
-                    className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
-                    title="Close (Esc)"
-                  >
-                    <X size={18} />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.curacare.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded-lg bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors text-decoration-none shadow-sm"
+                      title="View DocMate on Google Play"
+                    >
+                      <GooglePlayIcon size={12} />
+                      <span>Google Play</span>
+                    </a>
+
+                    <button
+                      onClick={() => setLightboxOpen(false)}
+                      className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+                      title="Close (Esc)"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
                 </div>
 
                 {/* Modal Content Grid */}
@@ -522,6 +568,7 @@ export default function CuraCareShowcase() {
                       <img
                         src={activeScreen.image}
                         alt={activeScreen.title}
+                        decoding="async"
                         className="max-h-[62vh] w-auto object-contain"
                       />
                     </div>
@@ -576,7 +623,7 @@ export default function CuraCareShowcase() {
                       </button>
 
                       <div className="flex items-center gap-1">
-                        {curaCareScreens.map((s, idx) => (
+                        {docMateScreens.map((s, idx) => (
                           <button
                             key={s.id}
                             onClick={() => selectScreen(idx)}

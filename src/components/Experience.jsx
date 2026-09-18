@@ -7,20 +7,21 @@ import {
   ShieldCheck,
   Smartphone
 } from 'lucide-react';
-import { FlutterIcon } from './TechIcons';
+import { FlutterIcon, GooglePlayIcon } from './TechIcons';
 import CuraCareShowcase from './CuraCareShowcase';
 
 const experiences = [
   {
-    id: 'curacare',
+    id: 'docmate',
     role: 'Junior Flutter Developer',
-    company: 'CuraCare',
+    company: 'DocMate',
     platform: 'Mobile Healthcare Platform & Clinic Dashboard',
     type: 'Commercial • Remote',
     period: 'Aug 2026 - Present',
     status: 'Current Role • Active Production',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.curacare.app',
     isCurrent: true,
-    summary: 'Developed a production-ready healthcare application connecting patients with clinics, along with a dedicated React web dashboard to govern medical verifications and billing operations.',
+    summary: 'Developed and shipped DocMate, a production-ready healthcare application connecting patients with clinics, along with a dedicated React web dashboard to govern medical verifications and billing operations. Published and live on the Google Play Store.',
     impacts: [
       {
         title: 'Dynamic Booking & Live Queue System',
@@ -57,6 +58,7 @@ const experiences = [
       'RESTful APIs',
       'Row-Level Security (RLS)',
       'Clean Architecture',
+      'Google Play Console',
       'Offline Caching'
     ],
     hasShowcase: true,
@@ -158,11 +160,25 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <div className="flex sm:flex-col items-start sm:items-end gap-1.5 flex-shrink-0">
-                  <span className="px-2.5 py-1 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1.5">
-                    <Calendar size={12} className="text-sky-400" />
-                    {exp.period}
-                  </span>
+                <div className="flex sm:flex-col items-start sm:items-end gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-wrap sm:justify-end">
+                    {exp.playStoreUrl && (
+                      <a
+                        href={exp.playStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-[#0284C7] hover:bg-[#0369A1] text-white transition-all text-decoration-none shadow-sm"
+                        title="View DocMate on Google Play Store"
+                      >
+                        <GooglePlayIcon size={13} />
+                        <span>Google Play</span>
+                      </a>
+                    )}
+                    <span className="px-2.5 py-1 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1.5">
+                      <Calendar size={12} className="text-sky-400" />
+                      {exp.period}
+                    </span>
+                  </div>
                   
                   {exp.isCurrent ? (
                     <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-semibold">
@@ -227,7 +243,7 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* Interactive Mobile Showcase Component for CuraCare */}
+              {/* Interactive Mobile Showcase Component for DocMate */}
               {exp.hasShowcase && <CuraCareShowcase />}
 
             </div>

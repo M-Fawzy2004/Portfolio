@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import InteractiveAppShowcase from './components/InteractiveAppShowcase'
@@ -18,23 +18,36 @@ export function useTheme() {
 }
 
 function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0)
+  const barRef = useRef(null)
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      setProgress(docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (barRef.current) {
+            const scrollTop = window.scrollY
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight
+            const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0
+            barRef.current.style.transform = `scaleX(${progress})`
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <div className="fixed top-0 left-0 right-0 h-[3px] z-[9999] pointer-events-none">
       <div 
-        style={{ width: `${progress * 100}%` }} 
-        className="h-full bg-sky-500 transition-all duration-75 ease-out" 
+        ref={barRef}
+        style={{ transform: 'scaleX(0)', transformOrigin: 'left' }}
+        className="h-full w-full bg-sky-500 will-change-transform" 
       />
     </div>
   )

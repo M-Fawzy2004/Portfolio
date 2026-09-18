@@ -35,29 +35,36 @@ export default function Navigation() {
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.slice(1));
+    let ticking = false;
 
     const updateActive = () => {
-      const currentY = window.scrollY;
-      if (currentY > 80) {
-        setHidden(currentY > lastScrollY.current && !mobileOpen);
-      } else {
-        setHidden(false);
-      }
-      lastScrollY.current = currentY;
-      setScrolled(currentY > 40);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          if (currentY > 80) {
+            setHidden(currentY > lastScrollY.current && !mobileOpen);
+          } else {
+            setHidden(false);
+          }
+          lastScrollY.current = currentY;
+          setScrolled(currentY > 40);
 
-      if (guardExpiry.current || isNavigationLocked()) return;
-
-      const triggerY = currentY + window.innerHeight * 0.35;
-      let currentId = sectionIds[0];
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        if (el.offsetTop <= triggerY) {
-          currentId = id;
-        }
+          if (!guardExpiry.current && !isNavigationLocked()) {
+            const triggerY = currentY + window.innerHeight * 0.35;
+            let currentId = sectionIds[0];
+            for (const id of sectionIds) {
+              const el = document.getElementById(id);
+              if (!el) continue;
+              if (el.offsetTop <= triggerY) {
+                currentId = id;
+              }
+            }
+            setActive((prev) => (prev !== currentId ? currentId : prev));
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-      setActive(currentId);
     };
 
     window.addEventListener("scroll", updateActive, { passive: true });

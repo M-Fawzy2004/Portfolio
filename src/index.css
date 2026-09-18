@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -171,6 +169,17 @@
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
+}
+
+/* ── Performance: Skip Layout & Paint for Off-Screen Sections ── */
+#about,
+#skills,
+#projects,
+#experience,
+#education,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 /* ── Refined Modern Card: 16px Corners, Dark Gray Borders, ZERO Shadows ── */

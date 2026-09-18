@@ -28,8 +28,8 @@ const projects = [
       "Offline data caching with automated synchronization and robust network recovery handling.",
     ],
     techStack: ["Flutter", "Dart", "Google Gemini AI", "Supabase", "Clean Architecture", "BLoC", "SQLite Cache"],
-    images: ["/academia/1.png", "/academia/2.png", "/academia/3.png", "/academia/4.png"],
-    cover: "/covers/academia.png",
+    images: ["/academia/1.webp", "/academia/2.webp", "/academia/3.webp", "/academia/4.webp"],
+    cover: "/covers/academia.webp",
     links: [
       { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai", icon: GooglePlayIcon, primary: true }
     ],
@@ -50,8 +50,8 @@ const projects = [
       "Built with GoRouter, GetIt dependency injection, and persistent offline connectivity monitor.",
     ],
     techStack: ["Flutter", "Supabase Auth", "Mapbox SDK", "BLoC/Cubit", "GoRouter", "Clean Architecture"],
-    images: ["/park_mate/1.png", "/park_mate/2.png", "/park_mate/3.png"],
-    cover: "/covers/parkmate.png",
+    images: ["/park_mate/1.webp", "/park_mate/2.webp", "/park_mate/3.webp"],
+    cover: "/covers/parkmate.webp",
     links: [
       { label: "View on GitHub", url: "https://github.com/M-Fawzy2004/park_mate", icon: GitHubIcon, primary: true }
     ],
@@ -72,8 +72,8 @@ const projects = [
       "Skeletonizer shimmer effects for smooth data-fetching user experience.",
     ],
     techStack: ["Flutter", "Retrofit", "RESTful APIs", "BLoC / Cubit", "Clean Architecture", "RTL Localization", "Skeletonizer"],
-    images: ["/covers/graduation.png"],
-    cover: "/covers/graduation.png",
+    images: ["/covers/graduation.webp"],
+    cover: "/covers/graduation.webp",
     links: [],
   },
   {
@@ -90,8 +90,8 @@ const projects = [
       "Powered by Supabase PostgreSQL, Authentication, and Storage.",
     ],
     techStack: ["Flutter", "Paymob", "Google Maps", "Supabase", "Clean Architecture", "Web Dashboard"],
-    images: ["/covers/ecommerce.png", "/shop_mobile/1.png", "/shop_mobile/2.png", "/dash_web/w1-front.png"],
-    cover: "/covers/ecommerce.png",
+    images: ["/covers/ecommerce.webp", "/shop_mobile/1.webp", "/shop_mobile/2.webp", "/dash_web/w1-front.webp"],
+    cover: "/covers/ecommerce.webp",
     links: [
       { label: "Mobile App Code", url: "https://github.com/M-Fawzy2004/Ecommerce", icon: GitHubIcon },
       { label: "Admin Web Dashboard", url: "https://github.com/M-Fawzy2004/Dashboard_Ecommerce", icon: GitHubIcon }
@@ -109,8 +109,8 @@ const projects = [
       "Smooth order lifecycle management mapped to Supabase.",
     ],
     techStack: ["Flutter", "Dio", "REST APIs", "Supabase", "BLoC State Management"],
-    images: ["/shop/shop_1.png", "/shop/shop_2.png", "/shop/shop_3.png"],
-    cover: "/covers/shop.png",
+    images: ["/shop/shop_1.webp", "/shop/shop_2.webp", "/shop/shop_3.webp"],
+    cover: "/covers/shop.webp",
     links: [
       { label: "GitHub Repo", url: "https://github.com/M-Fawzy2004/ShopApp", icon: GitHubIcon }
     ],
@@ -231,8 +231,10 @@ export default function Projects() {
                 className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)]"
               >
                 <img
-                  src="/covers/academia.png"
+                  src="/covers/academia.webp"
                   alt="Academia AI Cover"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
@@ -274,8 +276,10 @@ export default function Projects() {
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src="/covers/parkmate.png"
+                    src="/covers/parkmate.webp"
                     alt="ParkMate Navigation"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -333,8 +337,10 @@ export default function Projects() {
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src="/covers/graduation.png"
+                    src="/covers/graduation.webp"
                     alt="Transportation System"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -369,8 +375,10 @@ export default function Projects() {
                 className="md:col-span-5 relative rounded-lg overflow-hidden cursor-pointer aspect-[16/10] bg-black border border-[var(--border-subtle)]"
               >
                 <img
-                  src="/covers/ecommerce.png"
+                  src="/covers/ecommerce.webp"
                   alt="E-Commerce Ecosystem"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -460,6 +468,7 @@ export default function Projects() {
                     <img
                       src={selectedProject.images[activeModalImageIdx]}
                       alt={`${selectedProject.title} screenshot`}
+                      decoding="async"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -477,7 +486,7 @@ export default function Projects() {
                               : 'border-[var(--border-default)] opacity-50 hover:opacity-100'
                           }`}
                         >
-                          <img src={img} alt="" className="w-full h-full object-cover" />
+                          <img src={img} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                         </button>
                       ))}
                     </div>

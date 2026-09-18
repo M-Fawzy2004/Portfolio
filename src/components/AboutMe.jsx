@@ -86,7 +86,7 @@ export default function AboutMe() {
               </p>
 
               <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">
-                I have hands-on experience developing complex production applications including <em>Academia AI</em> (25+ screens, Google Gemini multi-modal workflows, published on Google Play), <em>ParkMate</em> (Mapbox GPS routing), and real-time school transit systems.
+                I have hands-on experience engineering complex production applications including <strong className="text-[var(--text-primary)]">DocMate</strong> (healthcare platform & live queue management, published on Google Play), <strong className="text-[var(--text-primary)]">Academia AI</strong> (25+ screens, Google Gemini multi-modal workflows, published on Google Play), <strong className="text-[var(--text-primary)]">ParkMate</strong> (Mapbox GPS routing), and commercial e-commerce platforms.
               </p>
             </div>
 

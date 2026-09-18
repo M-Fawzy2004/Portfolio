@@ -17,8 +17,8 @@ import {
 
 const dynamicHighlights = [
   "Junior Flutter Developer with +1 Year of Production Experience",
+  "Shipped DocMate medical platform & Academia AI on Google Play",
   "Clean Architecture, BLoC & Cubit state machine architect",
-  "Built 25+ screens Academia AI integrated with Google Gemini",
   "Supabase, Firebase, Mapbox GPS, & RESTful APIs specialist",
 ];
 
@@ -34,7 +34,9 @@ export default function Hero() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setHighlightIdx((prev) => (prev + 1) % dynamicHighlights.length);
+      if (!document.hidden) {
+        setHighlightIdx((prev) => (prev + 1) % dynamicHighlights.length);
+      }
     }, 4200);
     return () => clearInterval(timer);
   }, []);
@@ -155,6 +157,8 @@ export default function Hero() {
                 <img
                   src={myAvatar}
                   alt="Mohamed Fawzy"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover object-top"
                 />
 

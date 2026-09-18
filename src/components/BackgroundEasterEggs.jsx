@@ -3,11 +3,11 @@ import React from 'react';
 export default function BackgroundEasterEggs() {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-      {/* Very faint single-color ambient top tint (No purple, no pink, no colorful gradients) */}
+      {/* Very faint single-color ambient top tint via pure radial-gradient (GPU lightweight, 0 blur cost) */}
       <div
-        className="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full blur-[140px] pointer-events-none opacity-[0.07]"
+        className="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full pointer-events-none"
         style={{
-          background: '#0284C7',
+          background: 'radial-gradient(ellipse at center, rgba(2, 132, 199, 0.14) 0%, rgba(2, 132, 199, 0) 70%)',
         }}
       />
 
