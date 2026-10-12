@@ -97,7 +97,7 @@ export default function Hero() {
               </a>
 
               <a
-                href="/cv/Mohamed_Fawzy_Flutter.pdf"
+                href="/cv/Mohamed_Fawzy_Flutter.pdf?v=2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary-action"
