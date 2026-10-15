@@ -16,7 +16,7 @@ import {
   Layers,
   Activity
 } from "lucide-react";
-import { FlutterIcon, GooglePlayIcon } from "./TechIcons";
+import { FlutterIcon, GooglePlayIcon, AppleIcon } from "./TechIcons";
 
 export const docMateScreens = [
   {
@@ -218,7 +218,7 @@ export default function DocMateShowcase() {
           </h4>
         </div>
 
-        {/* Play / Pause & Auto Indicator & Google Play Link */}
+        {/* Play / Pause & Auto Indicator & Store Links */}
         <div className="flex flex-wrap items-center gap-2">
           <a
             href="https://play.google.com/store/apps/details?id=com.curacare.app"
@@ -229,6 +229,17 @@ export default function DocMateShowcase() {
           >
             <GooglePlayIcon size={12} />
             <span>Google Play</span>
+          </a>
+
+          <a
+            href="https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors text-decoration-none shadow-sm"
+            title="View DocMate on Apple App Store"
+          >
+            <AppleIcon size={12} className="text-white" />
+            <span>App Store</span>
           </a>
 
           <button
@@ -547,6 +558,17 @@ export default function DocMateShowcase() {
                     >
                       <GooglePlayIcon size={12} />
                       <span>Google Play</span>
+                    </a>
+
+                    <a
+                      href="https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors text-decoration-none shadow-sm"
+                      title="View DocMate on Apple App Store"
+                    >
+                      <AppleIcon size={12} className="text-white" />
+                      <span>App Store</span>
                     </a>
 
                     <button

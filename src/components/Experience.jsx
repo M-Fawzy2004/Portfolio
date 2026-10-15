@@ -7,7 +7,7 @@ import {
   ShieldCheck,
   Smartphone
 } from 'lucide-react';
-import { FlutterIcon, GooglePlayIcon } from './TechIcons';
+import { FlutterIcon, GooglePlayIcon, AppleIcon } from './TechIcons';
 import CuraCareShowcase from './CuraCareShowcase';
 
 const experiences = [
@@ -20,8 +20,9 @@ const experiences = [
     period: 'Aug 2026 - Present',
     status: 'Current Role • Active Production',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.curacare.app',
+    appStoreUrl: 'https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621',
     isCurrent: true,
-    summary: 'Developed and shipped DocMate, a production-ready healthcare application connecting patients with clinics, along with a dedicated React web dashboard to govern medical verifications and billing operations. Published and live on the Google Play Store.',
+    summary: 'Developed and shipped DocMate, a production-ready healthcare application connecting patients with clinics, along with a dedicated React web dashboard to govern medical verifications and billing operations. Published and live on the Google Play Store and Apple App Store.',
     impacts: [
       {
         title: 'Dynamic Booking & Live Queue System',
@@ -59,6 +60,7 @@ const experiences = [
       'Row-Level Security (RLS)',
       'Clean Architecture',
       'Google Play Console',
+      'App Store Connect',
       'Offline Caching'
     ],
     hasShowcase: true,
@@ -172,6 +174,18 @@ export default function Experience() {
                       >
                         <GooglePlayIcon size={13} />
                         <span>Google Play</span>
+                      </a>
+                    )}
+                    {exp.appStoreUrl && (
+                      <a
+                        href={exp.appStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white transition-all text-decoration-none shadow-sm"
+                        title="View DocMate on Apple App Store"
+                      >
+                        <AppleIcon size={13} className="text-white" />
+                        <span>App Store</span>
                       </a>
                     )}
                     <span className="px-2.5 py-1 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1.5">

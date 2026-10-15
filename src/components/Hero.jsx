@@ -17,7 +17,7 @@ import {
 
 const dynamicHighlights = [
   "Junior Flutter Developer with +1 Year of Production Experience",
-  "Shipped DocMate medical platform & Academia AI on Google Play",
+  "Shipped DocMate (App Store & Google Play) & Academia AI",
   "Clean Architecture, BLoC & Cubit state machine architect",
   "Supabase, Firebase, Mapbox GPS, & RESTful APIs specialist",
 ];
