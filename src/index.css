@@ -7,26 +7,26 @@
   --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Sleek Minimalist Matte Dark (Linear / Apple Developer Style) */
-  --bg-primary: #090B0E;
-  --bg-secondary: #0F1217;
-  --bg-tertiary: #151921;
-  --bg-elevated: #191E28;
-  --bg-card: #0F1217;
-  --bg-glass: rgba(15, 18, 23, 0.85);
-  --bg-nav: rgba(10, 12, 16, 0.9);
-  --bg-nav-mobile: #0F1217;
+  /* Sleek Minimalist Matte Dark (Linear / Apple Developer / Stripe Style) */
+  --bg-primary: #08090C;
+  --bg-secondary: #0D1117;
+  --bg-tertiary: #131822;
+  --bg-elevated: #18202C;
+  --bg-card: #0D1117;
+  --bg-glass: rgba(13, 17, 23, 0.82);
+  --bg-nav: rgba(8, 9, 12, 0.88);
+  --bg-nav-mobile: #0D1117;
 
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-body: #94A3B8;
   --text-muted: #64748B;
 
-  /* Dark Borders in Dark Mode (NO white highlights, pure dark/translucent black like light mode) */
-  --border-default: rgba(0, 0, 0, 0.55);
-  --border-subtle: rgba(0, 0, 0, 0.35);
-  --border-hover: rgba(0, 0, 0, 0.8);
-  --border-strong: rgba(0, 0, 0, 0.75);
+  /* Crisp Hairline Architectural Borders in Dark Mode */
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-hover: rgba(56, 189, 248, 0.35);
+  --border-strong: rgba(255, 255, 255, 0.14);
 
   /* Clean Solid Accent */
   --accent-cyan: #38BDF8;
@@ -35,13 +35,13 @@
   --accent-amber: #F59E0B;
   --accent-solid: #0284C7;
 
-  --badge-bg: #12151D;
-  --badge-border: #1c222c;
-  --badge-text: #293241;
+  --badge-bg: rgba(56, 189, 248, 0.08);
+  --badge-border: rgba(56, 189, 248, 0.22);
+  --badge-text: #38BDF8;
 
-  --scrollbar-track: #090B0E;
-  --scrollbar-thumb: #1E232D;
-  --scrollbar-thumb-hover: #2E3646;
+  --scrollbar-track: #08090C;
+  --scrollbar-thumb: #1E2532;
+  --scrollbar-thumb-hover: #2D3748;
 
   --overlay-bg: rgba(0, 0, 0, 0.85);
 }
@@ -52,19 +52,19 @@
   --bg-tertiary: #F1F5F9;
   --bg-elevated: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.9);
-  --bg-nav: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-nav: rgba(255, 255, 255, 0.92);
   --bg-nav-mobile: #FFFFFF;
 
   --text-primary: #0F172A;
   --text-secondary: #1E293B;
-  --text-body: #334155;
+  --text-body: #475569;
   --text-muted: #64748B;
 
-  --border-default: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.04);
-  --border-hover: rgba(2, 132, 199, 0.5);
-  --border-strong: rgba(0, 0, 0, 0.14);
+  --border-default: rgba(15, 23, 42, 0.08);
+  --border-subtle: rgba(15, 23, 42, 0.04);
+  --border-hover: rgba(2, 132, 199, 0.45);
+  --border-strong: rgba(15, 23, 42, 0.16);
 
   --accent-cyan: #0284C7;
   --accent-blue: #0369A1;
@@ -72,9 +72,9 @@
   --accent-amber: #D97706;
   --accent-solid: #0284C7;
 
-  --badge-bg: rgba(0, 0, 0, 0.04);
-  --badge-border: rgba(0, 0, 0, 0.08);
-  --badge-text: #1E293B;
+  --badge-bg: rgba(2, 132, 199, 0.08);
+  --badge-border: rgba(2, 132, 199, 0.22);
+  --badge-text: #0284C7;
 
   --scrollbar-track: #F8FAFC;
   --scrollbar-thumb: #CBD5E1;
@@ -84,13 +84,6 @@
 }
 
 @layer base {
-
-  *,
-  ::before,
-  ::after {
-    border-color: var(--border-default);
-  }
-
   html {
     scroll-behavior: smooth;
   }
@@ -134,15 +127,6 @@
   }
 }
 
-/* ── Global Border Color Enforcement ── */
-.border,
-.border-t,
-.border-b,
-.border-l,
-.border-r {
-  border-color: var(--border-default);
-}
-
 /* ── Container ── */
 .max-container {
   max-width: 74rem;
@@ -160,14 +144,14 @@
 }
 
 .section-padding {
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
   }
 }
 
@@ -182,7 +166,7 @@
   contain-intrinsic-size: auto 700px;
 }
 
-/* ── Refined Modern Card: 16px Corners, Dark Gray Borders, ZERO Shadows ── */
+/* ── Refined Modern Card: 16px Corners, Precision Borders, ZERO Heavy Shadows ── */
 .bento-card {
   position: relative;
   background-color: var(--bg-card);
@@ -190,7 +174,7 @@
   border-radius: 1rem;
   box-shadow: none !important;
   overflow: hidden;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 
 .bento-card:hover {
@@ -198,13 +182,29 @@
   transform: translateY(-2px);
 }
 
-/* ── Clean Flat Buttons ── */
+/* Top hairline highlight on cards in dark mode */
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .bento-card::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.04) 50%, transparent 100%);
+}
+
+/* ── Clean Flat Buttons (No Heavy Shadows, Crisp Click Feedback) ── */
 .btn-primary-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
+  padding: 0.65rem 1.35rem;
   border-radius: 0.625rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -214,11 +214,12 @@
   box-shadow: none !important;
   transition: all 0.2s ease;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-primary-action:hover {
   background-color: #0369A1;
-  border-color: #0284C7;
+  border-color: #38BDF8;
   transform: translateY(-1px);
   color: #FFFFFF !important;
 }
@@ -242,6 +243,7 @@
   box-shadow: none !important;
   transition: all 0.2s ease;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-secondary-action:hover {
@@ -259,8 +261,8 @@
 .pill-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.3rem 0.75rem;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
@@ -318,7 +320,7 @@
 
 /* ── Subtle Micro Grid Background ── */
 .bg-subtle-noise {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 

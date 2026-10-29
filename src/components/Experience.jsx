@@ -2,7 +2,6 @@ import {
   Calendar, 
   Sparkles,
   Activity,
-  CheckCircle2,
   Layers,
   ShieldCheck,
   Smartphone
@@ -126,17 +125,17 @@ export default function Experience() {
           {experiences.map((exp) => (
             <div
               key={exp.id}
-              className={`bento-card p-5 sm:p-7 border transition-all duration-300 ${
+              className={`bento-card p-5 sm:p-8 ${
                 exp.isCurrent 
-                  ? 'border-sky-500/30 ring-1 ring-sky-500/20 bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-primary)]' 
+                  ? 'border-sky-500/40' 
                   : 'border-[var(--border-default)]'
               }`}
             >
               {/* Header Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[var(--border-subtle)]">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-[var(--border-subtle)]">
+                <div className="flex items-center gap-3.5">
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    exp.isCurrent ? 'bg-sky-500/15 text-sky-400 ring-1 ring-sky-500/30' : 'bg-sky-500/10 text-sky-400'
+                    exp.isCurrent ? 'bg-sky-500/15 text-sky-400 border border-sky-500/30' : 'bg-sky-500/10 text-sky-400 border border-sky-500/20'
                   }`}>
                     <FlutterIcon size={22} />
                   </div>
@@ -146,7 +145,7 @@ export default function Experience() {
                         {exp.role}
                       </h3>
                       {exp.isCurrent && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-500/15 text-sky-300 border border-sky-500/30 uppercase tracking-wider">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30 uppercase tracking-wider">
                           Current Role
                         </span>
                       )}
@@ -157,7 +156,7 @@ export default function Experience() {
                       <span className="text-slate-600">•</span>
                       <span className="text-xs text-[var(--text-secondary)]">{exp.platform}</span>
                       <span className="text-slate-600 hidden sm:inline">•</span>
-                      <span className="text-xs text-[var(--text-muted)]">{exp.type}</span>
+                      <span className="text-xs text-[var(--text-muted)] font-mono">{exp.type}</span>
                     </div>
                   </div>
                 </div>
@@ -169,7 +168,7 @@ export default function Experience() {
                         href={exp.playStoreUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-[#0284C7] hover:bg-[#0369A1] text-white transition-all text-decoration-none shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-[#0284C7] hover:bg-[#0369A1] text-white transition-all text-decoration-none shadow-2xs"
                         title="View DocMate on Google Play Store"
                       >
                         <GooglePlayIcon size={13} />
@@ -181,26 +180,26 @@ export default function Experience() {
                         href={exp.appStoreUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white transition-all text-decoration-none shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white transition-all text-decoration-none shadow-2xs"
                         title="View DocMate on Apple App Store"
                       >
                         <AppleIcon size={13} className="text-white" />
                         <span>App Store</span>
                       </a>
                     )}
-                    <span className="px-2.5 py-1 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1.5">
+                    <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)] flex items-center gap-1.5">
                       <Calendar size={12} className="text-sky-400" />
                       {exp.period}
                     </span>
                   </div>
                   
                   {exp.isCurrent ? (
-                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-semibold">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-semibold font-mono">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>{exp.status}</span>
                     </div>
                   ) : (
-                    <span className="text-[10px] font-medium text-slate-400">
+                    <span className="text-[10px] font-medium text-slate-400 font-mono">
                       {exp.status}
                     </span>
                   )}
@@ -209,9 +208,9 @@ export default function Experience() {
 
               {/* Summary / Impact & Scope */}
               <div className="mb-5">
-                <div className="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                  <Sparkles size={11} className="text-sky-400" />
-                  <span>Project Impact & Scope</span>
+                <div className="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <Sparkles size={12} className="text-sky-400" />
+                  <span>Project Impact & Engineering Scope</span>
                 </div>
                 <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                   {exp.summary}
@@ -219,11 +218,11 @@ export default function Experience() {
               </div>
 
               {/* Impact Points Bento Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                 {exp.impacts.map((item, i) => (
                   <div 
                     key={i} 
-                    className="p-3.5 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)] hover:border-[var(--border-default)] transition-colors"
+                    className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] hover:border-[var(--border-default)] transition-colors"
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
                       <span className="text-xs font-bold text-[var(--text-primary)]">
@@ -241,9 +240,9 @@ export default function Experience() {
               </div>
 
               {/* Tech Stack */}
-              <div className="pt-3.5 border-t border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2">
+              <div className="pt-4 border-t border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2">
                 <span className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">
-                  Tech Stack
+                  Technologies
                 </span>
                 <div className="flex flex-wrap gap-1">
                   {exp.tech.map((t) => (

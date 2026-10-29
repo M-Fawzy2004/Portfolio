@@ -11,14 +11,16 @@ export default {
           bg: 'var(--bg-primary)',
           card: 'var(--bg-card)',
           elevated: 'var(--bg-elevated)',
+          secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
         },
       },
       borderColor: {
         DEFAULT: 'var(--border-default)',
         theme: 'var(--border-default)',
         subtle: 'var(--border-subtle)',
+        hover: 'var(--border-hover)',
         strong: 'var(--border-strong)',
-        darkgray: '#1c222c',
       },
       fontFamily: {
         display: ['"Plus Jakarta Sans"', '"Outfit"', 'system-ui', 'sans-serif'],

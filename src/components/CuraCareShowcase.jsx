@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { FlutterIcon, GooglePlayIcon, AppleIcon } from "./TechIcons";
 
-export const docMateScreens = [
+const docMateScreens = [
   {
     id: 1,
     title: "Brand & Identity",
@@ -104,8 +104,6 @@ export const docMateScreens = [
     tech: ["Supabase Realtime", "In-App Alerts", "Security Policies (RLS)"],
   },
 ];
-
-export const curaCareScreens = docMateScreens;
 
 export default function DocMateShowcase() {
   const [activeIdx, setActiveIdx] = useState(1); // Default to Patient Home (Screen 2)

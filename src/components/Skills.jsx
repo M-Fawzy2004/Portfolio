@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Code2, 
   Layers, 
   CheckCircle2, 
-  ChevronRight,
-  Database,
-  Cpu
+  ChevronRight, 
+  Database, 
+  Cpu 
 } from 'lucide-react';
 import {
   FlutterIcon,
@@ -31,56 +30,59 @@ const categories = [
   { id: 'all', label: 'All Technologies' },
   { id: 'mobile', label: 'Mobile & Core' },
   { id: 'architecture', label: 'Architecture & State' },
-  { id: 'backend', label: 'Backend & APIs' },
-  { id: 'ai-tools', label: 'AI, Hardware & Tools' },
+  { id: 'backend', label: 'Backend & Cloud' },
+  { id: 'ai-tools', label: 'AI, Maps & Native' },
 ];
 
 const skillsList = [
   // Mobile Core
-  { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS UI' },
-  { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety' },
-  { name: 'Android', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, Android Studio' },
-  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Cross-Target', note: 'Cupertino widgets, iOS HIG styling' },
-  { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding', note: 'Component lifecycle, cross-framework synergy' },
+  { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS fluid rendering' },
+  { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety & isolates' },
+  { name: 'Android Native', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, Android Studio release signing' },
+  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino widgets, iOS HIG, TestFlight release tracks' },
+  { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding Focus', note: 'Component lifecycle, cross-framework mobile synergy' },
 
   // Architecture & State
-  { name: 'Clean Architecture', category: 'architecture', icon: CleanArchIcon, level: 'Core Standard', note: 'Presentation, Domain, Data separation' },
-  { name: 'BLoC / Cubit', category: 'architecture', icon: BlocIcon, level: 'Expert', note: 'Predictable stream-based state machine' },
-  { name: 'Provider / GetX', category: 'architecture', icon: Layers, level: 'Proficient', note: 'Scoped dependency injection & reactive binds' },
-  { name: 'GoRouter & Deep Links', category: 'architecture', icon: Cpu, level: 'Advanced', note: 'Declarative routing, redirect guards' },
-  { name: 'SOLID Principles', category: 'architecture', icon: CheckCircle2, level: 'Practiced', note: 'Dependency inversion, interface segregation' },
+  { name: 'Clean Architecture', category: 'architecture', icon: CleanArchIcon, level: 'Core Standard', note: 'Presentation, Domain (Pure UseCases), Data separation' },
+  { name: 'BLoC / Cubit', category: 'architecture', icon: BlocIcon, level: 'Expert', note: 'Predictable event-state stream machines without side effects' },
+  { name: 'Provider / GetX', category: 'architecture', icon: Layers, level: 'Proficient', note: 'Scoped dependency injection and reactive bindings' },
+  { name: 'GoRouter & Deep Links', category: 'architecture', icon: Cpu, level: 'Advanced', note: 'Declarative routing, redirect authentication guards' },
+  { name: 'SOLID Principles', category: 'architecture', icon: CheckCircle2, level: 'Practiced Standard', note: 'Dependency inversion, interface segregation, clean boundaries' },
 
   // Backend & APIs
-  { name: 'Supabase', category: 'backend', icon: SupabaseIcon, level: 'Production', note: 'PostgreSQL, Row-Level Security, Auth, Storage' },
-  { name: 'Firebase', category: 'backend', icon: FirebaseIcon, level: 'Production', note: 'Firestore real-time DB, Auth, Cloud Storage' },
-  { name: 'Dio & RESTful APIs', category: 'backend', icon: DioIcon, level: 'Advanced', note: 'Interceptors, caching headers, error mapping' },
-  { name: 'SQLite / Cache', category: 'backend', icon: Database, level: 'Production', note: 'Local offline persistence & encrypted storage' },
+  { name: 'Supabase', category: 'backend', icon: SupabaseIcon, level: 'Production', note: 'PostgreSQL, Row-Level Security (RLS), Auth & Storage' },
+  { name: 'Firebase', category: 'backend', icon: FirebaseIcon, level: 'Production', note: 'Firestore real-time DB, Cloud Auth, Storage' },
+  { name: 'Dio & RESTful APIs', category: 'backend', icon: DioIcon, level: 'Advanced', note: 'Interceptors, caching headers, automatic token refresh' },
+  { name: 'SQLite / Offline Cache', category: 'backend', icon: Database, level: 'Production', note: 'Local offline persistence, sync and encrypted storage' },
 
   // AI, Hardware & Tools
-  { name: 'Google Gemini AI', category: 'ai-tools', icon: GeminiIcon, level: 'Production', note: 'PDF summarization, automated quiz generation' },
-  { name: 'Mapbox Navigation', category: 'ai-tools', icon: MapboxIcon, level: 'Production', note: 'Turn-by-turn routing, reverse geocoding' },
-  { name: 'Paymob Integration', category: 'ai-tools', icon: PaymobIcon, level: 'Commercial', note: 'Payment cards, mobile wallets, callbacks' },
-  { name: 'Git & GitHub', category: 'ai-tools', icon: GitIcon, level: 'Daily Workflow', note: 'Branching, PRs, version control' },
-  { name: 'Postman', category: 'ai-tools', icon: PostmanIcon, level: 'Advanced', note: 'API contract testing & authentication' },
-  { name: 'Figma', category: 'ai-tools', icon: FigmaIcon, level: 'Design-to-Code', note: 'Pixel-perfect mobile UI translation' },
-  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks' },
+  { name: 'Google Gemini 1.5 AI', category: 'ai-tools', icon: GeminiIcon, level: 'Production', note: 'Multi-modal PDF document parsing & automated study quiz generator' },
+  { name: 'Mapbox Navigation', category: 'ai-tools', icon: MapboxIcon, level: 'Production', note: 'Turn-by-turn walking routing, reverse geocoding & telemetry' },
+  { name: 'Paymob Gateway', category: 'ai-tools', icon: PaymobIcon, level: 'Commercial', note: 'Payment cards, mobile wallets, and webhook transaction status' },
+  { name: 'Git & GitHub', category: 'ai-tools', icon: GitIcon, level: 'Daily Standard', note: 'Branching strategies, PR reviews, version tags' },
+  { name: 'Postman', category: 'ai-tools', icon: PostmanIcon, level: 'Advanced', note: 'API contract testing, environment variables, authentication' },
+  { name: 'Figma', category: 'ai-tools', icon: FigmaIcon, level: 'Design-to-Code', note: 'Pixel-perfect translation from Figma mobile specs into Flutter' },
+  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks (DocMate & Academia AI)' },
 ];
 
 const archLayers = [
   {
     layer: '1. Presentation Layer (UI & State)',
     tech: 'Flutter Widgets • BLoC / Cubit • Responsive Layouts',
-    desc: 'Pure UI components that listen to immutable state streams emitted by BLoC. No business logic or direct API calls ever reside here.',
+    role: 'Pure UI components that listen to immutable state streams emitted by BLoC. Zero business logic or direct API calls ever reside here.',
+    codeContract: 'UI triggers Event -> BLoC processes -> Emits immutable State -> UI rebuilds targeted widgets',
   },
   {
     layer: '2. Domain Layer (Pure Business Rules)',
-    tech: 'UseCases • Entities • Repository Interfaces (Contracts)',
-    desc: 'The heart of the application. 100% independent of any external packages or Flutter framework. Completely unit-testable.',
+    tech: 'UseCases • Entities • Repository Contracts (Abstract Interfaces)',
+    role: 'The heart of the application. 100% independent of any external packages, HTTP clients, or Flutter framework. Completely unit-testable.',
+    codeContract: 'UseCase executes business logic -> Calls abstract Repository interface -> Returns Either<Failure, Success>',
   },
   {
     layer: '3. Data Layer (Data Sources & Models)',
     tech: 'Dio HTTP • Supabase • SQLite Cache • DTO Mappers',
-    desc: 'Implements repository interfaces. Orchestrates network requests, parses JSON into models, and handles offline database synchronization.',
+    role: 'Implements repository interfaces. Orchestrates network requests, parses JSON into typed models, and handles offline database synchronization.',
+    codeContract: 'DataSource fetches JSON/RPC -> Mapper turns into Entity -> Caches to SQLite -> Passes to Domain',
   },
 ];
 
@@ -103,19 +105,19 @@ export default function Skills() {
             <span>Technical Capabilities</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
-            Skills, Architecture, & Tools
+            Skills, Architecture & Tech Stack
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-body)]">
-            A focused cross-platform mobile engineering stack refined over +1 year of practical development.
+            A production-proven mobile engineering stack refined over +1 year of commercial software development.
           </p>
         </div>
 
-        {/* Clean Architecture Visualizer - Clean, flat borders, NO shadow */}
-        <div className="mb-12 bento-card p-5 sm:p-7">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5 pb-4 border-b border-[var(--border-subtle)]">
+        {/* Clean Architecture Blueprint Interactive Bento */}
+        <div className="mb-12 bento-card p-5 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6 pb-4 border-b border-[var(--border-subtle)]">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-sky-400 uppercase tracking-wider mb-1">
-                <CleanArchIcon size={15} />
+                <CleanArchIcon size={14} />
                 <span>Architecture Blueprint</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)]">
@@ -123,11 +125,11 @@ export default function Skills() {
               </h3>
             </div>
             <span className="text-xs text-[var(--text-muted)] font-mono">
-              Click layers to inspect responsibilities
+              Click any layer to inspect data flow & contracts
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Layer Buttons */}
             <div className="lg:col-span-6 flex flex-col gap-2.5">
               {archLayers.map((layer, idx) => {
@@ -136,17 +138,17 @@ export default function Skills() {
                   <button
                     key={layer.layer}
                     onClick={() => setSelectedArchLayer(idx)}
-                    className={`text-left p-3.5 rounded-lg border transition-colors flex items-center justify-between ${
+                    className={`text-left p-4 rounded-xl border transition-all duration-200 flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? 'bg-[var(--bg-elevated)] border-sky-500'
+                        ? 'bg-[var(--bg-elevated)] border-sky-500 shadow-xs'
                         : 'bg-[var(--bg-secondary)] border-[var(--border-default)] hover:border-[var(--border-hover)]'
                     }`}
                   >
                     <div>
-                      <div className={`text-xs font-bold font-mono mb-0.5 ${isSelected ? 'text-sky-400' : 'text-[var(--text-primary)]'}`}>
+                      <div className={`text-xs font-bold font-mono mb-1 ${isSelected ? 'text-sky-400' : 'text-[var(--text-primary)]'}`}>
                         {layer.layer}
                       </div>
-                      <div className="text-[11px] text-[var(--text-muted)]">
+                      <div className="text-[11px] text-[var(--text-muted)] font-mono">
                         {layer.tech}
                       </div>
                     </div>
@@ -159,35 +161,42 @@ export default function Skills() {
               })}
             </div>
 
-            {/* Layer Detail */}
-            <div className="lg:col-span-6 p-5 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-default)] min-h-[160px] flex flex-col justify-center">
-              <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-sky-400 mb-1.5">
-                LAYER RESPONSIBILITY
+            {/* Layer Detail Card */}
+            <div className="lg:col-span-6 p-5 sm:p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-default)] min-h-[190px] flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 mb-2">
+                  LAYER RESPONSIBILITIES & ISOLATION
+                </div>
+                <div className="text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2">
+                  {archLayers[selectedArchLayer].layer}
+                </div>
+                <p className="text-xs text-[var(--text-body)] leading-relaxed mb-4">
+                  {archLayers[selectedArchLayer].role}
+                </p>
+                <div className="p-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] font-mono text-[11px] text-[var(--text-secondary)]">
+                  <span className="text-sky-400 font-bold">$ Data Flow: </span>
+                  {archLayers[selectedArchLayer].codeContract}
+                </div>
               </div>
-              <div className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-                {archLayers[selectedArchLayer].layer}
-              </div>
-              <p className="text-xs text-[var(--text-body)] leading-relaxed">
-                {archLayers[selectedArchLayer].desc}
-              </p>
-              <div className="mt-3.5 pt-2.5 border-t border-[var(--border-subtle)] flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-mono">
+
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center gap-2 text-xs text-[var(--text-muted)] font-mono">
                 <CheckCircle2 size={13} className="text-emerald-400" />
-                <span>Applied in Academia AI, ParkMate & Graduation Project</span>
+                <span>Enforced in DocMate, Academia AI & ParkMate</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Category Filter Pills - Clean flat pills, NO glowing shadow */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-7">
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                 activeCategory === cat.id
-                  ? 'bg-[#0284C7] text-white border border-[#0369A1]'
-                  : 'bg-[var(--bg-secondary)] text-[var(--text-body)] hover:text-white border border-[var(--border-default)]'
+                  ? 'bg-sky-600 text-white border border-sky-500 shadow-xs'
+                  : 'bg-[var(--bg-secondary)] text-[var(--text-body)] hover:text-white border border-[var(--border-default)] hover:border-[var(--border-hover)]'
               }`}
             >
               {cat.label}
@@ -195,25 +204,25 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Skills Cards Grid - Flat, crisp borders */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
           {filteredSkills.map((skill) => {
             const Icon = skill.icon;
             return (
               <div
                 key={skill.name}
-                className="bento-card p-3.5 sm:p-4 flex items-start gap-3"
+                className="bento-card p-4 flex items-start gap-3.5"
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-sky-500/10 text-sky-400">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-sky-500/10 text-sky-400 border border-sky-500/20">
                   <Icon size={20} />
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2 mb-0.5">
+                  <div className="flex items-center justify-between gap-2 mb-1">
                     <h4 className="text-xs sm:text-sm font-bold text-[var(--text-primary)] truncate">
                       {skill.name}
                     </h4>
-                    <span className="text-[10px] font-mono px-2 py-0.2 rounded bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)] flex-shrink-0">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)] flex-shrink-0">
                       {skill.level}
                     </span>
                   </div>

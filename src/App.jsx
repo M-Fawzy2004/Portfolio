@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, createContext, useContext } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import InteractiveAppShowcase from './components/InteractiveAppShowcase'
@@ -10,12 +10,7 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import BackgroundEasterEggs from './components/BackgroundEasterEggs'
 import ScrollToTop from './components/ScrollToTop'
-
-const ThemeContext = createContext()
-
-export function useTheme() {
-  return useContext(ThemeContext)
-}
+import { ThemeContext } from './context/ThemeContext'
 
 function ScrollProgressBar() {
   const barRef = useRef(null)

@@ -1,18 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { 
   ArrowUpRight, 
   ExternalLink, 
   X, 
   Globe,
-  CheckCircle2
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { 
   GooglePlayIcon, 
-  GitHubIcon 
+  GitHubIcon,
+  AppleIcon
 } from "./TechIcons";
 
 const projects = [
+  {
+    id: "docmate",
+    title: "DocMate",
+    tagline: "Commercial Healthcare Booking Platform & Real-Time Clinic Queue Engine",
+    badge: "Commercial Production",
+    rating: "Live on App Store & Google Play",
+    description: "A production healthcare mobile application connecting patients with clinics and medical specialists. Features live waiting slot calculation, automated appointment queues, doctor credential verification, and a React administrative management portal.",
+    features: [
+      "Dynamic booking engine supporting real-time scheduling, cancellations, and waiting ticket queues.",
+      "Custom Supabase RPCs on PostgreSQL backend eliminating double bookings and concurrency conflicts.",
+      "Dual-interface architecture: Patient discovery and Doctor clinic queue dashboard.",
+      "Administrative React web portal to verify doctor medical licenses and audit transactions.",
+      "Full offline-first caching and bilingual localization (Arabic / English RTL & LTR).",
+    ],
+    techStack: ["Flutter", "Dart", "BLoC / Cubit", "Supabase RPCs", "React Admin", "Clean Architecture", "PostgreSQL"],
+    images: ["/doc_mate/2.webp", "/doc_mate/4.webp", "/doc_mate/5.webp", "/doc_mate/6.webp", "/doc_mate/7.webp"],
+    cover: "/doc_mate/2.webp",
+    backupCover: "/doc_made/2.webp",
+    links: [
+      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.curacare.app", icon: GooglePlayIcon, primary: true },
+      { label: "Apple App Store", url: "https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621", icon: AppleIcon, primary: true }
+    ],
+  },
   {
     id: "academia-ai",
     title: "Academia AI",
@@ -22,7 +48,7 @@ const projects = [
     description: "An advanced production educational platform featuring 25+ screens, automated study plan generation via Google Gemini 1.5, PDF document summarization, dynamic quiz creation, and offline caching.",
     features: [
       "Over 25+ production screens built with Clean Architecture and strict BLoC state management.",
-      "Integrated multi-modal Google Gemini AI workflows: automated study plan generation, document understanding, and real-time AI tutor.",
+      "Integrated multi-modal Google Gemini AI workflows: automated study plan generation and document understanding.",
       "In-app PDF document summarization and interactive dynamic quiz generation from study notes.",
       "Dual-language localization (Arabic / English) with full RTL adaptations and dynamic theming.",
       "Offline data caching with automated synchronization and robust network recovery handling.",
@@ -126,6 +152,21 @@ export default function Projects() {
     setActiveModalImageIdx(0);
   };
 
+  useEffect(() => {
+    if (!selectedProject) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelectedProject(null);
+      if (e.key === "ArrowRight") {
+        setActiveModalImageIdx((prev) => (prev + 1) % selectedProject.images.length);
+      }
+      if (e.key === "ArrowLeft") {
+        setActiveModalImageIdx((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedProject]);
+
   return (
     <section id="projects" className="section-padding relative">
       <div className="max-container">
@@ -134,7 +175,7 @@ export default function Projects() {
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <div className="pill-badge mb-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-            <span>Mobile Portfolio</span>
+            <span>Mobile Engineering Portfolio</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
             Featured Mobile Projects
@@ -144,17 +185,133 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Showcase */}
         <div className="space-y-6 sm:space-y-8">
           
-          {/* Spotlight Flagship 1: Academia AI */}
-          <div className="bento-card p-5 sm:p-8 border border-[var(--border-default)]">
+          {/* Spotlight 1: DocMate (Commercial Production App) */}
+          <div className="bento-card p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
               {/* Left Column */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {projects[0].badge}
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                      <GooglePlayIcon size={12} /> Google Play
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
+                      <AppleIcon size={12} className="text-white" /> App Store
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
+                    {projects[0].title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+                    {projects[0].description}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                      <span>Live Waiting Slot Calculation & Real-Time Queue</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                      <span>Supabase RPCs to Prevent Booking Conflicts</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                      <span>Doctor Verification Pipeline & React Admin Portal</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                      <span>Clean Architecture & BLoC Offline-First Cache</span>
+                    </div>
+                  </div>
+
+                  {/* Tech Badges */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {projects[0].techStack.map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                  <a
+                    href={projects[0].links[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary-action text-xs"
+                  >
+                    <GooglePlayIcon size={14} />
+                    <span>Google Play</span>
+                  </a>
+
+                  <a
+                    href={projects[0].links[1].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary-action text-xs"
+                  >
+                    <AppleIcon size={14} />
+                    <span>App Store</span>
+                  </a>
+
+                  <button
+                    onClick={() => openProjectModal(projects[0])}
+                    className="btn-secondary-action text-xs ml-auto"
+                  >
+                    <span>Inspect 5 Screens</span>
+                    <ArrowUpRight size={13} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Visual Preview Banner */}
+              <div 
+                onClick={() => openProjectModal(projects[0])}
+                className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)] flex items-center justify-center p-2"
+              >
+                <img
+                  src={projects[0].cover}
+                  alt="DocMate Cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
+                  onError={(e) => {
+                    if (projects[0].backupCover && e.target.src !== projects[0].backupCover) {
+                      e.target.src = projects[0].backupCover;
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                  <div className="text-white text-xs font-semibold flex items-center gap-1.5">
+                    <span>Click to inspect DocMate production screens</span>
+                    <ArrowUpRight size={13} />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Spotlight 2: Academia AI */}
+          <div className="bento-card p-5 sm:p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              
+              {/* Left Column */}
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
                       Flagship App
                     </span>
@@ -167,11 +324,11 @@ export default function Projects() {
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
-                    Academia AI
+                    {projects[1].title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    A comprehensive educational platform built with Flutter. Integrates advanced <strong>Google Gemini 1.5</strong> workflows for automatic personalized study plan generation, full PDF document summarization, interactive AI quizzing, and offline caching.
+                    {projects[1].description}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
@@ -195,7 +352,7 @@ export default function Projects() {
 
                   {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {projects[0].techStack.map((tech) => (
+                    {projects[1].techStack.map((tech) => (
                       <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
                         {tech}
                       </span>
@@ -206,7 +363,7 @@ export default function Projects() {
                 {/* Actions */}
                 <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
                   <a
-                    href={projects[0].links[0].url}
+                    href={projects[1].links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary-action text-xs"
@@ -216,8 +373,8 @@ export default function Projects() {
                   </a>
 
                   <button
-                    onClick={() => openProjectModal(projects[0])}
-                    className="btn-secondary-action text-xs"
+                    onClick={() => openProjectModal(projects[1])}
+                    className="btn-secondary-action text-xs ml-auto"
                   >
                     <span>Inspect Details & Screens</span>
                     <ArrowUpRight size={14} />
@@ -227,11 +384,11 @@ export default function Projects() {
 
               {/* Right Column: Visual Preview Banner */}
               <div 
-                onClick={() => openProjectModal(projects[0])}
+                onClick={() => openProjectModal(projects[1])}
                 className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)]"
               >
                 <img
-                  src="/covers/academia.webp"
+                  src={projects[1].cover}
                   alt="Academia AI Cover"
                   loading="lazy"
                   decoding="async"
@@ -251,7 +408,7 @@ export default function Projects() {
           {/* Secondary 2-Column Grid: ParkMate & Transportation */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
             
-            {/* Project 2: ParkMate */}
+            {/* Project 3: ParkMate */}
             <div className="bento-card p-5 sm:p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -272,11 +429,11 @@ export default function Projects() {
                 </p>
 
                 <div 
-                  onClick={() => openProjectModal(projects[1])}
+                  onClick={() => openProjectModal(projects[2])}
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src="/covers/parkmate.webp"
+                    src={projects[2].cover}
                     alt="ParkMate Navigation"
                     loading="lazy"
                     decoding="async"
@@ -285,7 +442,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex flex-wrap gap-1 mb-5">
-                  {projects[1].techStack.slice(0, 5).map((tech) => (
+                  {projects[2].techStack.slice(0, 5).map((tech) => (
                     <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)]">
                       {tech}
                     </span>
@@ -295,7 +452,7 @@ export default function Projects() {
 
               <div className="flex items-center gap-2 pt-3.5 border-t border-[var(--border-subtle)]">
                 <a
-                  href={projects[1].links[0].url}
+                  href={projects[2].links[0].url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary-action flex-1 text-xs py-1.5"
@@ -304,7 +461,7 @@ export default function Projects() {
                   <span>View Repository</span>
                 </a>
                 <button
-                  onClick={() => openProjectModal(projects[1])}
+                  onClick={() => openProjectModal(projects[2])}
                   className="btn-secondary-action text-xs py-1.5 px-3"
                 >
                   Details
@@ -312,7 +469,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Project 3: Transportation System */}
+            {/* Project 4: Transportation System */}
             <div className="bento-card p-5 sm:p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -333,11 +490,11 @@ export default function Projects() {
                 </p>
 
                 <div 
-                  onClick={() => openProjectModal(projects[2])}
+                  onClick={() => openProjectModal(projects[3])}
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src="/covers/graduation.webp"
+                    src={projects[3].cover}
                     alt="Transportation System"
                     loading="lazy"
                     decoding="async"
@@ -346,7 +503,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex flex-wrap gap-1 mb-5">
-                  {projects[2].techStack.slice(0, 5).map((tech) => (
+                  {projects[3].techStack.slice(0, 5).map((tech) => (
                     <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)]">
                       {tech}
                     </span>
@@ -356,7 +513,7 @@ export default function Projects() {
 
               <div className="flex items-center gap-2 pt-3.5 border-t border-[var(--border-subtle)]">
                 <button
-                  onClick={() => openProjectModal(projects[2])}
+                  onClick={() => openProjectModal(projects[3])}
                   className="btn-primary-action flex-1 text-xs py-1.5"
                 >
                   <span>Explore Architecture</span>
@@ -371,11 +528,11 @@ export default function Projects() {
           <div className="bento-card p-5 sm:p-6">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
               <div 
-                onClick={() => openProjectModal(projects[3])}
+                onClick={() => openProjectModal(projects[4])}
                 className="md:col-span-5 relative rounded-lg overflow-hidden cursor-pointer aspect-[16/10] bg-black border border-[var(--border-subtle)]"
               >
                 <img
-                  src="/covers/ecommerce.webp"
+                  src={projects[4].cover}
                   alt="E-Commerce Ecosystem"
                   loading="lazy"
                   decoding="async"
@@ -429,21 +586,22 @@ export default function Projects() {
 
       </div>
 
-      {/* Project Deep-Dive Modal - Clean, sharp 16px borders, 0 blur glow */}
+      {/* Project Deep-Dive Modal */}
       <AnimatePresence>
         {selectedProject && (
           <div 
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md"
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border-strong)] p-5 sm:p-7 text-left"
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border-strong)] p-5 sm:p-7 text-left shadow-2xl"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-white transition-colors z-20"
+                className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-white hover:border-sky-500/40 transition-colors z-20 cursor-pointer"
+                aria-label="Close dialog"
               >
                 <X size={15} />
               </button>
@@ -456,7 +614,7 @@ export default function Projects() {
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)]">
                   {selectedProject.title}
                 </h3>
-                <p className="text-xs text-sky-400 font-medium mt-0.5">
+                <p className="text-xs text-sky-400 font-medium mt-0.5 font-mono">
                   {selectedProject.tagline}
                 </p>
               </div>
@@ -464,13 +622,32 @@ export default function Projects() {
               {/* Screenshot Preview Showcase */}
               {selectedProject.images && selectedProject.images.length > 0 && (
                 <div className="mb-5">
-                  <div className="relative rounded-xl overflow-hidden aspect-[16/9] bg-black border border-[var(--border-subtle)] mb-2.5">
+                  <div className="relative rounded-xl overflow-hidden aspect-[16/9] bg-black border border-[var(--border-subtle)] mb-2.5 flex items-center justify-center">
                     <img
                       src={selectedProject.images[activeModalImageIdx]}
                       alt={`${selectedProject.title} screenshot`}
                       decoding="async"
                       className="w-full h-full object-contain"
                     />
+
+                    {selectedProject.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setActiveModalImageIdx((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length)}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer"
+                          aria-label="Previous screenshot"
+                        >
+                          <ChevronLeft size={16} />
+                        </button>
+                        <button
+                          onClick={() => setActiveModalImageIdx((prev) => (prev + 1) % selectedProject.images.length)}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer"
+                          aria-label="Next screenshot"
+                        >
+                          <ChevronRight size={16} />
+                        </button>
+                      </>
+                    )}
                   </div>
 
                   {/* Thumbnail Row */}
@@ -480,9 +657,9 @@ export default function Projects() {
                         <button
                           key={img}
                           onClick={() => setActiveModalImageIdx(idx)}
-                          className={`w-14 h-10 rounded-md overflow-hidden border transition-colors flex-shrink-0 ${
+                          className={`w-14 h-10 rounded-lg overflow-hidden border transition-all duration-200 flex-shrink-0 cursor-pointer ${
                             activeModalImageIdx === idx 
-                              ? 'border-sky-400' 
+                              ? 'border-sky-400 ring-1 ring-sky-400' 
                               : 'border-[var(--border-default)] opacity-50 hover:opacity-100'
                           }`}
                         >
@@ -499,7 +676,7 @@ export default function Projects() {
                 <h4 className="text-xs font-mono font-bold text-[var(--text-primary)] uppercase tracking-wider">
                   Features & Engineering Highlights
                 </h4>
-                <ul className="space-y-1.5 text-xs text-[var(--text-body)]">
+                <ul className="space-y-2 text-xs text-[var(--text-body)]">
                   {selectedProject.features.map((feat, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <CheckCircle2 size={14} className="text-sky-400 flex-shrink-0 mt-0.5" />

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { 
   Mail, 
-  Phone, 
   Copy, 
   Check, 
   ArrowUpRight, 
   Clock, 
-  MapPin, 
+  MapPin
 } from 'lucide-react';
 import { 
   WhatsAppIcon, 
@@ -20,14 +19,14 @@ const channels = [
   {
     id: 'whatsapp',
     label: 'WhatsApp',
-    value: '+20 106 880 8559',
-    href: 'https://wa.me/201068808559?text=Hi%20Mohamed,%20I%20saw%20your%20Flutter%20portfolio%20and%20would%20like%20to%20connect!',
+    value: '+20 106 880 5663',
+    href: 'https://wa.me/201068805663?text=Hi%20Mohamed,%20I%20saw%20your%20Flutter%20portfolio%20and%20would%20like%20to%20connect!',
     icon: WhatsAppIcon,
     badge: 'Fastest Response',
   },
   {
     id: 'email',
-    label: 'Email',
+    label: 'Direct Email',
     value: 'mohamedfawzydev27@gmail.com',
     href: 'mailto:mohamedfawzydev27@gmail.com',
     icon: Mail,
@@ -42,19 +41,21 @@ const channels = [
     badge: 'Direct Message',
   },
   {
-    id: 'phone',
-    label: 'Phone',
-    value: '+20 106 880 8559',
-    href: 'tel:+201068808559',
-    icon: Phone,
-    badge: 'Voice Call',
+    id: 'linkedin',
+    label: 'LinkedIn',
+    value: 'Mohamed Fawzy',
+    href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/',
+    icon: LinkedInIcon,
+    badge: 'Professional Network',
   },
-];
-
-const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/', icon: LinkedInIcon },
-  { label: 'GitHub', href: 'https://github.com/M-Fawzy2004', icon: GitHubIcon },
-  { label: 'TikTok', href: 'https://www.tiktok.com/@mo7amedfawzy6', icon: TikTokIcon },
+  {
+    id: 'github',
+    label: 'GitHub',
+    value: 'M-Fawzy2004',
+    href: 'https://github.com/M-Fawzy2004',
+    icon: GitHubIcon,
+    badge: 'Source Repositories',
+  },
 ];
 
 export default function Contact() {
@@ -90,8 +91,8 @@ export default function Contact() {
     <section id="contact" className="section-padding relative">
       <div className="max-container">
 
-        {/* Contact Bento Box - Clean flat surface, NO glow or heavy shadow */}
-        <div className="bento-card p-6 sm:p-10 mb-12 border border-[var(--border-default)]">
+        {/* Contact Bento Box */}
+        <div className="bento-card p-6 sm:p-10 mb-12">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
@@ -106,23 +107,23 @@ export default function Contact() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-3 leading-tight">
-                Let's discuss your mobile project.
+                Let's discuss your next mobile application.
               </h2>
 
               <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-6 max-w-xl">
-                Open to freelance mobile app development, remote roles, and engineering collaborations. Have an app idea or existing codebase? Let's connect.
+                Available for full-time engineering roles, freelance contracts, and mobile architecture consulting. Whether building an app from scratch or scaling an existing production codebase, let's connect.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-2.5">
+              <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="https://wa.me/201068808559?text=Hi%20Mohamed,%20I%20saw%20your%20Flutter%20portfolio%20and%20would%20like%20to%20connect!"
+                  href="https://wa.me/201068805663?text=Hi%20Mohamed,%20I%20saw%20your%20Flutter%20portfolio%20and%20would%20like%20to%20connect!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary-action text-xs"
                 >
-                  <WhatsAppIcon size={16} />
-                  <span>Chat on WhatsApp</span>
+                  <WhatsAppIcon size={15} />
+                  <span>Start WhatsApp Chat</span>
                 </a>
 
                 <button
@@ -132,32 +133,32 @@ export default function Contact() {
                   {copiedEmail ? (
                     <>
                       <Check size={14} className="text-emerald-400" />
-                      <span className="text-emerald-400">Email Copied!</span>
+                      <span className="text-emerald-400 font-semibold">Email Copied to Clipboard!</span>
                     </>
                   ) : (
                     <>
                       <Copy size={14} />
-                      <span>Copy Email</span>
+                      <span>Copy Email Address</span>
                     </>
                   )}
                 </button>
               </div>
 
               {/* Cairo Local Time */}
-              <div className="mt-6 pt-4 border-t border-[var(--border-subtle)] flex flex-wrap items-center gap-3 text-xs font-mono text-[var(--text-muted)]">
-                <div className="flex items-center gap-1">
-                  <MapPin size={12} className="text-emerald-400" />
+              <div className="mt-7 pt-4 border-t border-[var(--border-subtle)] flex flex-wrap items-center gap-3 text-xs font-mono text-[var(--text-muted)]">
+                <div className="flex items-center gap-1.5">
+                  <MapPin size={13} className="text-emerald-400" />
                   <span>Cairo, Egypt (GMT+2)</span>
                 </div>
                 <span>•</span>
-                <div className="flex items-center gap-1">
-                  <Clock size={12} className="text-sky-400" />
+                <div className="flex items-center gap-1.5">
+                  <Clock size={13} className="text-sky-400" />
                   <span>Local Time: {cairoTime || 'Loading...'}</span>
                 </div>
               </div>
             </div>
 
-            {/* Right: Channels */}
+            {/* Right: Direct Channels */}
             <div className="lg:col-span-5 flex flex-col gap-2.5">
               {channels.map((ch) => {
                 const Icon = ch.icon;
@@ -167,14 +168,14 @@ export default function Contact() {
                     href={ch.href}
                     target={ch.href.startsWith('http') ? '_blank' : undefined}
                     rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-default)] hover:border-sky-500 hover:bg-[var(--bg-tertiary)] transition-colors flex items-center justify-between group text-decoration-none"
+                    className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-default)] hover:border-sky-500/50 hover:bg-[var(--bg-tertiary)] transition-all flex items-center justify-between group text-decoration-none"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-sky-500/10 text-sky-400">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-sky-500/10 text-sky-400 border border-sky-500/20">
                         <Icon size={16} />
                       </div>
                       <div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2">
                           <span className="text-xs font-bold text-[var(--text-primary)]">
                             {ch.label}
                           </span>
@@ -201,16 +202,21 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <footer className="pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]">
-          <div className="flex items-center gap-2">
-            <span className="w-5 h-5 rounded-md bg-[#0284C7] flex items-center justify-center text-white font-bold text-[9px]">
+        <footer className="pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+          <div className="flex items-center gap-2.5">
+            <span className="w-6 h-6 rounded-lg bg-sky-600 flex items-center justify-center text-white font-mono font-bold text-[10px]">
               MF
             </span>
-            <span>&copy; {new Date().getFullYear()} Mohamed Fawzy • Junior Flutter Developer</span>
+            <span>&copy; {new Date().getFullYear()} Mohamed Fawzy • Mobile Engineer & Flutter Developer</span>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            {socials.map((s) => {
+          <div className="flex items-center gap-2">
+            {[
+              { label: 'WhatsApp', href: 'https://wa.me/201068805663', icon: WhatsAppIcon },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohamed-fawzy-02388729b/', icon: LinkedInIcon },
+              { label: 'GitHub', href: 'https://github.com/M-Fawzy2004', icon: GitHubIcon },
+              { label: 'TikTok', href: 'https://www.tiktok.com/@mo7amedfawzy6', icon: TikTokIcon },
+            ].map((s) => {
               const Icon = s.icon;
               return (
                 <a
@@ -218,7 +224,7 @@ export default function Contact() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-md flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-muted)] hover:text-white hover:border-[var(--border-hover)] transition-colors text-decoration-none"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-muted)] hover:text-white hover:border-[var(--border-hover)] transition-colors text-decoration-none"
                   title={s.label}
                 >
                   <Icon size={14} />
