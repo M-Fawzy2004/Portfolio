@@ -127,9 +127,10 @@
   }
 }
 
-/* ── Container ── */
+/* ── Expansive Modern Container: Generous Width, Clean Balanced Margins ── */
 .max-container {
-  max-width: 74rem;
+  width: 100%;
+  max-width: 88rem; /* 1408px expansive modern canvas */
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.25rem;
@@ -140,6 +141,21 @@
   .max-container {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .max-container {
+    max-width: 94rem; /* 1504px on wide screens */
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
   }
 }
 
@@ -155,15 +171,14 @@
   }
 }
 
-/* ── Performance: Skip Layout & Paint for Off-Screen Sections ── */
+/* ── Section Containment ── */
 #about,
 #skills,
 #projects,
 #experience,
 #education,
 #contact {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
+  position: relative;
 }
 
 /* ── Refined Modern Card: 16px Corners, Precision Borders, ZERO Heavy Shadows ── */
@@ -174,16 +189,16 @@
   border-radius: 1rem;
   box-shadow: none !important;
   overflow: hidden;
-  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
 }
 
 .bento-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.08) !important;
+  box-shadow: none !important;
 }
 
-/* Top hairline highlight on cards in dark mode with smooth spotlight brightening */
+/* Top hairline highlight on cards in dark mode */
 .bento-card::before {
   content: '';
   position: absolute;
@@ -191,25 +206,16 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.2) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
   pointer-events: none;
-  transition: opacity 0.25s ease, background 0.25s ease;
-}
-
-.bento-card:hover::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.5) 50%, transparent 100%);
 }
 
 [data-theme="light"] .bento-card:hover {
-  box-shadow: 0 10px 30px -10px rgba(2, 132, 199, 0.08) !important;
+  box-shadow: none !important;
 }
 
 [data-theme="light"] .bento-card::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(2, 132, 199, 0.15) 50%, transparent 100%);
-}
-
-[data-theme="light"] .bento-card:hover::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(2, 132, 199, 0.35) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.04) 50%, transparent 100%);
 }
 
 /* ── Clean Flat Buttons (No Heavy Shadows, Crisp Click Feedback) ── */
@@ -366,4 +372,24 @@
 [data-theme="light"] .engineering-dots {
   background-image: radial-gradient(rgba(2, 132, 199, 0.16) 1.2px, transparent 1.2px);
   background-size: 48px 48px;
+}
+
+/* ── Modal Active: Lock Background Scroll ── */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* ── Circular Expanding View Transition for Dark/Light Theme Toggle ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 99999;
 }

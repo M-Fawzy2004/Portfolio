@@ -227,7 +227,7 @@ export default function Experience() {
         </div>
 
         {/* Experience Timeline */}
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="w-full space-y-8">
           {experiences.map((exp) => (
             <div
               key={exp.id}

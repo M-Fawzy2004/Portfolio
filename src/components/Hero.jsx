@@ -5,9 +5,8 @@ import {
   Terminal,
   ArrowRight
 } from "lucide-react";
-import myAvatar from "../assets/my_photo.jpg";
+import AppleLiquidGlassCard from "./AppleLiquidGlassCard";
 import {
-  FlutterIcon,
   GitHubIcon,
   LinkedInIcon,
   TikTokIcon,
@@ -162,76 +161,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Architectural Profile Card */}
+          {/* Right Column: Apple Liquid Glass Interactive 3D Card */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="w-full max-w-[340px] sm:max-w-[360px] rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-default)] p-3.5 transition-all duration-300 hover:border-[var(--border-hover)]">
-              
-              {/* Window Header */}
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-subtle)]">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  <span className="ml-2 text-[11px] font-mono text-[var(--text-muted)]">mohamed_fawzy.dart</span>
-                </div>
-                <div className="flex items-center gap-1 text-[10px] font-mono text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
-                  <FlutterIcon size={11} />
-                  <span>Flutter Native</span>
-                </div>
-              </div>
-
-              {/* Portrait Frame */}
-              <div className="relative rounded-xl overflow-hidden aspect-[4/4.8] bg-black border border-[var(--border-subtle)] mb-3">
-                <img
-                  src={myAvatar}
-                  alt="Mohamed Fawzy - Flutter Developer"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full h-full object-cover object-top"
-                />
-
-                {/* Subtle gradient overlay at bottom with live tag */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-3.5 pt-10 flex flex-col justify-end text-left">
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <div className="text-sm font-bold text-white tracking-tight">
-                        Mohamed Fawzy
-                      </div>
-                      <div className="text-xs text-sky-400 font-medium font-mono">
-                        Junior Flutter Developer (+1 Yr Exp)
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold border border-emerald-500/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span>Verified</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Developer Credentials Strip */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-xs">
-                  <span className="text-[var(--text-muted)] font-mono text-[11px]">Commercial Role</span>
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--text-primary)]">
-                    <span>DocMate</span>
-                    <span className="text-[10px] px-1.5 py-0.2 rounded bg-sky-500/15 text-sky-400 border border-sky-500/25">Live on Stores</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                  {["Clean Arch", "BLoC/Cubit", "Supabase", "Mapbox", "REST APIs", "SQLite"].map((badge) => (
-                    <span
-                      key={badge}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-secondary)]"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-            </div>
+            <AppleLiquidGlassCard />
           </div>
 
         </div>

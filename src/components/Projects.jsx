@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
 import { 
   Sparkles,
-  ArrowUpRight, 
-  ExternalLink, 
-  X, 
   Globe,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight
+  CheckCircle2
 } from "lucide-react";
 import { 
   GooglePlayIcon, 
@@ -23,192 +16,224 @@ const projects = [
     tagline: "Luxury Islamic Mobile Platform • 4K Quranic Reel Studio • Astronomical Engine",
     badge: "Luxury Production App",
     rating: "Live on App Store & Google Play",
-    description: "A production-grade luxury Islamic mobile application engineered with Flutter & Dart, strictly adhering to Clean Architecture and BLoC/Cubit state management. Features an in-app 4K Quranic video/reel studio with FFmpeg, mathematical offline astronomical prayer calculations, local AES gratitude vault, and cross-platform native home screen widgets.",
-    features: [
-      "Strict Clean Architecture separating Presentation (BLoC/Cubit), Domain (UseCases), and Data repositories.",
-      "Engineered a 4K Quranic video/reel generator utilizing FFmpeg and custom Canvas graphics with synchronized audio.",
-      "Designed an offline-first astronomical prayer calculator and dynamic celestial header that renders real-time sun/moon sky phases mathematically without API dependencies.",
-      "Integrated local biometric authentication (Face ID/Fingerprint) with local AES encryption for a private spiritual gratitude vault.",
-      "Built cross-platform home screen widgets using Android AppWidgets and iOS WidgetKit via home_widget plugin.",
-      "Optimized release builds by 67% using R8 shrinking, ProGuard keep rules, genuine image quantization, and offloaded heavy computations to Dart Isolates."
+    overview:
+      "A flagship luxury Islamic mobile application engineered with Flutter & Dart under Clean Architecture and BLoC. Features an offline astronomical prayer engine, in-app 4K Quranic video/reel studio with FFmpeg, and native iOS WidgetKit and Android AppWidgets.",
+    highlights: [
+      "4K video & audio reel engine rendering high-resolution reels on-device with zero cloud compute cost.",
+      "Pure mathematical astronomical algorithms computing prayer times and celestial sky phases offline.",
+      "Local biometric gratitude vault secured with local AES encryption and hardware biometrics.",
+      "Optimized release builds by 67% using R8 shrinking, ProGuard keep rules, and WebP asset quantization.",
     ],
-    techStack: ["Flutter", "Dart", "Clean Architecture", "BLoC / Cubit", "FFmpeg Mobile", "WidgetKit / AppWidgets", "Canvas Graphics", "Dart Isolates", "AES Encryption"],
-    images: [
-      "/sakina/1.webp",
-      "/sakina/7.webp",
-      "/sakina/2.webp",
-      "/sakina/3.webp",
-      "/sakina/4.webp",
-      "/sakina/5.webp",
-      "/sakina/6.webp",
-      "/sakina/8.webp",
-      "/sakina/9.webp",
-      "/sakina/10.webp"
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Clean Architecture",
+      "BLoC / Cubit",
+      "FFmpeg Mobile",
+      "Canvas 4K",
+      "iOS WidgetKit",
+      "Android AppWidgets",
+      "Dart Isolates",
+      "AES Encryption",
+      "Google Play Console",
+      "App Store Connect"
     ],
-    cover: "/covers/sakina.webp",
+    cover: "/sakina/1.webp",
     backupCover: "/sakina/1.png",
     links: [
-      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.sakina.islamic", icon: GooglePlayIcon, primary: true },
-      { label: "Apple App Store", url: "https://apps.apple.com/us/app/id6831748362", icon: AppleIcon, primary: true }
+      {
+        label: "Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.sakina.islamic",
+        icon: GooglePlayIcon,
+      },
+      {
+        label: "App Store",
+        url: "https://apps.apple.com/us/app/id6831748362",
+        icon: AppleIcon,
+      },
     ],
   },
   {
     id: "docmate",
-    title: "DocMate",
-    tagline: "Commercial Healthcare Booking Platform & Real-Time Clinic Queue Engine",
-    badge: "Commercial Production",
+    title: "DocMate Healthcare",
+    tagline: "Commercial Healthcare Platform & Real-Time Clinic Queue Engine",
+    badge: "Production Healthcare System",
     rating: "Live on App Store & Google Play",
-    description: "A production healthcare mobile application connecting patients with clinics and medical specialists. Features live waiting slot calculation, automated appointment queues, doctor credential verification, and a React administrative management portal.",
-    features: [
-      "Dynamic booking engine supporting real-time scheduling, cancellations, and waiting ticket queues.",
-      "Custom Supabase RPCs on PostgreSQL backend eliminating double bookings and concurrency conflicts.",
-      "Dual-interface architecture: Patient discovery and Doctor clinic queue dashboard.",
-      "Administrative React web portal to verify doctor medical licenses and audit transactions.",
-      "Full offline-first caching and bilingual localization (Arabic / English RTL & LTR).",
+    overview:
+      "A production medical consultation platform connecting patients with specialized healthcare providers, featuring live waiting queue calculations, instant scheduling, and an administrative React portal.",
+    highlights: [
+      "Real-time appointment booking engine with live waiting slot computation, eliminating double-booking conflicts via Supabase RPCs.",
+      "Dual-interface architecture cleanly separating Patient bookings from Doctor queue management.",
+      "Full offline caching, localized Arabic/English RTL dynamic layouts, and medical report storage.",
+      "Web operations portal in React allowing clinic administrators to verify credentials and manage clinics.",
     ],
-    techStack: ["Flutter", "Dart", "BLoC / Cubit", "Supabase RPCs", "React Admin", "Clean Architecture", "PostgreSQL"],
-    images: ["/doc_mate/2.webp", "/doc_mate/4.webp", "/doc_mate/5.webp", "/doc_mate/6.webp", "/doc_mate/7.webp"],
+    techStack: [
+      "Flutter",
+      "Dart",
+      "BLoC / Cubit",
+      "Clean Architecture",
+      "Supabase PostgreSQL",
+      "React Admin Dashboard",
+      "Offline Cache",
+      "Dio & RESTful APIs",
+      "Google Play Console",
+      "App Store Connect"
+    ],
     cover: "/doc_mate/2.webp",
     backupCover: "/doc_made/2.webp",
     links: [
-      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.curacare.app", icon: GooglePlayIcon, primary: true },
-      { label: "Apple App Store", url: "https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621", icon: AppleIcon, primary: true }
+      {
+        label: "Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.curacare.app",
+        icon: GooglePlayIcon,
+      },
+      {
+        label: "App Store",
+        url: "https://apps.apple.com/us/app/docmate-clinic-appointments/id6819001621",
+        icon: AppleIcon,
+      },
     ],
   },
   {
     id: "academia-ai",
     title: "Academia AI",
-    tagline: "Gemini AI-Powered Educational Platform • 25+ Screens",
-    badge: "Flagship Production App",
-    rating: "Live on App Store & Google Play",
-    description: "An advanced production educational platform featuring 25+ screens, automated study plan generation via Google Gemini 1.5, PDF document summarization, dynamic quiz creation, and offline caching.",
-    features: [
-      "Over 25+ production screens built with Clean Architecture and strict BLoC state management.",
+    tagline: "Google Gemini 1.5 Multi-Modal Study Companion",
+    badge: "AI-Powered Education App",
+    rating: "25+ Screens • App Store & Google Play",
+    overview:
+      "A flagship educational companion engineered with Flutter & Supabase, featuring 25+ screens, automated personalized study plans via Google Gemini 1.5, in-app PDF document summarization, and dynamic interactive quizzes.",
+    highlights: [
       "Integrated multi-modal Google Gemini AI workflows: automated study plan generation and document understanding.",
-      "In-app PDF document summarization and interactive dynamic quiz generation from study notes.",
-      "Dual-language localization (Arabic / English) with full RTL adaptations and dynamic theming.",
-      "Offline data caching with automated synchronization and robust network recovery handling.",
+      "Multi-modal PDF parsing engine extracting structured chapter notes directly inside the mobile app.",
+      "Automated quiz generator creating tailored exam questions from user notes with performance tracking.",
+      "Strict Clean Architecture separating Presentation, Domain UseCases, and Data Sources with BLoC.",
     ],
-    techStack: ["Flutter", "Dart", "Google Gemini AI", "Supabase", "Clean Architecture", "BLoC", "SQLite Cache"],
-    images: ["/academia/1.webp", "/academia/2.webp", "/academia/3.webp", "/academia/4.webp"],
-    cover: "/covers/academia.webp",
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Google Gemini 1.5",
+      "Clean Architecture",
+      "Supabase",
+      "BLoC / Cubit",
+      "Syncfusion PDF",
+      "GoRouter",
+      "Google Play Console",
+      "App Store Connect"
+    ],
+    cover: "/academia/1.webp",
+    backupCover: "/covers/academia.webp",
     links: [
-      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai", icon: GooglePlayIcon, primary: true },
-      { label: "Apple App Store", url: "https://apps.apple.com/us/app/academia-ai-all-in-one-study/id6815206996", icon: AppleIcon, primary: true }
+      {
+        label: "Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai",
+        icon: GooglePlayIcon,
+      },
+      {
+        label: "App Store",
+        url: "https://apps.apple.com/us/app/academia-ai-all-in-one-study/id6815206996",
+        icon: AppleIcon,
+      },
     ],
   },
   {
     id: "parkmate",
     title: "ParkMate",
-    tagline: "Real-Time GPS Parking Navigator & Car Locator",
-    badge: "Mapbox GPS & Hardware",
-    rating: "Open Source",
-    description: "A location-intelligence mobile app that pinpoints your vehicle's parking coordinates with GPS, performs reverse-geocoding, and provides turn-by-turn walking navigation back to your car using Mapbox.",
-    features: [
-      "Real-time turn-by-turn walking navigation powered by Mapbox Maps & Directions API.",
-      "One-tap parking spot capture: GPS coordinate storage with automatic reverse geocoding to street address.",
-      "Nearby parking discovery with distance calculation, ETA, and route deviation detection.",
-      "Comprehensive parking history with timestamps, notes, and locations.",
-      "Supabase Auth with OTP phone and email verification.",
-      "Built with GoRouter, GetIt dependency injection, and persistent offline connectivity monitor.",
+    tagline: "GPS Parking Navigator & Reverse Geocoding",
+    badge: "Mapbox GPS Navigation",
+    rating: "Open Source Engineering",
+    overview:
+      "A location-intelligence mobile application that pinpoints vehicle coordinates via GPS, performs reverse-geocoding to a physical address, and generates turn-by-turn walking guidance back to the vehicle.",
+    highlights: [
+      "Turn-by-turn walking routing powered by Mapbox Directions API and custom Mapbox vector tiles.",
+      "Instant coordinate capture with automatic reverse-geocoding via Mapbox Geocoding SDK.",
+      "Accurate distance calculation, live ETA estimation, and route deviation alerts.",
     ],
-    techStack: ["Flutter", "Supabase Auth", "Mapbox SDK", "BLoC/Cubit", "GoRouter", "Clean Architecture"],
-    images: ["/park_mate/1.webp", "/park_mate/2.webp", "/park_mate/3.webp"],
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Mapbox SDK",
+      "Supabase Auth",
+      "BLoC / Cubit",
+      "GoRouter",
+      "GPS Telemetry"
+    ],
     cover: "/covers/parkmate.webp",
+    backupCover: "/covers/parkmate.webp",
     links: [
-      { label: "View on GitHub", url: "https://github.com/M-Fawzy2004/park_mate", icon: GitHubIcon, primary: true }
+      {
+        label: "GitHub Repository",
+        url: "https://github.com/M-Fawzy2004/ParkMade",
+        icon: GitHubIcon,
+      },
     ],
   },
   {
     id: "transportation-system",
-    title: "Child Transportation System",
-    tagline: "Dual-Interface Architecture: Parent App & Driver Dashboard",
-    badge: "Capstone Graduation Project",
-    rating: "B.Sc. Distinction",
-    description: "A dual-interface real-time child transportation platform connecting parents with school bus drivers. Features live driver tracking, role-based route guards, and bilingual support.",
-    features: [
-      "Dual-interface architecture: Parent App and School Driver Dashboard in a single clean codebase with role-based routing.",
-      "Real-time bus tracking, ETA estimation, and live trip status updates.",
-      "Child management module: parents manage multiple children, pickup points, and school bus subscription tiers.",
-      "Driver dashboard: assigned families list, student check-in/out, earnings overview, and route optimization.",
-      "RESTful API integration via Retrofit & Repository Pattern with secure token management.",
-      "Skeletonizer shimmer effects for smooth data-fetching user experience.",
+    title: "Child Transit Hub",
+    tagline: "Parent App & Driver Dual Dashboard in Unified Codebase",
+    badge: "Capstone Distinction",
+    rating: "B.Sc. Graduation Project (Distinct)",
+    overview:
+      "A dual-interface child transit platform coordinating safe school transportation. Parents track live bus telemetry and student check-ins, while drivers manage attendance and route navigation in a unified codebase.",
+    highlights: [
+      "Single modular codebase serving two distinct role-guarded mobile experiences.",
+      "Live bus tracking updates and automated student pickup status via Retrofit REST APIs.",
+      "B.Sc. graduation project completed with distinction at Tanta University.",
     ],
-    techStack: ["Flutter", "Retrofit", "RESTful APIs", "BLoC / Cubit", "Clean Architecture", "RTL Localization", "Skeletonizer"],
-    images: ["/covers/graduation.webp"],
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Retrofit",
+      "RESTful APIs",
+      "BLoC / Cubit",
+      "GoRouter",
+      "RTL Localization"
+    ],
     cover: "/covers/graduation.webp",
+    backupCover: "/covers/graduation.webp",
     links: [],
   },
   {
     id: "ecommerce-ecosystem",
-    title: "Commercial E-Commerce Ecosystem",
-    tagline: "High-Performance Mobile App + Real-Time Web Admin CRUD",
+    title: "Shop Ecosystem",
+    tagline: "Live Paymob Gateway & Embedded Google Maps Tracking",
     badge: "Commercial Full-Stack",
-    rating: "Production Stack",
-    description: "A full dual-system commercial ecosystem with a native Flutter mobile app featuring Paymob payment gateway and live package delivery tracking, backed by a web admin management dashboard.",
-    features: [
-      "Full mobile shopping flow: product search, category filters, persistent cart, and Paymob payment integration.",
-      "Embedded Google Maps real-time package delivery tracking for courier dispatch.",
-      "Web Admin Dashboard: product CRUD, order status management, inventory control, and customer review moderation.",
-      "Powered by Supabase PostgreSQL, Authentication, and Storage.",
+    rating: "Production Architecture",
+    overview:
+      "A full-stack commercial commerce ecosystem combining a mobile shopping client with live Paymob card/wallet payments and real-time package delivery tracking, managed by a web admin portal.",
+    highlights: [
+      "Integrated Paymob payment gateway supporting credit cards and mobile wallets with transaction verification.",
+      "Embedded Google Maps package delivery tracking for dispatch operations.",
+      "Synchronized with React Web Admin CRUD for real-time inventory governance.",
     ],
-    techStack: ["Flutter", "Paymob", "Google Maps", "Supabase", "Clean Architecture", "Web Dashboard"],
-    images: ["/covers/ecommerce.webp", "/shop_mobile/1.webp", "/shop_mobile/2.webp", "/dash_web/w1-front.webp"],
+    techStack: [
+      "Flutter",
+      "Dart",
+      "Paymob Gateway",
+      "Google Maps SDK",
+      "Supabase",
+      "Clean Architecture",
+      "React Web Admin"
+    ],
     cover: "/covers/ecommerce.webp",
+    backupCover: "/covers/ecommerce.webp",
     links: [
-      { label: "Mobile App Code", url: "https://github.com/M-Fawzy2004/Ecommerce", icon: GitHubIcon },
-      { label: "Admin Web Dashboard", url: "https://github.com/M-Fawzy2004/Dashboard_Ecommerce", icon: GitHubIcon }
-    ],
-  },
-  {
-    id: "shop-app",
-    title: "Shop App - Rapid Catalog",
-    tagline: "Paginated Mobile Storefront with Dio Interceptors",
-    badge: "Network Architecture",
-    description: "A lightweight mobile e-commerce client featuring custom client-side data pagination with Dio to seamlessly handle heavy product catalogs and order workflows.",
-    features: [
-      "Client-side infinite pagination with Dio and RESTful API caching headers.",
-      "Dynamic filtering by multiple categories and price intervals.",
-      "Smooth order lifecycle management mapped to Supabase.",
-    ],
-    techStack: ["Flutter", "Dio", "REST APIs", "Supabase", "BLoC State Management"],
-    images: ["/shop/shop_1.webp", "/shop/shop_2.webp", "/shop/shop_3.webp"],
-    cover: "/covers/shop.webp",
-    links: [
-      { label: "GitHub Repo", url: "https://github.com/M-Fawzy2004/ShopApp", icon: GitHubIcon }
+      {
+        label: "Mobile Repository",
+        url: "https://github.com/M-Fawzy2004/Ecommerce",
+        icon: GitHubIcon,
+      },
     ],
   }
 ];
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [activeModalImageIdx, setActiveModalImageIdx] = useState(0);
   const sakinaProject = projects.find((p) => p.id === "sakina");
   const docmateProject = projects.find((p) => p.id === "docmate");
   const academiaProject = projects.find((p) => p.id === "academia-ai");
   const parkmateProject = projects.find((p) => p.id === "parkmate");
   const transportProject = projects.find((p) => p.id === "transportation-system");
   const ecommerceProject = projects.find((p) => p.id === "ecommerce-ecosystem");
-
-  const openProjectModal = (proj) => {
-    setSelectedProject(proj);
-    setActiveModalImageIdx(0);
-  };
-
-  useEffect(() => {
-    if (!selectedProject) return;
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") setSelectedProject(null);
-      if (e.key === "ArrowRight") {
-        setActiveModalImageIdx((prev) => (prev + 1) % selectedProject.images.length);
-      }
-      if (e.key === "ArrowLeft") {
-        setActiveModalImageIdx((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedProject]);
 
   return (
     <section id="projects" className="section-padding relative">
@@ -218,86 +243,79 @@ export default function Projects() {
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <div className="pill-badge mb-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-            <span>Mobile Engineering Portfolio</span>
+            <span>Featured Engineering Work</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-2">
-            Featured Mobile Projects
+            Selected Production Projects
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-body)]">
             Production apps shipped with Clean Architecture, Google Gemini AI, Mapbox GPS, and Supabase.
           </p>
         </div>
 
-        {/* Projects Showcase */}
-        <div className="space-y-6 sm:space-y-8">
-          
-          {/* Spotlight 1: Sakina (Luxury Islamic Platform & 4K Reel Studio) */}
-          <div className="bento-card p-5 sm:p-8 border-amber-500/20 relative overflow-hidden">
-            {/* Ambient luxury accent glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-500/10 via-emerald-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
+        {/* Projects Grid */}
+        <div className="space-y-8 sm:space-y-10">
 
+          {/* Spotlight 0: Sakina */}
+          <div className="bento-card p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
-              {/* Left Column */}
+              {/* Left Column: Details */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                  <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20">
                       {sakinaProject.badge}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
-                      <GooglePlayIcon size={12} /> Google Play
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      {sakinaProject.links[0].label}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
-                      <AppleIcon size={12} className="text-white" /> App Store
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {sakinaProject.links[1].label}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center gap-1">
-                      <Sparkles size={12} /> 4K Reel Studio
+                    <span className="text-xs font-mono text-amber-400 font-semibold">
+                      ★ 4K Reel Studio
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                    <span className="text-xs font-mono text-[var(--text-muted)]">
                       10 Production Screens
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2">
                     {sakinaProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    {sakinaProject.description}
+                    {sakinaProject.overview}
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                      <span>4K Video Reel Studio with FFmpeg & Canvas Graphics</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                      <span>Mathematical Astronomical Prayer Engine (Offline)</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                      <span>Biometric Face ID / Fingerprint & Local AES Vault</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                      <span>Cross-Platform iOS WidgetKit & Android AppWidgets</span>
+                  <div className="space-y-2 mb-6">
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[var(--text-muted)] block mb-1.5">
+                      Key Technical Capabilities
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-body)]">
+                      {sakinaProject.highlights.map((h, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <CheckCircle2 size={13} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {sakinaProject.techStack.map((tech) => (
-                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
+                      <span
+                        key={tech}
+                        className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-[var(--border-subtle)]">
                   <a
                     href={sakinaProject.links[0].url}
                     target="_blank"
@@ -317,28 +335,17 @@ export default function Projects() {
                     <AppleIcon size={14} />
                     <span>App Store</span>
                   </a>
-
-                  <button
-                    onClick={() => openProjectModal(sakinaProject)}
-                    className="btn-secondary-action text-xs ml-auto cursor-pointer"
-                  >
-                    <span>Inspect 10 Screens</span>
-                    <ArrowUpRight size={13} />
-                  </button>
                 </div>
               </div>
 
               {/* Right Column: Visual Preview Banner */}
-              <div 
-                onClick={() => openProjectModal(sakinaProject)}
-                className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-amber-500/25 flex items-center justify-center p-2"
-              >
+              <div className="lg:col-span-5 relative rounded-xl overflow-hidden aspect-[4/3] bg-black border border-amber-500/25 flex items-center justify-center p-2">
                 <img
                   src={sakinaProject.cover}
                   alt="Sakina Mobile App Cover"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
+                  className="w-full h-full object-contain"
                   onError={(e) => {
                     if (sakinaProject.backupCover && e.target.src !== sakinaProject.backupCover) {
                       e.target.src = sakinaProject.backupCover;
@@ -348,75 +355,71 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
                   <div className="text-white text-xs font-semibold flex items-center gap-1.5">
                     <Sparkles size={13} className="text-amber-400" />
-                    <span>Click to inspect Sakina (10 production screens)</span>
-                    <ArrowUpRight size={13} />
+                    <span>Sakina • 10 Production Screens</span>
                   </div>
                 </div>
               </div>
 
             </div>
-
-
           </div>
 
-          {/* Spotlight 2: DocMate (Commercial Production App) */}
+          {/* Spotlight 1: DocMate */}
           <div className="bento-card p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
-              {/* Left Column */}
+              {/* Left Column: Details */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
                       {docmateProject.badge}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
-                      <GooglePlayIcon size={12} /> Google Play
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      {docmateProject.links[0].label}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
-                      <AppleIcon size={12} className="text-white" /> App Store
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {docmateProject.links[1].label}
+                    </span>
+                    <span className="text-xs font-mono text-[var(--text-muted)]">
+                      5 Production Screens
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2">
                     {docmateProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    {docmateProject.description}
+                    {docmateProject.overview}
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Live Waiting Slot Calculation & Real-Time Queue</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Supabase RPCs to Prevent Booking Conflicts</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Doctor Verification Pipeline & React Admin Portal</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Clean Architecture & BLoC Offline-First Cache</span>
+                  <div className="space-y-2 mb-6">
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[var(--text-muted)] block mb-1.5">
+                      Key Technical Capabilities
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-body)]">
+                      {docmateProject.highlights.map((h, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <CheckCircle2 size={13} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {docmateProject.techStack.map((tech) => (
-                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
+                      <span
+                        key={tech}
+                        className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-[var(--border-subtle)]">
                   <a
                     href={docmateProject.links[0].url}
                     target="_blank"
@@ -436,28 +439,17 @@ export default function Projects() {
                     <AppleIcon size={14} />
                     <span>App Store</span>
                   </a>
-
-                  <button
-                    onClick={() => openProjectModal(docmateProject)}
-                    className="btn-secondary-action text-xs ml-auto"
-                  >
-                    <span>Inspect 5 Screens</span>
-                    <ArrowUpRight size={13} />
-                  </button>
                 </div>
               </div>
 
               {/* Right Column: Visual Preview Banner */}
-              <div 
-                onClick={() => openProjectModal(docmateProject)}
-                className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)] flex items-center justify-center p-2"
-              >
+              <div className="lg:col-span-5 relative rounded-xl overflow-hidden aspect-[4/3] bg-black border border-[var(--border-default)] flex items-center justify-center p-2">
                 <img
                   src={docmateProject.cover}
                   alt="DocMate Cover"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
+                  className="w-full h-full object-contain"
                   onError={(e) => {
                     if (docmateProject.backupCover && e.target.src !== docmateProject.backupCover) {
                       e.target.src = docmateProject.backupCover;
@@ -466,8 +458,7 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
                   <div className="text-white text-xs font-semibold flex items-center gap-1.5">
-                    <span>Click to inspect DocMate production screens</span>
-                    <ArrowUpRight size={13} />
+                    <span>DocMate • 5 Production Screens</span>
                   </div>
                 </div>
               </div>
@@ -479,63 +470,59 @@ export default function Projects() {
           <div className="bento-card p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
-              {/* Left Column */}
+              {/* Left Column: Details */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                      Flagship App
+                  <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {academiaProject.badge}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
-                      <GooglePlayIcon size={12} /> Google Play
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      {academiaProject.links[0].label}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
-                      <AppleIcon size={12} className="text-white" /> App Store
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {academiaProject.links[1].label}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-                      25+ Screens
+                    <span className="text-xs font-mono text-[var(--text-muted)]">
+                      25+ Screens Shipped
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2">
                     {academiaProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    {academiaProject.description}
+                    {academiaProject.overview}
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Gemini AI PDF Summaries & Dynamic Quiz Generator</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Bilingual Localization (Arabic & English RTL/LTR)</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Clean Architecture with BLoC State Management</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
-                      <CheckCircle2 size={15} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>Offline Caching & Supabase Cloud Storage</span>
+                  <div className="space-y-2 mb-6">
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[var(--text-muted)] block mb-1.5">
+                      Key Technical Capabilities
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-body)]">
+                      {academiaProject.highlights.map((h, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <CheckCircle2 size={13} className="text-sky-400 flex-shrink-0 mt-0.5" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {academiaProject.techStack.map((tech) => (
-                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
+                      <span
+                        key={tech}
+                        className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-[var(--border-subtle)]">
                   <a
                     href={academiaProject.links[0].url}
                     target="_blank"
@@ -555,33 +542,21 @@ export default function Projects() {
                     <AppleIcon size={14} />
                     <span>App Store</span>
                   </a>
-
-                  <button
-                    onClick={() => openProjectModal(academiaProject)}
-                    className="btn-secondary-action text-xs ml-auto"
-                  >
-                    <span>Inspect Details & Screens</span>
-                    <ArrowUpRight size={14} />
-                  </button>
                 </div>
               </div>
 
               {/* Right Column: Visual Preview Banner */}
-              <div 
-                onClick={() => openProjectModal(academiaProject)}
-                className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)]"
-              >
+              <div className="lg:col-span-5 relative rounded-xl overflow-hidden aspect-[4/3] bg-black border border-[var(--border-default)] flex items-center justify-center p-2">
                 <img
                   src={academiaProject.cover}
                   alt="Academia AI Cover"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  className="w-full h-full object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
                   <div className="text-white text-xs font-semibold flex items-center gap-1.5">
-                    <span>Click to inspect (4 screens)</span>
-                    <ArrowUpRight size={13} />
+                    <span>Academia AI • Gemini 1.5 Study Engine</span>
                   </div>
                 </div>
               </div>
@@ -600,7 +575,7 @@ export default function Projects() {
                     Mapbox Navigation
                   </span>
                   <span className="text-xs font-mono text-[var(--text-muted)]">
-                    GPS Routing
+                    GPS Coordinates
                   </span>
                 </div>
 
@@ -612,10 +587,7 @@ export default function Projects() {
                   A location-intelligence mobile app that pinpoints your vehicle's parking coordinates with GPS, performs reverse-geocoding to a physical address, and provides turn-by-turn walking guidance back to your car.
                 </p>
 
-                <div 
-                  onClick={() => openProjectModal(parkmateProject)}
-                  className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
-                >
+                <div className="relative rounded-lg overflow-hidden aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]">
                   <img
                     src={parkmateProject.cover}
                     alt="ParkMate Navigation"
@@ -644,12 +616,6 @@ export default function Projects() {
                   <GitHubIcon size={14} />
                   <span>View Repository</span>
                 </a>
-                <button
-                  onClick={() => openProjectModal(parkmateProject)}
-                  className="btn-secondary-action text-xs py-1.5 px-3"
-                >
-                  Details
-                </button>
               </div>
             </div>
 
@@ -673,10 +639,7 @@ export default function Projects() {
                   Dual-interface child transit platform connecting parents and school bus drivers. Delivers two completely independent experiences (Parent App and Driver Dashboard) in a unified Flutter codebase with Retrofit REST APIs.
                 </p>
 
-                <div 
-                  onClick={() => openProjectModal(transportProject)}
-                  className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
-                >
+                <div className="relative rounded-lg overflow-hidden aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]">
                   <img
                     src={transportProject.cover}
                     alt="Transportation System"
@@ -696,13 +659,12 @@ export default function Projects() {
               </div>
 
               <div className="flex items-center gap-2 pt-3.5 border-t border-[var(--border-subtle)]">
-                <button
-                  onClick={() => openProjectModal(transportProject)}
-                  className="btn-primary-action flex-1 text-xs py-1.5"
+                <a
+                  href="#education"
+                  className="btn-secondary-action flex-1 text-xs py-1.5 text-center justify-center"
                 >
-                  <span>Explore Architecture</span>
-                  <ArrowUpRight size={13} />
-                </button>
+                  <span>Tanta University Capstone Distinction</span>
+                </a>
               </div>
             </div>
 
@@ -711,10 +673,7 @@ export default function Projects() {
           {/* Tertiary: E-Commerce Ecosystem */}
           <div className="bento-card p-5 sm:p-6">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-              <div 
-                onClick={() => openProjectModal(ecommerceProject)}
-                className="md:col-span-5 relative rounded-lg overflow-hidden cursor-pointer aspect-[16/10] bg-black border border-[var(--border-subtle)]"
-              >
+              <div className="md:col-span-5 relative rounded-lg overflow-hidden aspect-[16/10] bg-black border border-[var(--border-subtle)]">
                 <img
                   src={ecommerceProject.cover}
                   alt="E-Commerce Ecosystem"
@@ -769,147 +728,6 @@ export default function Projects() {
         </div>
 
       </div>
-
-      {/* Project Deep-Dive Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div 
-            onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border-strong)] p-5 sm:p-7 text-left shadow-2xl"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-white hover:border-sky-500/40 transition-colors z-20 cursor-pointer"
-                aria-label="Close dialog"
-              >
-                <X size={15} />
-              </button>
-
-              {/* Modal Header */}
-              <div className="mb-5 pr-8">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-2 inline-block">
-                  {selectedProject.badge}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)]">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-xs text-sky-400 font-medium mt-0.5 font-mono">
-                  {selectedProject.tagline}
-                </p>
-              </div>
-
-              {/* Screenshot Preview Showcase */}
-              {selectedProject.images && selectedProject.images.length > 0 && (
-                <div className="mb-5">
-                  <div className="relative rounded-xl overflow-hidden aspect-[16/9] bg-black border border-[var(--border-subtle)] mb-2.5 flex items-center justify-center">
-                    <img
-                      src={selectedProject.images[activeModalImageIdx]}
-                      alt={`${selectedProject.title} screenshot`}
-                      decoding="async"
-                      className="w-full h-full object-contain"
-                    />
-
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => setActiveModalImageIdx((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer"
-                          aria-label="Previous screenshot"
-                        >
-                          <ChevronLeft size={16} />
-                        </button>
-                        <button
-                          onClick={() => setActiveModalImageIdx((prev) => (prev + 1) % selectedProject.images.length)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer"
-                          aria-label="Next screenshot"
-                        >
-                          <ChevronRight size={16} />
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Thumbnail Row */}
-                  {selectedProject.images.length > 1 && (
-                    <div className="flex gap-2 overflow-x-auto pb-1">
-                      {selectedProject.images.map((img, idx) => (
-                        <button
-                          key={img}
-                          onClick={() => setActiveModalImageIdx(idx)}
-                          className={`w-14 h-10 rounded-lg overflow-hidden border transition-all duration-200 flex-shrink-0 cursor-pointer ${
-                            activeModalImageIdx === idx 
-                              ? 'border-sky-400 ring-1 ring-sky-400' 
-                              : 'border-[var(--border-default)] opacity-50 hover:opacity-100'
-                          }`}
-                        >
-                          <img src={img} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Features List */}
-              <div className="space-y-3 mb-5">
-                <h4 className="text-xs font-mono font-bold text-[var(--text-primary)] uppercase tracking-wider">
-                  Features & Engineering Highlights
-                </h4>
-                <ul className="space-y-2 text-xs text-[var(--text-body)]">
-                  {selectedProject.features.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 size={14} className="text-sky-400 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Tech Stack Chips */}
-              <div className="mb-6 pt-3 border-t border-[var(--border-subtle)]">
-                <h4 className="text-[11px] font-mono font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedProject.techStack.map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-primary)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              {selectedProject.links && selectedProject.links.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-[var(--border-subtle)]">
-                  {selectedProject.links.map((link) => {
-                    const Icon = link.icon || ExternalLink;
-                    return (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary-action text-xs"
-                      >
-                        <Icon size={14} />
-                        <span>{link.label}</span>
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-
-            </div>
-          </div>
-        )}
-      </AnimatePresence>
-
     </section>
   );
 }

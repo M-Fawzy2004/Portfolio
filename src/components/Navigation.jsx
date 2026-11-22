@@ -89,8 +89,8 @@ export default function Navigation() {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-2 sm:pt-3 px-3 pointer-events-none">
-      <div className="w-full max-w-5xl pointer-events-auto">
+    <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-2 sm:pt-3 px-3 sm:px-6 pointer-events-none">
+      <div className="w-full max-w-7xl pointer-events-auto">
         <div 
           className={`flex items-center justify-between px-3 sm:px-4 py-2 rounded-xl border border-[var(--border-default)] transition-all duration-300 backdrop-blur-xl ${
             scrolled 
@@ -198,7 +198,7 @@ export default function Navigation() {
 
             {/* Theme Toggle */}
             <button
-              onClick={toggleTheme}
+              onClick={(e) => toggleTheme(e)}
               aria-label="Toggle visual theme"
               className="w-8 h-8 rounded-lg flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-sky-500/40 transition-all cursor-pointer"
             >

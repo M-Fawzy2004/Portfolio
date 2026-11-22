@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { 
-  Code2, 
   Layers, 
   CheckCircle2, 
   ChevronRight, 
@@ -43,7 +42,6 @@ const skillsList = [
   { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety, and Dart Isolates' },
   { name: 'Android Native', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, AppWidgets & release signing' },
   { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino design, WidgetKit, TestFlight & App Store releases' },
-  { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding Focus', note: 'Component lifecycle, cross-framework mobile synergy' },
 
   // Architecture & State
   { name: 'Clean Architecture', category: 'architecture', icon: CleanArchIcon, level: 'Core Standard', note: 'Presentation, Domain (Pure UseCases), Data separation' },
@@ -59,13 +57,14 @@ const skillsList = [
   { name: 'SQLite / Offline Cache', category: 'backend', icon: Database, level: 'Production', note: 'Local offline persistence, sync and encrypted storage' },
 
   // AI, Hardware & Tools
-  { name: 'Google Gemini 1.5 AI', category: 'ai-tools', icon: GeminiIcon, level: 'Production', note: 'Multi-modal PDF document parsing & automated study quiz generator' },
+  { name: 'AI & LLM Integration', category: 'ai-tools', icon: GeminiIcon, level: 'Production', note: 'Multi-modal document parsing, prompt engineering & smart assistants (Gemini, OpenAI & Claude APIs)' },
   { name: 'Mapbox Navigation', category: 'ai-tools', icon: MapboxIcon, level: 'Production', note: 'Turn-by-turn walking routing, reverse geocoding & telemetry' },
   { name: 'Paymob Gateway', category: 'ai-tools', icon: PaymobIcon, level: 'Commercial', note: 'Payment cards, mobile wallets, and webhook transaction status' },
   { name: 'Git & GitHub', category: 'ai-tools', icon: GitIcon, level: 'Daily Standard', note: 'Branching strategies, PR reviews, version tags' },
   { name: 'Postman', category: 'ai-tools', icon: PostmanIcon, level: 'Advanced', note: 'API contract testing, environment variables, authentication' },
   { name: 'Figma', category: 'ai-tools', icon: FigmaIcon, level: 'Design-to-Code', note: 'Pixel-perfect translation from Figma mobile specs into Flutter' },
-  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks (Sakina, DocMate & Academia AI)' },
+  { name: 'App Store Connect', category: 'ai-tools', icon: AppleIcon, level: 'Published Apps', note: 'Certificates, provisioning profiles, TestFlight builds & App Store reviews (Sakina, DocMate & Academia AI)' },
+  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'AAB bundle signing, release tracks, internal testing & store policies (Sakina, DocMate & Academia AI)' },
 ];
 
 const archLayers = [
@@ -309,7 +308,7 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
           {filteredSkills.map((skill) => {
             const Icon = skill.icon;
             return (

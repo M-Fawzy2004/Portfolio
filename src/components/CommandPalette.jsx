@@ -85,11 +85,17 @@ export default function CommandPalette() {
     };
   }, [isOpen]);
 
-  // Focus input on open
+  // Focus input on open & hide top bar
   useEffect(() => {
     if (isOpen) {
+      document.body.classList.add('modal-open');
       const timer = setTimeout(() => inputRef.current?.focus(), 50);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        document.body.classList.remove('modal-open');
+      };
+    } else {
+      document.body.classList.remove('modal-open');
     }
   }, [isOpen]);
 

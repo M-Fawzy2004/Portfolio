@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Moon,
@@ -100,7 +101,7 @@ const showcaseApps = [
     overview: 'Location-intelligence mobile application that pinpoints your vehicle coordinates with GPS, converts them to physical street addresses, and generates turn-by-turn walking guidance back to your car.',
     screens: ['/park_mate/1.webp', '/park_mate/2.webp', '/park_mate/3.webp'],
     backup: '/covers/parkmate.webp',
-    githubUrl: 'https://github.com/M-Fawzy2004/park_mate',
+    githubUrl: 'https://github.com/M-Fawzy2004/ParkMade',
     techStack: ['Flutter', 'Mapbox SDK', 'Supabase Auth', 'BLoC/Cubit', 'GoRouter', 'GPS'],
     icon: MapPin,
     accent: '#10B981',
@@ -169,6 +170,22 @@ export default function InteractiveAppShowcase() {
     window.addEventListener('select-app', handleSelectEvent);
     return () => window.removeEventListener('select-app', handleSelectEvent);
   }, []);
+
+  // Close lightbox on Escape key & lock scroll / hide navigation
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    document.body.classList.add('modal-open');
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.classList.remove('modal-open');
+    };
+  }, [lightboxOpen]);
 
   const handleSelectApp = (idx) => {
     setActiveAppIdx(idx);
@@ -515,26 +532,32 @@ export default function InteractiveAppShowcase() {
 
       {/* High-Resolution Screen Lightbox Modal */}
       <AnimatePresence>
-        {lightboxOpen && (
-          <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        {lightboxOpen && typeof document !== 'undefined' && createPortal(
+          <div 
+            onClick={() => setLightboxOpen(false)}
+            className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md cursor-zoom-out"
+          >
+            {/* Prominent Fixed Close Button */}
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[10002] flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white border border-white/25 backdrop-blur-md cursor-pointer transition-all shadow-2xl"
+              aria-label="Close high-res preview"
+            >
+              <X size={16} />
+              <span className="text-xs font-mono font-medium">Close (Esc)</span>
+            </button>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="relative max-w-md w-full max-h-[90vh] flex flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-sm sm:max-w-md w-full max-h-[90vh] flex flex-col items-center justify-center cursor-default"
             >
-              <button
-                onClick={() => setLightboxOpen(false)}
-                className="absolute -top-10 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-                aria-label="Close high-res preview"
-              >
-                <X size={20} />
-              </button>
-
               <img
                 src={currentApp.screens[activeScreenIdx]}
                 alt={`${currentApp.title} High-Res Preview`}
-                className="max-h-[80vh] w-auto rounded-2xl shadow-2xl border border-white/20 object-contain"
+                className="max-h-[76vh] w-auto rounded-2xl border border-white/20 object-contain shadow-2xl"
               />
 
               <div className="mt-3 flex items-center gap-3 text-white text-xs font-mono">
@@ -542,8 +565,13 @@ export default function InteractiveAppShowcase() {
                 <span>•</span>
                 <span>Screen {activeScreenIdx + 1} of {currentApp.screens.length}</span>
               </div>
+
+              <div className="text-[11px] font-mono text-slate-400 mt-1">
+                Click anywhere outside or press Esc to close
+              </div>
             </motion.div>
-          </div>
+          </div>,
+          document.body
         )}
       </AnimatePresence>
     </section>
