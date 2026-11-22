@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Moon,
@@ -10,11 +10,15 @@ import {
   ChevronRight,
   Layers,
   Activity,
-  CheckCircle2
+  CheckCircle2,
+  Maximize2,
+  X,
+  Wifi,
+  Battery
 } from 'lucide-react';
 import { 
   GooglePlayIcon, 
-  GitHubIcon,
+  GitHubIcon, 
   AppleIcon 
 } from './TechIcons';
 
@@ -146,8 +150,25 @@ const showcaseApps = [
 export default function InteractiveAppShowcase() {
   const [activeAppIdx, setActiveAppIdx] = useState(0);
   const [activeScreenIdx, setActiveScreenIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [islandExpanded, setIslandExpanded] = useState(false);
 
   const currentApp = showcaseApps[activeAppIdx];
+
+  // Listen for select-app events from Command Palette or other components
+  useEffect(() => {
+    const handleSelectEvent = (e) => {
+      if (e.detail && e.detail.id) {
+        const idx = showcaseApps.findIndex((a) => a.id === e.detail.id);
+        if (idx !== -1) {
+          setActiveAppIdx(idx);
+          setActiveScreenIdx(0);
+        }
+      }
+    };
+    window.addEventListener('select-app', handleSelectEvent);
+    return () => window.removeEventListener('select-app', handleSelectEvent);
+  }, []);
 
   const handleSelectApp = (idx) => {
     setActiveAppIdx(idx);
@@ -167,7 +188,7 @@ export default function InteractiveAppShowcase() {
       <div className="max-container">
 
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <div className="pill-badge mb-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
             <span>Interactive Mobile Stage</span>
@@ -210,55 +231,124 @@ export default function InteractiveAppShowcase() {
         </div>
 
         {/* Interactive Device Stage + Architectural Insights Bento */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center bento-card p-5 sm:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center bento-card p-5 sm:p-8">
           
-          {/* Left Column: Interactive Mobile Frame */}
+          {/* Left Column: Ultra-Realistic iPhone 16 Pro Mockup */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="w-full max-w-[280px] sm:max-w-[300px]">
+            <div className="w-full max-w-[280px] sm:max-w-[310px]">
               
-              {/* Phone Device Chassis */}
-              <div className="relative rounded-[36px] p-2 bg-[#0A0D12] border-2 border-[var(--border-strong)] shadow-sm">
+              {/* iPhone 16 Pro Natural Titanium Outer Frame */}
+              <div className="relative rounded-[46px] p-[10px] bg-gradient-to-b from-[#3A3F4A] via-[#242831] to-[#1A1D24] border-2 border-[#4A505E]/40 shadow-2xl">
                 
-                {/* Screen Bezel */}
-                <div className="relative rounded-[28px] overflow-hidden bg-black aspect-[9/18.5] flex flex-col justify-between border border-black/80">
+                {/* Physical Buttons on Outer Frame */}
+                <div className="absolute -left-[5px] top-24 w-[3px] h-7 bg-[#2E333D] rounded-l-sm" title="Action Button" />
+                <div className="absolute -left-[5px] top-36 w-[3px] h-12 bg-[#2E333D] rounded-l-sm" title="Volume Up" />
+                <div className="absolute -left-[5px] top-52 w-[3px] h-12 bg-[#2E333D] rounded-l-sm" title="Volume Down" />
+                <div className="absolute -right-[5px] top-32 w-[3px] h-16 bg-[#2E333D] rounded-r-sm" title="Power Button" />
+
+                {/* Inner Screen Bezel with Precision Curved Corners */}
+                <div className="relative rounded-[36px] overflow-hidden bg-black aspect-[9/19] flex flex-col justify-between border border-black shadow-inner">
                   
-                  {/* Status Bar & Minimal Dynamic Island */}
-                  <div className="relative z-20 w-full px-4 pt-2 pb-1 flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                    <span>9:41</span>
-                    <div className="w-16 h-3 rounded-full bg-black border border-slate-800 flex items-center justify-center">
-                      <span className="text-[7px] text-slate-500 font-mono truncate px-1">
-                        {currentApp.title.split(' ')[0]}
-                      </span>
+                  {/* Subtle Screen Glare Glass Gradient */}
+                  <div className="absolute inset-0 pointer-events-none z-30 bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.07] rounded-[36px]" />
+
+                  {/* Top Status Bar & Interactive Dynamic Island */}
+                  <div className="relative z-40 w-full px-5 pt-3 pb-1 flex items-center justify-between text-[10px] text-white/90 font-mono select-none">
+                    <span className="font-semibold tracking-tight">9:41</span>
+
+                    {/* Dynamic Island Pill */}
+                    <motion.div
+                      layout
+                      onClick={() => setIslandExpanded(!islandExpanded)}
+                      className={`cursor-pointer rounded-full bg-black border border-white/10 flex items-center justify-center transition-all px-2.5 py-1 ${
+                        islandExpanded ? 'w-40 h-6' : 'w-24 h-4'
+                      }`}
+                    >
+                      <AnimatePresence mode="wait">
+                        {islandExpanded ? (
+                          <motion.div
+                            key="expanded"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-center gap-1.5 text-[8px] text-sky-400 font-mono"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>Impeller • 60 FPS</span>
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="compact"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-center gap-1.5 text-[7px] text-slate-300 font-mono truncate"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                            <span className="truncate">{currentApp.title}</span>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+
+                    {/* Wireless & Battery Icons */}
+                    <div className="flex items-center gap-1.5 text-white/80">
+                      <Wifi size={10} />
+                      <span className="text-[8px] font-bold text-emerald-400">5G</span>
+                      <div className="flex items-center">
+                        <Battery size={12} className="text-emerald-400" />
+                      </div>
                     </div>
-                    <span className="text-[8px] text-emerald-400 font-bold">5G</span>
                   </div>
 
-                  {/* App Screen Viewer */}
-                  <div className="relative flex-1 w-full overflow-hidden bg-black flex items-center justify-center">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={`${currentApp.id}-${activeScreenIdx}`}
+                  {/* App Screen Viewer with Touch/Drag Swipe Support */}
+                  <div className="relative flex-1 w-full overflow-hidden bg-black flex items-center justify-center touch-pan-y">
+                    <motion.div
+                      key={`${currentApp.id}-${activeScreenIdx}`}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.25}
+                      onDragEnd={(e, { offset, velocity }) => {
+                        const swipe = Math.abs(offset.x) * velocity.x;
+                        if (swipe < -80 || offset.x < -50) {
+                          handleNextScreen();
+                        } else if (swipe > 80 || offset.x > 50) {
+                          handlePrevScreen();
+                        }
+                      }}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full cursor-grab active:cursor-grabbing flex items-center justify-center"
+                    >
+                      <img
                         src={currentApp.screens[activeScreenIdx]}
                         alt={`${currentApp.title} Screen ${activeScreenIdx + 1}`}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.2 }}
-                        className="w-full h-full object-cover object-top select-none"
+                        className="w-full h-full object-cover object-top select-none pointer-events-none"
                         onError={(e) => {
                           if (currentApp.backup && e.target.src !== currentApp.backup) {
                             e.target.src = currentApp.backup;
                           }
                         }}
                       />
-                    </AnimatePresence>
+                    </motion.div>
+
+                    {/* Floating Zoom / Lightbox Trigger Button */}
+                    <button
+                      onClick={() => setLightboxOpen(true)}
+                      className="absolute top-3 right-3 p-1.5 rounded-full bg-black/60 hover:bg-black text-white/80 hover:text-white border border-white/20 backdrop-blur-md transition-all cursor-pointer z-30 opacity-70 hover:opacity-100"
+                      title="Inspect High-Res Screen"
+                    >
+                      <Maximize2 size={12} />
+                    </button>
 
                     {/* Left/Right Floating Navigation Chevrons inside device */}
                     {currentApp.screens.length > 1 && (
                       <>
                         <button
                           onClick={handlePrevScreen}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 backdrop-blur-md transition-all cursor-pointer z-20"
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center border border-white/20 backdrop-blur-md transition-all cursor-pointer z-30"
                           aria-label="Previous screen"
                         >
                           <ChevronLeft size={14} />
@@ -266,7 +356,7 @@ export default function InteractiveAppShowcase() {
 
                         <button
                           onClick={handleNextScreen}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 backdrop-blur-md transition-all cursor-pointer z-20"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center border border-white/20 backdrop-blur-md transition-all cursor-pointer z-30"
                           aria-label="Next screen"
                         >
                           <ChevronRight size={14} />
@@ -275,27 +365,43 @@ export default function InteractiveAppShowcase() {
                     )}
                   </div>
 
-                  {/* Bottom Home Indicator */}
-                  <div className="w-full py-1.5 flex justify-center bg-black">
-                    <div className="w-20 h-1 rounded-full bg-white/30" />
+                  {/* Bottom Home Indicator Bar */}
+                  <div className="w-full py-2 flex justify-center bg-black">
+                    <div className="w-24 h-1 rounded-full bg-white/40" />
                   </div>
 
                 </div>
               </div>
 
-              {/* Screen Dots Indicator */}
+              {/* Interactive Screen Thumbnail Bar */}
               {currentApp.screens.length > 1 && (
-                <div className="flex items-center justify-center gap-1.5 mt-3">
-                  {currentApp.screens.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveScreenIdx(idx)}
-                      className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                        idx === activeScreenIdx ? 'w-5 bg-sky-400' : 'w-1.5 bg-slate-700 hover:bg-slate-500'
-                      }`}
-                      aria-label={`Go to screen ${idx + 1}`}
-                    />
-                  ))}
+                <div className="mt-4">
+                  <div className="flex items-center justify-center gap-1.5 overflow-x-auto py-1 scrollbar-none">
+                    {currentApp.screens.map((screen, idx) => {
+                      const isCurrent = idx === activeScreenIdx;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveScreenIdx(idx)}
+                          className={`relative w-7 h-12 rounded-md overflow-hidden border transition-all duration-200 cursor-pointer flex-shrink-0 ${
+                            isCurrent
+                              ? 'border-sky-400 scale-105 shadow-md ring-1 ring-sky-400'
+                              : 'border-white/10 opacity-50 hover:opacity-90'
+                          }`}
+                          title={`Jump to screen ${idx + 1}`}
+                        >
+                          <img
+                            src={screen}
+                            alt={`Thumb ${idx + 1}`}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="text-center text-[10px] font-mono text-[var(--text-muted)] mt-1.5">
+                    Screen {activeScreenIdx + 1} of {currentApp.screens.length} • Swipe or click to inspect
+                  </div>
                 </div>
               )}
 
@@ -311,7 +417,7 @@ export default function InteractiveAppShowcase() {
                   {currentApp.badge}
                 </span>
                 <span className="text-xs text-[var(--text-muted)] font-mono">
-                  Screen {activeScreenIdx + 1} of {currentApp.screens.length}
+                  {currentApp.screens.length} Production Screens
                 </span>
               </div>
 
@@ -364,7 +470,7 @@ export default function InteractiveAppShowcase() {
                   className="btn-primary-action text-xs"
                 >
                   <GooglePlayIcon size={14} />
-                  <span>View on Google Play</span>
+                  <span>Google Play</span>
                 </a>
               )}
 
@@ -406,6 +512,40 @@ export default function InteractiveAppShowcase() {
         </div>
 
       </div>
+
+      {/* High-Resolution Screen Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative max-w-md w-full max-h-[90vh] flex flex-col items-center justify-center"
+            >
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="absolute -top-10 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                aria-label="Close high-res preview"
+              >
+                <X size={20} />
+              </button>
+
+              <img
+                src={currentApp.screens[activeScreenIdx]}
+                alt={`${currentApp.title} High-Res Preview`}
+                className="max-h-[80vh] w-auto rounded-2xl shadow-2xl border border-white/20 object-contain"
+              />
+
+              <div className="mt-3 flex items-center gap-3 text-white text-xs font-mono">
+                <span>{currentApp.title}</span>
+                <span>•</span>
+                <span>Screen {activeScreenIdx + 1} of {currentApp.screens.length}</span>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

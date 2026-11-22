@@ -7,7 +7,8 @@ import {
   X, 
   ArrowUpRight, 
   FileText,
-  MessageCircle
+  MessageCircle,
+  Command
 } from "lucide-react";
 import {
   isNavigationLocked,
@@ -83,6 +84,10 @@ export default function Navigation() {
     }, 1000);
   };
 
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(new CustomEvent('open-command-palette'));
+  };
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-2 sm:pt-3 px-3 pointer-events-none">
       <div className="w-full max-w-5xl pointer-events-auto">
@@ -149,8 +154,27 @@ export default function Navigation() {
             })}
           </nav>
 
-          {/* Quick Actions */}
+          {/* Quick Actions & Utility Tools */}
           <div className="flex items-center gap-2">
+            {/* Command Palette Trigger */}
+            <button
+              onClick={handleOpenCommandPalette}
+              aria-label="Open Command Center (Cmd+K)"
+              title="Command Palette & Quick Search (⌘K)"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-medium text-[var(--text-secondary)] hover:text-white bg-[var(--bg-secondary)] border border-[var(--border-default)] hover:border-sky-500/40 transition-colors cursor-pointer"
+            >
+              <Command size={12} className="text-sky-400" />
+              <span className="text-[10px] text-[var(--text-muted)] font-mono">⌘K</span>
+            </button>
+
+            <button
+              onClick={handleOpenCommandPalette}
+              aria-label="Open Command Center"
+              className="sm:hidden w-8 h-8 rounded-lg flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-body)] hover:text-white transition-all cursor-pointer"
+            >
+              <Command size={14} className="text-sky-400" />
+            </button>
+
             <a
               href="/cv/Mohamed_Fawzy_Flutter_CV.pdf"
               target="_blank"
@@ -206,6 +230,21 @@ export default function Navigation() {
               transition={{ duration: 0.2 }}
               className="md:hidden mt-2 p-3 rounded-xl bg-[var(--bg-nav-mobile)] border border-[var(--border-strong)] flex flex-col gap-1 backdrop-blur-xl shadow-2xl"
             >
+              {/* Quick Command Palette Button inside mobile drawer */}
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  handleOpenCommandPalette();
+                }}
+                className="flex items-center justify-between px-3.5 py-2 mb-1 rounded-lg text-xs font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20"
+              >
+                <div className="flex items-center gap-2">
+                  <Command size={14} />
+                  <span>Open Command Center</span>
+                </div>
+                <span className="text-[10px] bg-sky-500/20 px-1.5 py-0.5 rounded">⌘K</span>
+              </button>
+
               {navItems.map((item) => {
                 const isActive = active === item.href.slice(1);
                 return (

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
+import EngineeringMetrics from './components/EngineeringMetrics'
 import InteractiveAppShowcase from './components/InteractiveAppShowcase'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
@@ -10,6 +11,8 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import BackgroundEasterEggs from './components/BackgroundEasterEggs'
 import ScrollToTop from './components/ScrollToTop'
+import CommandPalette from './components/CommandPalette'
+import MouseCursorGlow from './components/MouseCursorGlow'
 import { ThemeContext } from './context/ThemeContext'
 
 function ScrollProgressBar() {
@@ -64,6 +67,8 @@ export default function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ScrollProgressBar />
+      <CommandPalette />
+      <MouseCursorGlow />
       <div className="min-h-screen relative selection:bg-sky-500/20 selection:text-sky-300">
         <BackgroundEasterEggs />
         <Navigation />
@@ -71,6 +76,7 @@ export default function App() {
         
         <main className="relative z-10">
           <Hero />
+          <EngineeringMetrics />
           <InteractiveAppShowcase />
           <Experience />
           <Projects />

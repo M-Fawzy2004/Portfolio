@@ -5,7 +5,10 @@ import {
   CheckCircle2, 
   ChevronRight, 
   Database, 
-  Cpu 
+  Cpu,
+  FileCode,
+  Terminal,
+  ArrowRight
 } from 'lucide-react';
 import {
   FlutterIcon,
@@ -36,10 +39,10 @@ const categories = [
 
 const skillsList = [
   // Mobile Core
-  { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS fluid rendering' },
-  { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety & isolates' },
-  { name: 'Android Native', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, Android Studio release signing' },
-  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino widgets, iOS HIG, TestFlight & App Store (Sakina, DocMate & Academia AI)' },
+  { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS fluid Impeller rendering' },
+  { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety, and Dart Isolates' },
+  { name: 'Android Native', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, AppWidgets & release signing' },
+  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino design, WidgetKit, TestFlight & App Store releases' },
   { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding Focus', note: 'Component lifecycle, cross-framework mobile synergy' },
 
   // Architecture & State
@@ -70,29 +73,74 @@ const archLayers = [
     layer: '1. Presentation Layer (UI & State)',
     tech: 'Flutter Widgets • BLoC / Cubit • Responsive Layouts',
     role: 'Pure UI components that listen to immutable state streams emitted by BLoC. Zero business logic or direct API calls ever reside here.',
-    codeContract: 'UI triggers Event -> BLoC processes -> Emits immutable State -> UI rebuilds targeted widgets',
+    codeFile: 'presentation/cubit/prayer_cubit.dart',
+    codeSnippet: `class PrayerCubit extends Cubit<PrayerState> {
+  final GetPrayerTimesUseCase getPrayerTimes;
+  PrayerCubit(this.getPrayerTimes) : super(PrayerInitial());
+
+  Future<void> fetchTimes(Coordinates coords) async {
+    emit(PrayerLoading());
+    final result = await getPrayerTimes(coords);
+    result.fold(
+      (failure) => emit(PrayerError(failure.message)),
+      (times) => emit(PrayerLoaded(times)),
+    );
+  }
+}`,
+    contract: 'UI triggers Event -> BLoC processes -> Emits immutable State -> UI rebuilds targeted widgets',
   },
   {
     layer: '2. Domain Layer (Pure Business Rules)',
     tech: 'UseCases • Entities • Repository Contracts (Abstract Interfaces)',
     role: 'The heart of the application. 100% independent of any external packages, HTTP clients, or Flutter framework. Completely unit-testable.',
-    codeContract: 'UseCase executes business logic -> Calls abstract Repository interface -> Returns Either<Failure, Success>',
+    codeFile: 'domain/usecases/get_prayer_times_usecase.dart',
+    codeSnippet: `class GetPrayerTimesUseCase implements UseCase<PrayerTimes, Coordinates> {
+  final PrayerRepository repository;
+  GetPrayerTimesUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, PrayerTimes>> call(Coordinates params) async {
+    // Pure business rule: independent of Flutter or remote DB
+    return await repository.getAstronomicalPrayerTimes(params);
+  }
+}`,
+    contract: 'UseCase executes business logic -> Calls abstract Repository interface -> Returns Either<Failure, Success>',
   },
   {
     layer: '3. Data Layer (Data Sources & Models)',
     tech: 'Dio HTTP • Supabase • SQLite Cache • DTO Mappers',
     role: 'Implements repository interfaces. Orchestrates network requests, parses JSON into typed models, and handles offline database synchronization.',
-    codeContract: 'DataSource fetches JSON/RPC -> Mapper turns into Entity -> Caches to SQLite -> Passes to Domain',
+    codeFile: 'data/repositories/prayer_repository_impl.dart',
+    codeSnippet: `class PrayerRepositoryImpl implements PrayerRepository {
+  final PrayerLocalDataSource localDataSource;
+  final AstronomicalCalculator celestialCore;
+  PrayerRepositoryImpl(this.localDataSource, this.celestialCore);
+
+  @override
+  Future<Either<Failure, PrayerTimes>> getAstronomicalPrayerTimes(Coordinates c) async {
+    try {
+      final times = await celestialCore.calculate(c.lat, c.lng);
+      await localDataSource.cacheTimes(times);
+      return Right(times);
+    } catch (e) {
+      return Left(CalculationFailure('Calculation engine error'));
+    }
+  }
+}`,
+    contract: 'DataSource fetches JSON/RPC -> Mapper turns into Entity -> Caches to SQLite -> Passes to Domain',
   },
 ];
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedArchLayer, setSelectedArchLayer] = useState(0);
+  const [viewMode, setViewMode] = useState('blueprint'); // 'blueprint' | 'code'
 
   const filteredSkills = activeCategory === 'all'
     ? skillsList
     : skillsList.filter((s) => s.category === activeCategory);
+
+  const activeLayer = archLayers[selectedArchLayer];
 
   return (
     <section id="skills" className="section-padding relative">
@@ -118,20 +166,42 @@ export default function Skills() {
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-sky-400 uppercase tracking-wider mb-1">
                 <CleanArchIcon size={14} />
-                <span>Architecture Blueprint</span>
+                <span>Architecture Blueprint & Contracts</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)]">
-                Clean Architecture Implementation
+                Clean Architecture Implementation Standard
               </h3>
             </div>
-            <span className="text-xs text-[var(--text-muted)] font-mono">
-              Click any layer to inspect data flow & contracts
-            </span>
+            
+            {/* View Mode Toggle: Blueprint vs Code Contract */}
+            <div className="flex items-center gap-1.5 p-1 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-default)]">
+              <button
+                onClick={() => setViewMode('blueprint')}
+                className={`px-3 py-1 rounded-md text-xs font-mono font-semibold transition-colors cursor-pointer ${
+                  viewMode === 'blueprint'
+                    ? 'bg-sky-600 text-white shadow-xs'
+                    : 'text-[var(--text-muted)] hover:text-white'
+                }`}
+              >
+                Architecture Flow
+              </button>
+              <button
+                onClick={() => setViewMode('code')}
+                className={`px-3 py-1 rounded-md text-xs font-mono font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
+                  viewMode === 'code'
+                    ? 'bg-sky-600 text-white shadow-xs'
+                    : 'text-[var(--text-muted)] hover:text-white'
+                }`}
+              >
+                <FileCode size={12} />
+                <span>Dart Contracts</span>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            {/* Layer Buttons */}
-            <div className="lg:col-span-6 flex flex-col gap-2.5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            {/* Layer Selection Buttons */}
+            <div className="lg:col-span-5 flex flex-col gap-2.5">
               {archLayers.map((layer, idx) => {
                 const isSelected = selectedArchLayer === idx;
                 return (
@@ -159,29 +229,63 @@ export default function Skills() {
                   </button>
                 );
               })}
+
+              {/* Data Flow Pipeline Indicator */}
+              <div className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[11px] font-mono text-[var(--text-muted)] flex items-center justify-between">
+                <span className="text-sky-400 font-semibold">Flow:</span>
+                <span className="text-[10px] flex items-center gap-1 text-[var(--text-secondary)]">
+                  UI <ArrowRight size={10} /> Cubit <ArrowRight size={10} /> UseCase <ArrowRight size={10} /> Repo <ArrowRight size={10} /> SQLite
+                </span>
+              </div>
             </div>
 
-            {/* Layer Detail Card */}
-            <div className="lg:col-span-6 p-5 sm:p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-default)] min-h-[190px] flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 mb-2">
-                  LAYER RESPONSIBILITIES & ISOLATION
-                </div>
-                <div className="text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2">
-                  {archLayers[selectedArchLayer].layer}
-                </div>
-                <p className="text-xs text-[var(--text-body)] leading-relaxed mb-4">
-                  {archLayers[selectedArchLayer].role}
-                </p>
-                <div className="p-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] font-mono text-[11px] text-[var(--text-secondary)]">
-                  <span className="text-sky-400 font-bold">$ Data Flow: </span>
-                  {archLayers[selectedArchLayer].codeContract}
-                </div>
-              </div>
+            {/* Layer Detail Card / Code Contract Inspector */}
+            <div className="lg:col-span-7 p-5 sm:p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-default)] flex flex-col justify-between">
+              {viewMode === 'blueprint' ? (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400">
+                      LAYER RESPONSIBILITIES & SEPARATION
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      Isolated & Testable
+                    </span>
+                  </div>
 
-              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center gap-2 text-xs text-[var(--text-muted)] font-mono">
-                <CheckCircle2 size={13} className="text-emerald-400" />
-                <span>Enforced in DocMate, Academia AI & ParkMate</span>
+                  <div className="text-base font-bold text-[var(--text-primary)] mb-2">
+                    {activeLayer.layer}
+                  </div>
+                  <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed mb-4">
+                    {activeLayer.role}
+                  </p>
+
+                  <div className="p-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] font-mono text-xs text-[var(--text-secondary)]">
+                    <span className="text-sky-400 font-bold block mb-1">$ Data Flow Contract:</span>
+                    <span>{activeLayer.contract}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-2 pb-2 border-b border-[var(--border-subtle)]">
+                    <span className="text-[11px] font-mono text-sky-400 flex items-center gap-1.5">
+                      <Terminal size={12} />
+                      <span>{activeLayer.codeFile}</span>
+                    </span>
+                    <span className="text-[10px] font-mono text-[var(--text-muted)]">Dart 3.x</span>
+                  </div>
+
+                  <pre className="p-3 rounded-lg bg-[#08090C] border border-white/10 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed flex-1">
+                    <code>{activeLayer.codeSnippet}</code>
+                  </pre>
+                </div>
+              )}
+
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-muted)] font-mono">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={13} className="text-emerald-400" />
+                  <span>Enforced across Sakina, DocMate & Academia AI</span>
+                </span>
+                <span className="text-[10px] text-slate-500 hidden sm:inline">SOLID Compliant</span>
               </div>
             </div>
           </div>
