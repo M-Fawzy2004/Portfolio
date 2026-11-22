@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import InteractiveAppShowcase from './components/InteractiveAppShowcase'
-import AboutMe from './components/AboutMe'
-import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
+import Skills from './components/Skills'
+import AboutMe from './components/AboutMe'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import BackgroundEasterEggs from './components/BackgroundEasterEggs'
@@ -72,10 +72,10 @@ export default function App() {
         <main className="relative z-10">
           <Hero />
           <InteractiveAppShowcase />
-          <AboutMe />
-          <Skills />
-          <Projects />
           <Experience />
+          <Projects />
+          <Skills />
+          <AboutMe />
           <Education />
           <Contact />
         </main>

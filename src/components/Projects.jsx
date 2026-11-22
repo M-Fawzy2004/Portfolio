@@ -10,7 +10,6 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import SakinaShowcase from "./SakinaShowcase";
 import { 
   GooglePlayIcon, 
   GitHubIcon,
@@ -20,7 +19,7 @@ import {
 const projects = [
   {
     id: "sakina",
-    title: "Sakina (سَكِينَة)",
+    title: "Sakina",
     tagline: "Luxury Islamic Mobile Platform • 4K Quranic Reel Studio • Astronomical Engine",
     badge: "Luxury Production App",
     rating: "Live on App Store & Google Play",
@@ -50,7 +49,7 @@ const projects = [
     backupCover: "/sakina/1.png",
     links: [
       { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.sakina.islamic", icon: GooglePlayIcon, primary: true },
-      { label: "Apple App Store", url: "https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362", icon: AppleIcon, primary: true }
+      { label: "Apple App Store", url: "https://apps.apple.com/us/app/id6831748362", icon: AppleIcon, primary: true }
     ],
   },
   {
@@ -184,8 +183,6 @@ const projects = [
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeModalImageIdx, setActiveModalImageIdx] = useState(0);
-  const [showSakinaShowcase, setShowSakinaShowcase] = useState(true);
-
   const sakinaProject = projects.find((p) => p.id === "sakina");
   const docmateProject = projects.find((p) => p.id === "docmate");
   const academiaProject = projects.find((p) => p.id === "academia-ai");
@@ -322,14 +319,6 @@ export default function Projects() {
                   </a>
 
                   <button
-                    onClick={() => setShowSakinaShowcase(!showSakinaShowcase)}
-                    className="btn-secondary-action text-xs cursor-pointer"
-                  >
-                    <Sparkles size={14} className="text-amber-300" />
-                    <span>{showSakinaShowcase ? "Hide Showcase" : "Walkthrough (10 Screens)"}</span>
-                  </button>
-
-                  <button
                     onClick={() => openProjectModal(sakinaProject)}
                     className="btn-secondary-action text-xs ml-auto cursor-pointer"
                   >
@@ -367,10 +356,7 @@ export default function Projects() {
 
             </div>
 
-            {/* Embedded Interactive Walkthrough (Like DocMate) */}
-            {showSakinaShowcase && (
-              <SakinaShowcase />
-            )}
+
           </div>
 
           {/* Spotlight 2: DocMate (Commercial Production App) */}

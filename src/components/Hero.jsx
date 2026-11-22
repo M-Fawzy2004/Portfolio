@@ -15,19 +15,19 @@ import {
 } from "./TechIcons";
 
 const dynamicHighlights = [
-  "Production Flutter Engineer with +1 Year of Hands-on Experience",
+  "Senior Flutter Mobile Engineer • 3 Production Apps on App Store & Google Play",
   "Shipped Sakina, DocMate & Academia AI to Apple App Store & Google Play",
-  "Engineered Sakina: 4K Quranic Reel Studio, Astronomy & iOS/Android Widgets",
-  "Architected Academia AI (25+ Screens) with Google Gemini 1.5",
-  "Clean Architecture, BLoC & Cubit Predictable State Machines",
-  "Supabase PostgreSQL, Offline SQLite Caching & Mapbox GPS Routing",
+  "Architected 4K Video Reel Engine, Mathematical Astronomy & Native Widgets",
+  "Clean Architecture, BLoC / Cubit Predictable State Machines & 60 FPS",
+  "Commercial Healthcare & Multi-Modal Gemini 1.5 AI Architectures",
+  "Offline-First SQLite Caching, Supabase PostgreSQL & Mapbox GPS",
 ];
 
 const quickMetrics = [
-  { value: "2 Stores", label: "App Store & Play Store", highlight: true },
+  { value: "3 Apps", label: "App Store & Google Play", highlight: true },
   { value: "25+ Screens", label: "Shipped in Single App" },
   { value: "Clean Arch", label: "BLoC / Cubit Standard" },
-  { value: "60 FPS", label: "Fluid Native UI" },
+  { value: "60 FPS", label: "Zero-Jank Fluid UI" },
 ];
 
 const socialLinks = [
@@ -75,7 +75,7 @@ export default function Hero() {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-6 leading-relaxed max-w-2xl font-normal">
-              Hi, I'm <strong className="text-[var(--text-primary)] font-bold">Mohamed Fawzy</strong> — a Flutter Developer specializing in high-performance iOS & Android applications with <strong className="text-cyan-accent font-semibold">Clean Architecture</strong>, <strong className="text-cyan-accent font-semibold">BLoC</strong>, and AI-driven workflows. Proven track record shipping live apps to the <strong className="text-[var(--text-primary)]">Apple App Store</strong> & <strong className="text-[var(--text-primary)]">Google Play</strong>.
+              Hi, I'm <strong className="text-[var(--text-primary)] font-bold">Mohamed Fawzy</strong> — a Flutter Mobile Engineer specialized in engineering high-impact, revenue-driving iOS & Android applications with <strong className="text-cyan-accent font-semibold">Clean Architecture</strong> and <strong className="text-cyan-accent font-semibold">BLoC</strong>. Proven track record shipping 3 commercial production applications to both the <strong className="text-[var(--text-primary)]">Apple App Store</strong> & <strong className="text-[var(--text-primary)]">Google Play</strong>.
             </p>
 
             {/* Quick Metrics Strip */}
@@ -122,7 +122,7 @@ export default function Hero() {
               </a>
 
               <a
-                href="/cv/MOHAMED_FAWZY_FLUTTER_CV.pdf"
+                href="/cv/Mohamed_Fawzy_Flutter_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary-action"

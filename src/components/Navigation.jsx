@@ -17,10 +17,11 @@ import {
 import { useTheme } from "../context/ThemeContext";
 
 const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  { label: "Apps", href: "#apps" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
@@ -43,16 +44,21 @@ export default function Navigation() {
           setScrolled(currentY > 20);
 
           if (!guardExpiry.current && !isNavigationLocked()) {
-            const triggerY = currentY + window.innerHeight * 0.35;
-            let currentId = sectionIds[0];
-            for (const id of sectionIds) {
-              const el = document.getElementById(id);
-              if (!el) continue;
-              if (el.offsetTop <= triggerY) {
-                currentId = id;
+            const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 70;
+            if (isBottom) {
+              setActive(sectionIds[sectionIds.length - 1]);
+            } else {
+              const triggerY = currentY + window.innerHeight * 0.35;
+              let currentId = sectionIds[0];
+              for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                if (el.offsetTop <= triggerY) {
+                  currentId = id;
+                }
               }
+              setActive((prev) => (prev !== currentId ? currentId : prev));
             }
-            setActive((prev) => (prev !== currentId ? currentId : prev));
           }
           ticking = false;
         });
@@ -146,7 +152,7 @@ export default function Navigation() {
           {/* Quick Actions */}
           <div className="flex items-center gap-2">
             <a
-              href="/cv/MOHAMED_FAWZY_FLUTTER_CV.pdf"
+              href="/cv/Mohamed_Fawzy_Flutter_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-[var(--text-secondary)] hover:text-white bg-[var(--bg-secondary)] border border-[var(--border-default)] hover:border-sky-500/40 transition-colors text-decoration-none"
@@ -221,7 +227,7 @@ export default function Navigation() {
 
               <div className="pt-2 mt-2 border-t border-[var(--border-subtle)] flex items-center gap-2">
                 <a
-                  href="/cv/MOHAMED_FAWZY_FLUTTER_CV.pdf"
+                  href="/cv/Mohamed_Fawzy_Flutter_CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-primary)] text-decoration-none"

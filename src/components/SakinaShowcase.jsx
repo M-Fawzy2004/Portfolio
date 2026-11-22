@@ -24,7 +24,7 @@ import { GooglePlayIcon, AppleIcon } from "./TechIcons";
 const sakinaScreens = [
   {
     id: 1,
-    title: "ملاذ الروح & القبة الفلكية",
+    title: "Celestial Sanctuary & Astronomy",
     subtitle: "Dynamic Celestial Sky & Offline Astronomical Prayer Engine",
     image: "/sakina/1.webp",
     backupImage: "/sakina/1.png",
@@ -32,13 +32,13 @@ const sakinaScreens = [
     accent: "#F59E0B",
     icon: Moon,
     highlight: "Mathematical sun & moon phase rendering without network API dependencies, real-time prayer countdown, and offline GPS coordinates.",
-    desc: "A luxury sanctuary home screen featuring dynamic mathematical celestial sky rendering, high-precision GPS prayer times (Fajr, Dhuhr, Asr, Maghrib, Isha, Sunrise, Midnight, Last Third), and instant portals to core Islamic modules.",
+    desc: "A luxury sanctuary home screen featuring dynamic mathematical celestial sky rendering, high-precision GPS prayer times (Fajr, Dhuhr, Asr, Maghrib, Isha, Sunrise, Midnight, Last Third), and instant navigation portals.",
     tech: ["Mathematical Astronomy", "GPS Geolocation", "BLoC State Machine", "Canvas Sky Render"],
   },
   {
     id: 2,
-    title: "المصحف الشريف الرقمي",
-    subtitle: "Uthmani Typography & Reading Progress Engine",
+    title: "Noble Quran Reader",
+    subtitle: "Authentic Medina Typography & Smart Reading Journey",
     image: "/sakina/2.webp",
     backupImage: "/sakina/2.png",
     tag: "Quranic Engine",
@@ -50,47 +50,47 @@ const sakinaScreens = [
   },
   {
     id: 3,
-    title: "البث المباشر والتلاوات",
-    subtitle: "Makkah & Madinah Live Feeds & Studio Recitations",
+    title: "Live Broadcasts & Studio Reciters",
+    subtitle: "Makkah & Madinah Live Feeds & High-Fidelity Audio Vault",
     image: "/sakina/3.webp",
     backupImage: "/sakina/3.png",
     tag: "Live Audio & Video",
     accent: "#38BDF8",
     icon: Radio,
     highlight: "Direct HLS live satellite video streams from Al-Masjid Al-Haram & Al-Masjid An-Nabawi alongside background audio playback.",
-    desc: "Seamless broadcasting experience streaming live satellite feeds from Makkah and Madinah, paired with high-fidelity studio recitations from Al-Minshawi (الترتيل الخاشع), Abdul-Basit (صوت مكة), Al-Muaiqly, and Al-Afasy.",
+    desc: "Seamless broadcasting experience streaming live satellite feeds from Makkah and Madinah, paired with high-fidelity studio recitations from legendary reciters.",
     tech: ["HLS Live Streams", "Background Audio Service", "JustAudio Engine", "Network Recovery"],
   },
   {
     id: 4,
-    title: "الإنابة ومسار التعافي",
-    subtitle: "Spiritual Recovery Vault & Habit Rebuilding",
+    title: "Spiritual Recovery Vault",
+    subtitle: "Habit Rebuilding, Streak Tracker & Guided Milestones",
     image: "/sakina/4.webp",
     backupImage: "/sakina/4.png",
     tag: "Spiritual Vault",
     accent: "#EC4899",
     icon: HeartHandshake,
-    highlight: "Instant spiritual SOS panic button ('أشعر بضعف الآن'), streak counter, and 7-day habit rebuilding curriculum.",
-    desc: "A private spiritual rehabilitation space offering emergency divine refuge triggers during temptation, streak tracking, daily spiritual tasks (قيام الليل ومناجاة السحر), and habit restructuring.",
+    highlight: "Instant spiritual emergency refuge trigger ('Spiritual SOS'), streak counter, and 7-day habit rebuilding curriculum.",
+    desc: "A private spiritual rehabilitation space offering emergency divine refuge triggers during temptation, streak tracking, daily spiritual milestones, and habit restructuring.",
     tech: ["Habit Machine", "Streak Persistence", "AES Gratitude Vault", "Biometrics"],
   },
   {
     id: 5,
-    title: "المسبحة التفاعلية ثلاثية الأبعاد",
-    subtitle: "Tactile Bead Physics & Multi-Preset Dhikr",
+    title: "Haptic 3D Tactile Tasbih",
+    subtitle: "Realistic Bead Physics & Multi-Preset Dhikr Engine",
     image: "/sakina/5.webp",
     backupImage: "/sakina/5.png",
     tag: "Interactive Tasbih",
     accent: "#F59E0B",
     icon: Sparkles,
     highlight: "Realistic canvas bead physics, custom vibration feedback on every click, and multi-tier lap counters.",
-    desc: "Smooth tactile electronic rosary featuring bead sliding animation, lap counting, customizable target presets (33, 100, 1000, Free), and distinct dhikr modes (الاستغفار، التسبيح، التحميد، التهليل).",
+    desc: "Smooth tactile electronic rosary featuring bead sliding animation, lap counting, customizable target presets (33, 100, 1000, Free), and distinct dhikr modes.",
     tech: ["Custom Canvas Graphics", "Haptic Feedback API", "State Engine", "Touch Physics"],
   },
   {
     id: 6,
-    title: "موسوعة السنة النبوية",
-    subtitle: "9 Canonical Hadith Compendiums & 40,943 Hadiths",
+    title: "Prophetic Sunnah Encyclopedia",
+    subtitle: "9 Canonical Hadith Compendiums & 40,943 Offline Hadiths",
     image: "/sakina/6.webp",
     backupImage: "/sakina/6.png",
     tag: "Hadith Engine",
@@ -102,7 +102,7 @@ const sakinaScreens = [
   },
   {
     id: 7,
-    title: "صانع بطاقات ومقاطع الآيات 4K",
+    title: "4K Quran Reel & Video Studio",
     subtitle: "FFmpeg 4K Video Reel Generator & Audio Sync",
     image: "/sakina/7.webp",
     backupImage: "/sakina/7.png",
@@ -110,25 +110,25 @@ const sakinaScreens = [
     accent: "#EAB308",
     icon: Video,
     highlight: "High-resolution 4K video reel and card generator with dynamic nature backgrounds, reciter audio synchronization, and social export.",
-    desc: "An in-app creative studio powered by FFmpeg and custom Canvas graphics to render custom verse typography over dynamic nature backdrops with synchronized reciter audio ready for Instagram Reels and TikTok.",
+    desc: "An in-app creative studio powered by FFmpeg and custom Canvas graphics to render custom verse typography over dynamic nature backdrops with synchronized reciter audio ready for Reels and TikTok.",
     tech: ["FFmpeg Mobile", "Custom Canvas 4K", "Audio-Visual Sync", "Social Share API"],
   },
   {
     id: 8,
-    title: "الأذكار المحصنة والعداد الذكي",
-    subtitle: "Morning & Evening Adhkar with Dynamic Steps",
+    title: "Daily Fortress Adhkar",
+    subtitle: "Morning & Evening Adhkar with Dynamic Step Counters",
     image: "/sakina/8.webp",
     backupImage: "/sakina/8.png",
     tag: "Daily Adhkar",
     accent: "#06B6D4",
     icon: Clock,
-    highlight: "Step-by-step counter cards with remaining repetitions ('المتبقي: 1') and Uthmani diacritics.",
+    highlight: "Step-by-step counter cards with remaining repetitions ('1 Remaining') and authentic Uthmani diacritics.",
     desc: "Categorized morning and evening adhkar with tap-to-count interaction, haptic pulse upon completion, and merit reference citations.",
     tech: ["Progress State Machine", "Haptic Feedback", "Typography Engine", "Local Storage"],
   },
   {
     id: 9,
-    title: "حصن المسلم الرقمي",
+    title: "Hisn Al-Muslim Directory",
     subtitle: "132 Fortress Chapters for Every Daily Occasion",
     image: "/sakina/9.webp",
     backupImage: "/sakina/9.png",
@@ -141,14 +141,14 @@ const sakinaScreens = [
   },
   {
     id: 10,
-    title: "ودجات الشاشة الرئيسية iOS & Android",
+    title: "Native Home Screen Widgets",
     subtitle: "Live Home Screen Prayer Telemetry",
     image: "/sakina/10.webp",
     backupImage: "/sakina/10.png",
     tag: "Native Widgets",
     accent: "#6366F1",
     icon: Smartphone,
-    highlight: "Native iOS WidgetKit and Android AppWidgets powered by `home_widget` plugin with live prayer countdown.",
+    highlight: "Native iOS WidgetKit and Android AppWidgets powered by home_widget plugin with live prayer countdown.",
     desc: "Cross-platform home screen widgets offering glanceable prayer schedules, current active prayer highlight, and live countdown timer directly on the mobile home screen.",
     tech: ["iOS WidgetKit (Swift)", "Android AppWidget (Kotlin)", "home_widget Plugin", "Background WorkManager"],
   },
@@ -279,7 +279,7 @@ export default function SakinaShowcase() {
           </a>
 
           <a
-            href="https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362"
+            href="https://apps.apple.com/us/app/id6831748362"
             target="_blank"
             rel="noopener noreferrer"
             className="px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors text-decoration-none shadow-sm"
@@ -582,7 +582,7 @@ export default function SakinaShowcase() {
                 <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-800">
                   <div>
                     <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
-                      Sakina (سَكِينَة) • Screen {activeScreen.id} of {sakinaScreens.length}
+                      Sakina • Screen {activeScreen.id} of {sakinaScreens.length}
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-white">
                       {activeScreen.title}
@@ -602,7 +602,7 @@ export default function SakinaShowcase() {
                     </a>
 
                     <a
-                      href="https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362"
+                      href="https://apps.apple.com/us/app/id6831748362"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hidden sm:flex px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold items-center gap-1.5 transition-colors text-decoration-none"

@@ -21,7 +21,7 @@ import {
 const showcaseApps = [
   {
     id: 'sakina',
-    title: 'Sakina (سَكِينَة)',
+    title: 'Sakina',
     badge: 'App Store & Google Play',
     tagline: 'Islamic Sanctuary • 4K Reel Studio • Astronomical Core',
     overview: 'A luxury production Islamic application engineered with Flutter & Dart under Clean Architecture and BLoC. Features an in-app 4K Quranic video/reel studio with FFmpeg, mathematical offline astronomical prayer calculations, local AES gratitude vault, and cross-platform native home screen widgets.',
@@ -39,7 +39,7 @@ const showcaseApps = [
     ],
     backup: '/sakina/1.png',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.sakina.islamic',
-    appStoreUrl: 'https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362',
+    appStoreUrl: 'https://apps.apple.com/us/app/id6831748362',
     techStack: ['Flutter', 'Dart', 'Clean Arch', 'BLoC / Cubit', 'FFmpeg Mobile', 'Canvas 4K', 'iOS WidgetKit', 'Android AppWidgets', 'Dart Isolates', 'AES Biometrics'],
     icon: Moon,
     accent: '#F59E0B',
@@ -163,7 +163,7 @@ export default function InteractiveAppShowcase() {
   };
 
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section id="apps" className="section-padding relative overflow-hidden">
       <div className="max-container">
 
         {/* Section Header */}
@@ -176,35 +176,37 @@ export default function InteractiveAppShowcase() {
             Production Mobile Apps in Action
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-body)]">
-            Explore 5 mobile applications engineered with Clean Architecture, Google Gemini AI, Mapbox GPS, and Supabase.
+            Explore 6 mobile applications engineered with Clean Architecture, Google Gemini AI, Mapbox GPS, and Supabase.
           </p>
         </div>
 
         {/* App Selector Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none snap-x">
-          {showcaseApps.map((app, idx) => {
-            const isActive = idx === activeAppIdx;
-            const Icon = app.icon;
-            return (
-              <button
-                key={app.id}
-                onClick={() => handleSelectApp(idx)}
-                className={`flex-shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-2 border cursor-pointer ${
-                  isActive
-                    ? 'bg-sky-600 text-white border-sky-500 shadow-sm'
-                    : 'bg-[var(--bg-secondary)] border-[var(--border-default)] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <Icon size={14} className={isActive ? 'text-white' : 'text-sky-400'} />
-                <span>{app.title}</span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
-                  isActive ? 'bg-white/20 text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-muted)]'
-                }`}>
-                  {app.screens.length} {app.screens.length === 1 ? 'Screen' : 'Screens'}
-                </span>
-              </button>
-            );
-          })}
+        <div className="w-full overflow-x-auto pb-4 mb-8 scrollbar-none">
+          <div className="flex items-center gap-2 w-fit mx-auto px-4">
+            {showcaseApps.map((app, idx) => {
+              const isActive = idx === activeAppIdx;
+              const Icon = app.icon;
+              return (
+                <button
+                  key={app.id}
+                  onClick={() => handleSelectApp(idx)}
+                  className={`flex-shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-2 border cursor-pointer ${
+                    isActive
+                      ? 'bg-sky-600 text-white border-sky-500 shadow-sm'
+                      : 'bg-[var(--bg-secondary)] border-[var(--border-default)] text-[var(--text-body)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]'
+                  }`}
+                >
+                  <Icon size={14} className={isActive ? 'text-white' : 'text-sky-400'} />
+                  <span>{app.title}</span>
+                  <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-muted)]'
+                  }`}>
+                    {app.screens.length} {app.screens.length === 1 ? 'Screen' : 'Screens'}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Interactive Device Stage + Architectural Insights Bento */}
