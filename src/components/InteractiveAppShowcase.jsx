@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
+  Moon,
   MapPin, 
   GraduationCap, 
   ShoppingBag, 
@@ -18,6 +19,37 @@ import {
 } from './TechIcons';
 
 const showcaseApps = [
+  {
+    id: 'sakina',
+    title: 'Sakina (سَكِينَة)',
+    badge: 'App Store & Google Play',
+    tagline: 'Islamic Sanctuary • 4K Reel Studio • Astronomical Core',
+    overview: 'A luxury production Islamic application engineered with Flutter & Dart under Clean Architecture and BLoC. Features an in-app 4K Quranic video/reel studio with FFmpeg, mathematical offline astronomical prayer calculations, local AES gratitude vault, and cross-platform native home screen widgets.',
+    screens: [
+      '/sakina/1.webp',
+      '/sakina/7.webp',
+      '/sakina/2.webp',
+      '/sakina/3.webp',
+      '/sakina/4.webp',
+      '/sakina/5.webp',
+      '/sakina/6.webp',
+      '/sakina/8.webp',
+      '/sakina/9.webp',
+      '/sakina/10.webp'
+    ],
+    backup: '/sakina/1.png',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.sakina.islamic',
+    appStoreUrl: 'https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362',
+    techStack: ['Flutter', 'Dart', 'Clean Arch', 'BLoC / Cubit', 'FFmpeg Mobile', 'Canvas 4K', 'iOS WidgetKit', 'Android AppWidgets', 'Dart Isolates', 'AES Biometrics'],
+    icon: Moon,
+    accent: '#F59E0B',
+    highlights: [
+      '4K Quranic video/reel generator with FFmpeg & Canvas graphics with audio sync',
+      'Zero API dependency offline astronomical prayer calculations & celestial sky',
+      'Cross-platform home screen widgets using Android AppWidgets & iOS WidgetKit',
+      'Optimized release builds by 67% using R8 shrinking, ProGuard & Dart Isolates'
+    ],
+  },
   {
     id: 'docmate',
     title: 'DocMate Healthcare',
@@ -40,12 +72,13 @@ const showcaseApps = [
   {
     id: 'academia',
     title: 'Academia AI',
-    badge: 'Google Play • 25+ Screens',
+    badge: 'App Store & Google Play',
     tagline: 'Google Gemini 1.5 Multi-Modal Study Companion',
     overview: 'Flagship educational application featuring 25+ production screens, automated personalized study plan generation via Gemini AI, in-app PDF document summarization, and dynamic quizzing.',
     screens: ['/academia/1.webp', '/academia/2.webp', '/academia/3.webp', '/academia/4.webp'],
     backup: '/covers/academia.webp',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mohamed.academiaai',
+    appStoreUrl: 'https://apps.apple.com/us/app/academia-ai-all-in-one-study/id6815206996',
     techStack: ['Flutter', 'Dart', 'Google Gemini 1.5', 'Clean Architecture', 'Supabase', 'BLoC'],
     icon: GraduationCap,
     accent: '#38BDF8',

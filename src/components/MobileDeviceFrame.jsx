@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
+  Moon,
   Layers, 
   MapPin, 
   GraduationCap, 
@@ -9,6 +10,16 @@ import {
 import { FlutterIcon } from './TechIcons';
 
 const previewApps = [
+  {
+    id: 'sakina',
+    name: 'Sakina (سَكِينَة)',
+    tagline: 'Luxury Islamic App & 4K Reel Studio',
+    image: '/sakina/1.webp',
+    backupCover: '/sakina/1.png',
+    badge: 'Luxury Production',
+    badgeColor: '#F59E0B',
+    icon: Moon,
+  },
   {
     id: 'academia',
     name: 'Academia AI',

@@ -87,7 +87,7 @@ export default function AboutMe() {
               </p>
 
               <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">
-                I have hands-on experience shipping production mobile systems, including <strong className="text-[var(--text-primary)]">DocMate</strong> (live healthcare booking platform on the Google Play Store & Apple App Store with Supabase RPC queue engine), <strong className="text-[var(--text-primary)]">Academia AI</strong> (25+ screens, Google Gemini 1.5 multi-modal study workflows), <strong className="text-[var(--text-primary)]">ParkMate</strong> (Mapbox GPS routing), and commercial e-commerce applications.
+                I have hands-on experience shipping production mobile systems, including <strong className="text-[var(--text-primary)]">Sakina</strong> (live on Apple App Store & Google Play, luxury Islamic platform with 4K FFmpeg reel engine, offline astronomical calculations, and 10 production screens), <strong className="text-[var(--text-primary)]">DocMate</strong> (live healthcare booking platform on the Google Play Store & Apple App Store with Supabase RPC queue engine), <strong className="text-[var(--text-primary)]">Academia AI</strong> (live on Apple App Store & Google Play, 25+ screens, Google Gemini 1.5 multi-modal study workflows), <strong className="text-[var(--text-primary)]">ParkMate</strong> (Mapbox GPS routing), and commercial e-commerce applications.
               </p>
             </div>
 

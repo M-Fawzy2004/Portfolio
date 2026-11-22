@@ -16,7 +16,8 @@ import {
 
 const dynamicHighlights = [
   "Production Flutter Engineer with +1 Year of Hands-on Experience",
-  "Shipped DocMate to Apple App Store & Google Play Store",
+  "Shipped Sakina, DocMate & Academia AI to Apple App Store & Google Play",
+  "Engineered Sakina: 4K Quranic Reel Studio, Astronomy & iOS/Android Widgets",
   "Architected Academia AI (25+ Screens) with Google Gemini 1.5",
   "Clean Architecture, BLoC & Cubit Predictable State Machines",
   "Supabase PostgreSQL, Offline SQLite Caching & Mapbox GPS Routing",

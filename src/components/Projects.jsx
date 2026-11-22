@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { 
+  Sparkles,
   ArrowUpRight, 
   ExternalLink, 
   X, 
@@ -9,6 +10,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
+import SakinaShowcase from "./SakinaShowcase";
 import { 
   GooglePlayIcon, 
   GitHubIcon,
@@ -16,6 +18,41 @@ import {
 } from "./TechIcons";
 
 const projects = [
+  {
+    id: "sakina",
+    title: "Sakina (سَكِينَة)",
+    tagline: "Luxury Islamic Mobile Platform • 4K Quranic Reel Studio • Astronomical Engine",
+    badge: "Luxury Production App",
+    rating: "Live on App Store & Google Play",
+    description: "A production-grade luxury Islamic mobile application engineered with Flutter & Dart, strictly adhering to Clean Architecture and BLoC/Cubit state management. Features an in-app 4K Quranic video/reel studio with FFmpeg, mathematical offline astronomical prayer calculations, local AES gratitude vault, and cross-platform native home screen widgets.",
+    features: [
+      "Strict Clean Architecture separating Presentation (BLoC/Cubit), Domain (UseCases), and Data repositories.",
+      "Engineered a 4K Quranic video/reel generator utilizing FFmpeg and custom Canvas graphics with synchronized audio.",
+      "Designed an offline-first astronomical prayer calculator and dynamic celestial header that renders real-time sun/moon sky phases mathematically without API dependencies.",
+      "Integrated local biometric authentication (Face ID/Fingerprint) with local AES encryption for a private spiritual gratitude vault.",
+      "Built cross-platform home screen widgets using Android AppWidgets and iOS WidgetKit via home_widget plugin.",
+      "Optimized release builds by 67% using R8 shrinking, ProGuard keep rules, genuine image quantization, and offloaded heavy computations to Dart Isolates."
+    ],
+    techStack: ["Flutter", "Dart", "Clean Architecture", "BLoC / Cubit", "FFmpeg Mobile", "WidgetKit / AppWidgets", "Canvas Graphics", "Dart Isolates", "AES Encryption"],
+    images: [
+      "/sakina/1.webp",
+      "/sakina/7.webp",
+      "/sakina/2.webp",
+      "/sakina/3.webp",
+      "/sakina/4.webp",
+      "/sakina/5.webp",
+      "/sakina/6.webp",
+      "/sakina/8.webp",
+      "/sakina/9.webp",
+      "/sakina/10.webp"
+    ],
+    cover: "/covers/sakina.webp",
+    backupCover: "/sakina/1.png",
+    links: [
+      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.sakina.islamic", icon: GooglePlayIcon, primary: true },
+      { label: "Apple App Store", url: "https://apps.apple.com/us/app/سكينة-قرآن-وأذكار/id6831748362", icon: AppleIcon, primary: true }
+    ],
+  },
   {
     id: "docmate",
     title: "DocMate",
@@ -44,7 +81,7 @@ const projects = [
     title: "Academia AI",
     tagline: "Gemini AI-Powered Educational Platform • 25+ Screens",
     badge: "Flagship Production App",
-    rating: "Live on Google Play",
+    rating: "Live on App Store & Google Play",
     description: "An advanced production educational platform featuring 25+ screens, automated study plan generation via Google Gemini 1.5, PDF document summarization, dynamic quiz creation, and offline caching.",
     features: [
       "Over 25+ production screens built with Clean Architecture and strict BLoC state management.",
@@ -57,7 +94,8 @@ const projects = [
     images: ["/academia/1.webp", "/academia/2.webp", "/academia/3.webp", "/academia/4.webp"],
     cover: "/covers/academia.webp",
     links: [
-      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai", icon: GooglePlayIcon, primary: true }
+      { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.mohamed.academiaai", icon: GooglePlayIcon, primary: true },
+      { label: "Apple App Store", url: "https://apps.apple.com/us/app/academia-ai-all-in-one-study/id6815206996", icon: AppleIcon, primary: true }
     ],
   },
   {
@@ -146,6 +184,14 @@ const projects = [
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeModalImageIdx, setActiveModalImageIdx] = useState(0);
+  const [showSakinaShowcase, setShowSakinaShowcase] = useState(true);
+
+  const sakinaProject = projects.find((p) => p.id === "sakina");
+  const docmateProject = projects.find((p) => p.id === "docmate");
+  const academiaProject = projects.find((p) => p.id === "academia-ai");
+  const parkmateProject = projects.find((p) => p.id === "parkmate");
+  const transportProject = projects.find((p) => p.id === "transportation-system");
+  const ecommerceProject = projects.find((p) => p.id === "ecommerce-ecosystem");
 
   const openProjectModal = (proj) => {
     setSelectedProject(proj);
@@ -188,7 +234,146 @@ export default function Projects() {
         {/* Projects Showcase */}
         <div className="space-y-6 sm:space-y-8">
           
-          {/* Spotlight 1: DocMate (Commercial Production App) */}
+          {/* Spotlight 1: Sakina (Luxury Islamic Platform & 4K Reel Studio) */}
+          <div className="bento-card p-5 sm:p-8 border-amber-500/20 relative overflow-hidden">
+            {/* Ambient luxury accent glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-500/10 via-emerald-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              
+              {/* Left Column */}
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                      {sakinaProject.badge}
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                      <GooglePlayIcon size={12} /> Google Play
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
+                      <AppleIcon size={12} className="text-white" /> App Store
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center gap-1">
+                      <Sparkles size={12} /> 4K Reel Studio
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                      10 Production Screens
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
+                    {sakinaProject.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+                    {sakinaProject.description}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                      <span>4K Video Reel Studio with FFmpeg & Canvas Graphics</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                      <span>Mathematical Astronomical Prayer Engine (Offline)</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                      <span>Biometric Face ID / Fingerprint & Local AES Vault</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-body)]">
+                      <CheckCircle2 size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                      <span>Cross-Platform iOS WidgetKit & Android AppWidgets</span>
+                    </div>
+                  </div>
+
+                  {/* Tech Badges */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {sakinaProject.techStack.map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                  <a
+                    href={sakinaProject.links[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary-action text-xs"
+                  >
+                    <GooglePlayIcon size={14} />
+                    <span>Google Play</span>
+                  </a>
+
+                  <a
+                    href={sakinaProject.links[1].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary-action text-xs"
+                  >
+                    <AppleIcon size={14} />
+                    <span>App Store</span>
+                  </a>
+
+                  <button
+                    onClick={() => setShowSakinaShowcase(!showSakinaShowcase)}
+                    className="btn-secondary-action text-xs cursor-pointer"
+                  >
+                    <Sparkles size={14} className="text-amber-300" />
+                    <span>{showSakinaShowcase ? "Hide Showcase" : "Walkthrough (10 Screens)"}</span>
+                  </button>
+
+                  <button
+                    onClick={() => openProjectModal(sakinaProject)}
+                    className="btn-secondary-action text-xs ml-auto cursor-pointer"
+                  >
+                    <span>Inspect 10 Screens</span>
+                    <ArrowUpRight size={13} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Visual Preview Banner */}
+              <div 
+                onClick={() => openProjectModal(sakinaProject)}
+                className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-amber-500/25 flex items-center justify-center p-2"
+              >
+                <img
+                  src={sakinaProject.cover}
+                  alt="Sakina Mobile App Cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
+                  onError={(e) => {
+                    if (sakinaProject.backupCover && e.target.src !== sakinaProject.backupCover) {
+                      e.target.src = sakinaProject.backupCover;
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                  <div className="text-white text-xs font-semibold flex items-center gap-1.5">
+                    <Sparkles size={13} className="text-amber-400" />
+                    <span>Click to inspect Sakina (10 production screens)</span>
+                    <ArrowUpRight size={13} />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Embedded Interactive Walkthrough (Like DocMate) */}
+            {showSakinaShowcase && (
+              <SakinaShowcase />
+            )}
+          </div>
+
+          {/* Spotlight 2: DocMate (Commercial Production App) */}
           <div className="bento-card p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
@@ -197,7 +382,7 @@ export default function Projects() {
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                      {projects[0].badge}
+                      {docmateProject.badge}
                     </span>
                     <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
                       <GooglePlayIcon size={12} /> Google Play
@@ -208,11 +393,11 @@ export default function Projects() {
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
-                    {projects[0].title}
+                    {docmateProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    {projects[0].description}
+                    {docmateProject.description}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
@@ -236,7 +421,7 @@ export default function Projects() {
 
                   {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {projects[0].techStack.map((tech) => (
+                    {docmateProject.techStack.map((tech) => (
                       <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
                         {tech}
                       </span>
@@ -247,7 +432,7 @@ export default function Projects() {
                 {/* Actions */}
                 <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
                   <a
-                    href={projects[0].links[0].url}
+                    href={docmateProject.links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary-action text-xs"
@@ -257,7 +442,7 @@ export default function Projects() {
                   </a>
 
                   <a
-                    href={projects[0].links[1].url}
+                    href={docmateProject.links[1].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-secondary-action text-xs"
@@ -267,7 +452,7 @@ export default function Projects() {
                   </a>
 
                   <button
-                    onClick={() => openProjectModal(projects[0])}
+                    onClick={() => openProjectModal(docmateProject)}
                     className="btn-secondary-action text-xs ml-auto"
                   >
                     <span>Inspect 5 Screens</span>
@@ -278,18 +463,18 @@ export default function Projects() {
 
               {/* Right Column: Visual Preview Banner */}
               <div 
-                onClick={() => openProjectModal(projects[0])}
+                onClick={() => openProjectModal(docmateProject)}
                 className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)] flex items-center justify-center p-2"
               >
                 <img
-                  src={projects[0].cover}
+                  src={docmateProject.cover}
                   alt="DocMate Cover"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-300"
                   onError={(e) => {
-                    if (projects[0].backupCover && e.target.src !== projects[0].backupCover) {
-                      e.target.src = projects[0].backupCover;
+                    if (docmateProject.backupCover && e.target.src !== docmateProject.backupCover) {
+                      e.target.src = docmateProject.backupCover;
                     }
                   }}
                 />
@@ -318,17 +503,20 @@ export default function Projects() {
                     <span className="px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
                       <GooglePlayIcon size={12} /> Google Play
                     </span>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-900 border border-slate-700 text-white flex items-center gap-1">
+                      <AppleIcon size={12} className="text-white" /> App Store
+                    </span>
                     <span className="px-2 py-0.5 rounded text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
                       25+ Screens
                     </span>
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-2.5">
-                    {projects[1].title}
+                    {academiaProject.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                    {projects[1].description}
+                    {academiaProject.description}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
@@ -352,7 +540,7 @@ export default function Projects() {
 
                   {/* Tech Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {projects[1].techStack.map((tech) => (
+                    {academiaProject.techStack.map((tech) => (
                       <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-secondary)]">
                         {tech}
                       </span>
@@ -363,17 +551,27 @@ export default function Projects() {
                 {/* Actions */}
                 <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[var(--border-subtle)]">
                   <a
-                    href={projects[1].links[0].url}
+                    href={academiaProject.links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary-action text-xs"
                   >
                     <GooglePlayIcon size={14} />
-                    <span>View on Google Play</span>
+                    <span>Google Play</span>
+                  </a>
+
+                  <a
+                    href={academiaProject.links[1].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary-action text-xs"
+                  >
+                    <AppleIcon size={14} />
+                    <span>App Store</span>
                   </a>
 
                   <button
-                    onClick={() => openProjectModal(projects[1])}
+                    onClick={() => openProjectModal(academiaProject)}
                     className="btn-secondary-action text-xs ml-auto"
                   >
                     <span>Inspect Details & Screens</span>
@@ -384,11 +582,11 @@ export default function Projects() {
 
               {/* Right Column: Visual Preview Banner */}
               <div 
-                onClick={() => openProjectModal(projects[1])}
+                onClick={() => openProjectModal(academiaProject)}
                 className="lg:col-span-5 relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] bg-black border border-[var(--border-default)]"
               >
                 <img
-                  src={projects[1].cover}
+                  src={academiaProject.cover}
                   alt="Academia AI Cover"
                   loading="lazy"
                   decoding="async"
@@ -429,11 +627,11 @@ export default function Projects() {
                 </p>
 
                 <div 
-                  onClick={() => openProjectModal(projects[2])}
+                  onClick={() => openProjectModal(parkmateProject)}
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src={projects[2].cover}
+                    src={parkmateProject.cover}
                     alt="ParkMate Navigation"
                     loading="lazy"
                     decoding="async"
@@ -442,7 +640,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex flex-wrap gap-1 mb-5">
-                  {projects[2].techStack.slice(0, 5).map((tech) => (
+                  {parkmateProject.techStack.slice(0, 5).map((tech) => (
                     <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)]">
                       {tech}
                     </span>
@@ -452,7 +650,7 @@ export default function Projects() {
 
               <div className="flex items-center gap-2 pt-3.5 border-t border-[var(--border-subtle)]">
                 <a
-                  href={projects[2].links[0].url}
+                  href={parkmateProject.links[0].url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary-action flex-1 text-xs py-1.5"
@@ -461,7 +659,7 @@ export default function Projects() {
                   <span>View Repository</span>
                 </a>
                 <button
-                  onClick={() => openProjectModal(projects[2])}
+                  onClick={() => openProjectModal(parkmateProject)}
                   className="btn-secondary-action text-xs py-1.5 px-3"
                 >
                   Details
@@ -490,11 +688,11 @@ export default function Projects() {
                 </p>
 
                 <div 
-                  onClick={() => openProjectModal(projects[3])}
+                  onClick={() => openProjectModal(transportProject)}
                   className="relative rounded-lg overflow-hidden cursor-pointer aspect-[16/9] mb-4 bg-black border border-[var(--border-subtle)]"
                 >
                   <img
-                    src={projects[3].cover}
+                    src={transportProject.cover}
                     alt="Transportation System"
                     loading="lazy"
                     decoding="async"
@@ -503,7 +701,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex flex-wrap gap-1 mb-5">
-                  {projects[3].techStack.slice(0, 5).map((tech) => (
+                  {transportProject.techStack.slice(0, 5).map((tech) => (
                     <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-muted)]">
                       {tech}
                     </span>
@@ -513,7 +711,7 @@ export default function Projects() {
 
               <div className="flex items-center gap-2 pt-3.5 border-t border-[var(--border-subtle)]">
                 <button
-                  onClick={() => openProjectModal(projects[3])}
+                  onClick={() => openProjectModal(transportProject)}
                   className="btn-primary-action flex-1 text-xs py-1.5"
                 >
                   <span>Explore Architecture</span>
@@ -528,11 +726,11 @@ export default function Projects() {
           <div className="bento-card p-5 sm:p-6">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
               <div 
-                onClick={() => openProjectModal(projects[4])}
+                onClick={() => openProjectModal(ecommerceProject)}
                 className="md:col-span-5 relative rounded-lg overflow-hidden cursor-pointer aspect-[16/10] bg-black border border-[var(--border-subtle)]"
               >
                 <img
-                  src={projects[4].cover}
+                  src={ecommerceProject.cover}
                   alt="E-Commerce Ecosystem"
                   loading="lazy"
                   decoding="async"

@@ -39,7 +39,7 @@ const skillsList = [
   { name: 'Flutter', category: 'mobile', icon: FlutterIcon, level: '2 Yrs Production', note: 'Cross-platform iOS & Android, 60 FPS fluid rendering' },
   { name: 'Dart', category: 'mobile', icon: DartIcon, level: 'Advanced', note: 'Async programming, streams, null-safety & isolates' },
   { name: 'Android Native', category: 'mobile', icon: AndroidIcon, level: 'Native Integration', note: 'Manifest, permissions, Android Studio release signing' },
-  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino widgets, iOS HIG, TestFlight release tracks' },
+  { name: 'iOS / Cupertino', category: 'mobile', icon: AppleIcon, level: 'Apple HIG Standard', note: 'Cupertino widgets, iOS HIG, TestFlight & App Store (Sakina, DocMate & Academia AI)' },
   { name: 'React Native', category: 'mobile', icon: Code2, level: 'Expanding Focus', note: 'Component lifecycle, cross-framework mobile synergy' },
 
   // Architecture & State
@@ -62,7 +62,7 @@ const skillsList = [
   { name: 'Git & GitHub', category: 'ai-tools', icon: GitIcon, level: 'Daily Standard', note: 'Branching strategies, PR reviews, version tags' },
   { name: 'Postman', category: 'ai-tools', icon: PostmanIcon, level: 'Advanced', note: 'API contract testing, environment variables, authentication' },
   { name: 'Figma', category: 'ai-tools', icon: FigmaIcon, level: 'Design-to-Code', note: 'Pixel-perfect translation from Figma mobile specs into Flutter' },
-  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks (DocMate & Academia AI)' },
+  { name: 'Google Play Console', category: 'ai-tools', icon: GooglePlayIcon, level: 'Published Apps', note: 'App bundle signing, release tracks (Sakina, DocMate & Academia AI)' },
 ];
 
 const archLayers = [
